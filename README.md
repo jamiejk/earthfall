@@ -1,12 +1,16 @@
 # Earthfall
 
-Pick a landmark and add a portrait. Earthfall makes an 8-second dive from orbit, through the clouds, down to that person standing at the landmark.
+Pick a landmark and add a portrait. Earthfall makes an 8–10-second dive from orbit, through the clouds, down to that person standing at the landmark.
+
+[![Looping Earthfall examples: Longleat House, Eilean Donan Castle and Palácio da Pena](docs/examples/earthfall-preview.webp)](https://earthfall.jamiek.ing/#gallery)
+
+Longleat House → Eilean Donan Castle → Palácio da Pena. The preview loops automatically; [watch the full-quality films below](#example-films).
 
 It runs on your own machine with open-weight models only: FLUX 3 Klein for stills, LTX 2.5 for video and Qwen3.5 4B as the automatic checker. Generation goes through ComfyUI, driven by the Comfy SDK. No paid APIs are called.
 
 Example films (8–10 s each): Longleat House, Bamburgh Castle, Eilean Donan Castle, Château de Chambord and Palácio da Pena. They are in the repository and appear on the page when the app starts; see [Example films](#example-films).
 
-**Demo video (1:58):** DEMO_VIDEO_LINK
+**Live app:** [earthfall.jamiek.ing](https://earthfall.jamiek.ing)
 
 An entry for the Open Source Higgsfield challenge (#OpenSourceHiggsfield), category Open Weights Only.
 
@@ -74,6 +78,14 @@ It checks the models and the frozen workflow files, then opens http://127.0.0.1:
 The app listens on 127.0.0.1 only. Set `TOUCHDOWN_PASSCODE` before making it reachable from other machines. Running the server and the worker on separate machines, 4K refinement and all environment variables are covered in [app/README.md](app/README.md).
 
 ## Example films
+
+| Location | Full-quality film |
+| --- | --- |
+| Longleat House | [Watch MP4](app/examples/longleat-generic-orbit-v1.mp4) |
+| Bamburgh Castle | [Watch MP4](app/examples/bamburgh-grounded-v1.mp4) |
+| Eilean Donan Castle | [Watch MP4](app/examples/eilean-donan-grounded-v2.mp4) |
+| Château de Chambord | [Watch MP4](app/examples/chambord-recipe-v1.mp4) |
+| Palácio da Pena | [Watch MP4](app/examples/pena-photographic-v1.mp4) |
 
 The five example films are in `app/examples/`. The app copies them into its gallery and makes their posters the first time it starts, so they are on the page with nothing to run. To install them into another data directory by hand:
 
