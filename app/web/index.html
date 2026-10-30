@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Earthfall</title>
   <meta name="description" content="Create an Earth-zoom film from your portrait and real location photographs.">
-  <link rel="stylesheet" href="/static/style.css?v=4bb917d7888c">
+  <link rel="stylesheet" href="/static/style.css?v=1673fb5a6433">
   <link rel="icon" href="/static/img/icon.svg?v=3" type="image/svg+xml">
 </head>
 <body>
@@ -131,6 +131,20 @@
         <div class="workflow-result"><span class="workflow-result-label">The film you see</span><ol aria-label="Final film sequence"><li>Orbit</li><li>Through clouds</li><li>Landmark approach</li><li>Living portrait</li></ol></div>
         <figcaption id="workflow-caption">The join is a straight cut inside the cloud, with no crossfade.</figcaption>
       </figure>
+      <section class="workflow-lane ltx-used" aria-labelledby="ltx-heading">
+        <h3 id="ltx-heading">How LTX is used</h3>
+        <p class="ltx-intro">Every moving frame is LTX 2.5: the 22B distilled model (int8) with its Gemma text encoder, on one RTX 4090. One seed per stage, no picking between takes. These are the LTX features each film relies on.</p>
+        <ol class="workflow-steps workflow-four ltx-features">
+          <li><span class="workflow-tool">LTXVImgToVideoInplace · LTXVPreprocess</span><h4>Living portrait</h4><p>Image to video from the FLUX 3 landing photo. The camera cranes down to the person, the wind moves grass, hair and clothes, and the person does the ending you chose.</p></li>
+          <li><span class="workflow-tool">Generated as a retreat</span><h4>Made backwards</h4><p>LTX flies away from the person, up over the landmark and into cloud. Its first frames follow the portrait clip in reverse, so played backwards the dive lands exactly on the living portrait.</p></li>
+          <li><span class="workflow-tool">LTXVAddGuide · LTXVCropGuides</span><h4>Keyframe and video guides</h4><p>Image pins at chosen frames (the landmark view, a high aerial) at partial strength, plus moving clips as guides: a still alone stalls the camera, a moving guide keeps it flying.</p></li>
+          <li><span class="workflow-tool">Prompt Relay (Kijai, pinned)</span><h4>Timed prompts</h4><p>Each stretch of the 193-frame flight gets its own prompt: orbit, clouds, high aerial, approach, settle. LTX follows one camera move through all five.</p></li>
+          <li><span class="workflow-tool">Layout To Render IC-LoRA</span><h4>Camera control from a proxy</h4><p>A simple globe camera proxy, followed at 0.3, steers the opening from orbit into cloud. LTX invents the clouds and meets the flight’s own frames inside them.</p></li>
+          <li><span class="workflow-tool">LTX 2.5 latent upscaler ×2</span><h4>Two-pass render</h4><p>A first pass at 1280×736, then the spatial upscaler and a refine pass to 2560×1472.</p></li>
+          <li><span class="workflow-tool">ManualSigmas · SamplerCustomAdvanced</span><h4>Distilled schedule</h4><p>The distilled model’s short fixed schedule, with ComfyUI’s <code>--deterministic</code>, so a saved seed rebuilds the same clip.</p></li>
+          <li><span class="workflow-tool">Frame-exact joins</span><h4>No crossfades</h4><p>Clips meet on whole frames: the opening inside the cloud, the flight into the portrait. Nothing is blended or interpolated.</p></li>
+        </ol>
+      </section>
       <details class="workflow-notes"><summary>Limits</summary><div class="workflow-note-grid"><div><h3>What is generated</h3><p>Everything except your portrait and the landmark photos is generated: the landing photo, the flight, the land around the landmark and the view from orbit. Beyond the landmark itself the geography is invented. It is not a map.</p></div><div><h3>What the checks do</h3><p>A local Qwen3.5 model sketches the regional layout and checks each stage. When a check fails or is unsure, the build stops and keeps the take. Small models miss things, so watch the film before sharing it. Endings marked “trial” fail more often.</p></div></div></details>
     </section>
     <details id="credits" class="credits"><summary>Photo credits</summary><div id="photo-credits"></div><p>The example posters are frames from the generated films.</p></details>
