@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Volcano (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8bb6dc"/><stop offset="1" stop-color="#f0e8de"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 170 L110 80 L140 74 L170 74 L200 80 L320 170 V200 H0Z" fill="#6e5a52"/>
+  <path d="M110 80 L140 74 L170 74 L200 80 L180 90 L130 90Z" fill="#4c3d38"/>
+  <path d="M0 180 C100 170 220 186 320 176 V200 H0Z" fill="#8a7a6a"/>
+</svg>

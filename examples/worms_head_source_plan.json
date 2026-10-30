@@ -1,0 +1,34 @@
+{
+  "schema": "geoblock-source-plan-proposal-v1",
+  "status": "design_example_not_executable",
+  "place": {
+    "name": "Worm's Head, Rhossili, Wales",
+    "latitude": 51.5643,
+    "longitude": -4.3241,
+    "radius_km": 2.5
+  },
+  "mode": "composite",
+  "layers": {
+    "land_dtm": {
+      "primary": "wales_lidar_dtm_1m",
+      "fallback": "gedtm30_v20250619",
+      "fallback_policy": "valid_land_cells_only"
+    },
+    "surface_detail": null,
+    "bathymetry": "emodnet_dtm_2024",
+    "appearance": ["sentinel_2", "esa_worldcover_2021"],
+    "features": ["openstreetmap_vectors"]
+  },
+  "sea_surface": {
+    "height": null,
+    "height_reference": null,
+    "status": "must_be_chosen_separately"
+  },
+  "required_gates": [
+    "verify_welsh_lidar_vertical_datum",
+    "transform_all_elevation_to_common_height_reference",
+    "inspect_overlap_and_coastal_nodata",
+    "record_per_cell_source_and_quality"
+  ],
+  "on_gate_failure": "preview_only_no_production_composite"
+}

@@ -1,0 +1,188 @@
+{
+  "id": "geoblock-landmark-selection",
+  "revision": 0,
+  "last_node_id": 4,
+  "last_link_id": 3,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "GeoBlockSearchLandmarks",
+      "title": "1 \u00b7 Search for your landmark",
+      "pos": [
+        80,
+        160
+      ],
+      "size": [
+        380,
+        175
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "landmark matches",
+          "type": "GEOBLOCK_CANDIDATES",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "search report",
+          "type": "STRING",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GeoBlockSearchLandmarks"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 2,
+      "type": "GeoBlockChooseLandmark",
+      "title": "2 \u00b7 Choose a result and coverage",
+      "pos": [
+        570,
+        160
+      ],
+      "size": [
+        390,
+        200
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "landmark_matches",
+          "type": "GEOBLOCK_CANDIDATES",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "chosen place",
+          "type": "GEOBLOCK_PLACE",
+          "links": null
+        },
+        {
+          "name": "selection report",
+          "type": "STRING",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GeoBlockChooseLandmark"
+      },
+      "widgets_values": [
+        1,
+        1.0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "GeoBlockShowReport",
+      "title": "Review search matches",
+      "pos": [
+        570,
+        -100
+      ],
+      "size": [
+        420,
+        160
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "report",
+          "type": "STRING",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "GeoBlockShowReport"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 4,
+      "type": "GeoBlockShowReport",
+      "title": "Review chosen landmark",
+      "pos": [
+        1080,
+        160
+      ],
+      "size": [
+        430,
+        170
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "report",
+          "type": "STRING",
+          "link": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "GeoBlockShowReport"
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "GEOBLOCK_CANDIDATES"
+    ],
+    [
+      2,
+      1,
+      1,
+      3,
+      0,
+      "STRING"
+    ],
+    [
+      3,
+      2,
+      1,
+      4,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "definitions": {
+    "subgraphs": []
+  },
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9,
+      "offset": [
+        20,
+        40
+      ]
+    }
+  },
+  "version": 0.4
+}

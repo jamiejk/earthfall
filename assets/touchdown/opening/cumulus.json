@@ -1,0 +1,122 @@
+{
+  "prompt": "A real aerial photograph taken from an aircraft flying just above the tops of a vast field of cumulus clouds, looking steeply down onto them. Bright, sharp, sunlit cumulus cloud tops fill the entire frame from edge to edge: an unbroken field of billowing white towers and rounded domes with crisp, finely detailed edges, and soft natural blue-grey shadows in the hollows between the towers. Clear daylight from one side. There is no ground, no horizon, no sky and no aircraft parts anywhere in the frame. Natural colour, sharp focus, high detail. The result is a real, unretouched camera photograph: natural rock, soil, sand and plants with fine weathered detail and irregular natural edges, real sunlight and soft atmospheric haze on distant landforms, like a professional landscape photo.",
+  "seed": 2081561606,
+  "size": [
+    1920,
+    1088
+  ],
+  "graph": {
+    "1": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "2": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+        "type": "flux3",
+        "device": "default"
+      }
+    },
+    "3": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "flux2-vae.safetensors"
+      }
+    },
+    "4": {
+      "class_type": "ModelSamplingFlux",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "max_shift": 2.77259,
+        "base_shift": 2.77259,
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "10": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "2",
+          0
+        ],
+        "text": "A real aerial photograph taken from an aircraft flying just above the tops of a vast field of cumulus clouds, looking steeply down onto them. Bright, sharp, sunlit cumulus cloud tops fill the entire frame from edge to edge: an unbroken field of billowing white towers and rounded domes with crisp, finely detailed edges, and soft natural blue-grey shadows in the hollows between the towers. Clear daylight from one side. There is no ground, no horizon, no sky and no aircraft parts anywhere in the frame. Natural colour, sharp focus, high detail. The result is a real, unretouched camera photograph: natural rock, soil, sand and plants with fine weathered detail and irregular natural edges, real sunlight and soft atmospheric haze on distant landforms, like a professional landscape photo."
+      }
+    },
+    "11": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "2",
+          0
+        ],
+        "text": ""
+      }
+    },
+    "13": {
+      "class_type": "EmptyFlux2LatentImage",
+      "inputs": {
+        "width": 1920,
+        "height": 1088,
+        "batch_size": 1
+      }
+    },
+    "14": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": [
+          "4",
+          0
+        ],
+        "seed": 2081561606,
+        "steps": 16,
+        "cfg": 1.0,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1.0,
+        "positive": [
+          "10",
+          0
+        ],
+        "negative": [
+          "11",
+          0
+        ],
+        "latent_image": [
+          "13",
+          0
+        ]
+      }
+    },
+    "15": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "14",
+          0
+        ],
+        "vae": [
+          "3",
+          0
+        ]
+      }
+    },
+    "16": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "15",
+          0
+        ],
+        "filename_prefix": "touchdown/cumulus"
+      }
+    }
+  }
+}

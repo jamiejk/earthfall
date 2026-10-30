@@ -1,0 +1,103 @@
+{
+  "cloud_exit_frame": 64,
+  "target_uv": [
+    0.49,
+    0.6
+  ],
+  "colours": {
+    "background": "#2e5665",
+    "land": "#697b50"
+  },
+  "features": [
+    {
+      "material": "land",
+      "polygon": [
+        [
+          0.52,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0.83,
+          1
+        ],
+        [
+          0.8,
+          0.87
+        ],
+        [
+          0.76,
+          0.78
+        ],
+        [
+          0.72,
+          0.7
+        ],
+        [
+          0.67,
+          0.68
+        ],
+        [
+          0.62,
+          0.67
+        ],
+        [
+          0.56,
+          0.7
+        ],
+        [
+          0.49,
+          0.7
+        ],
+        [
+          0.43,
+          0.65
+        ],
+        [
+          0.4,
+          0.58
+        ],
+        [
+          0.42,
+          0.52
+        ],
+        [
+          0.47,
+          0.49
+        ],
+        [
+          0.56,
+          0.47
+        ],
+        [
+          0.63,
+          0.42
+        ],
+        [
+          0.66,
+          0.34
+        ],
+        [
+          0.61,
+          0.27
+        ],
+        [
+          0.55,
+          0.16
+        ]
+      ]
+    }
+  ],
+  "layout_description": "Open coastal water lies to the left and foreground. A broad grassy promontory projects leftward from the connected mainland on the right, with the tiny destination on its inner tip. Preserve the promontory outline and narrow coastal indentations.",
+  "expansion_description": "Extend the connected mainland, broad coastal water, irregular rocky and sandy shoreline, subdued green-brown grassland, agricultural fields and small drainage patterns. Maintain the headland and its adjoining water; do not turn it into an inland lake or duplicate the castle.",
+  "provenance": "Authored approximate flat plan reviewed against frame 64 of the fresh Bamburgh flight; not surveyed or geographically registered",
+  "heading": "Image top points inland/away from the arrival side; target is on the promontory",
+  "measured_geography": false
+}

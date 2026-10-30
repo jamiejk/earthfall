@@ -1,0 +1,65 @@
+place = "Eiffel Tower and Trocadéro, Paris"
+subject = "../subjects/test-subject-red-coat.jpg"
+reference_manifest = "../../outputs/touchdown/photo-only-paris/reference_photos/manifest.json"
+# Reviewed photos: tower/fountains, post-rain terrace, real aerial Paris context.
+reference_ids = [33258012, 53481689, 40287629]
+seed = 2026102280
+look = "Natural Paris travel photography after a passing shower, warm soft daylight, pale limestone, slate roofs, delicate blue-grey clouds, restrained colour."
+
+[models]
+unet = "flux3-image-klein-int8-convrot.safetensors"
+clip = "qwen3vl_4b_int8_convrot.safetensors"
+vae = "flux2-vae.safetensors"
+
+[video]
+frames = 217
+width = 1280
+height = 736
+
+[prompts]
+arrival = '''
+Create one beautiful integrated real travel photograph of the woman at the Trocadéro in Paris.
+Images 1 and 2 are real location photographs: use the Eiffel Tower's recognisable iron structure,
+the pale stone Paris terrace, the fountains and the weather after a passing shower. Image 3 is
+a real aerial photograph providing the character of the surrounding city: cream limestone
+buildings, grey zinc roofs, broad streets, green trees and the Seine. Reinterpret the setting
+coherently without reproducing every street or exact topographic detail.
+Image 4 identifies the woman: preserve her face, short dark curly hair, red raincoat over a grey
+hoodie and black trousers. A close environmental portrait framed from just below her waist to
+above her hair. She is slightly right of centre, her face large and clearly detailed, eyes in
+the upper third. She looks naturally toward the camera with a relaxed, inviting expression.
+The complete recognisable Eiffel Tower stands clearly in the background to the left of her,
+with Parisian rooflines and the Seine beyond the pale terrace. The city feels real and lived in.
+A continuous pale stone promenade extends toward the camera and out of the lower frame, providing
+a clear route for the camera approach. No obstruction between the camera and the woman.
+Soft bright daylight after rain, warm light from the left, delicate broken blue-grey clouds,
+a little moisture on the paving, natural skin and fabric, convincing shared illumination and
+depth. The woman and setting are photographed together with a 35mm lens, sharp face and clear
+architectural context, no shallow-focus bokeh. One candid high-quality photographic scene.
+No separate cutout, no illustration, no plastic skin, no text, no extra foreground people.
+'''
+retreat = '''
+One continuous live-action camera flight beginning at this close environmental portrait of the
+woman in her red raincoat on the Trocadéro terrace, with the Eiffel Tower and Paris behind her.
+For the first TWO SECONDS the camera moves gently backward and slightly upward from the waist-up
+portrait toward a full-body view. Her face stays sharp, stable and recognisable while she quietly
+breathes and her curls and coat move in a light breeze. This is smooth real camera travel, with
+fine facial detail and natural skin, not an optical zoom or a frozen photograph. The woman
+stays in the same position on the same terrace. She does not speak or make large gestures.
+Then the camera rapidly accelerates BACKWARD AND UPWARD along one diagonal heading at about
+45 degrees. It flies above the connected pale terrace, avenues, real-looking cream limestone
+Parisian city blocks and grey zinc rooftops. The same Eiffel Tower remains an ordinary landmark
+in the same city, gradually becoming smaller. The river curves through the wider city and the
+woman becomes a tiny red speck far below. A coherent urban landscape expands around the original
+scene; keep the architecture stable, buildings solid and streets connected. Invent plausible
+surroundings in the same photographic language, without exact surveyed geography.
+The camera continues its fast retreat high above Paris, briefly passes through a dense rolling
+white cloud bank that completely surrounds the lens, and emerges over the cloud tops. It keeps
+climbing rapidly until the curved blue atmospheric limb of Earth is revealed against black space.
+Finish in low Earth orbit above temperate western Europe. Natural blue atmosphere, green-brown
+land, delicate white weather systems, soft warm sunlight from the left. One uninterrupted flight
+through the same photographic world. Use a short photographic exposure, deep focus and crisp
+human detail during the near-camera portion. Natural perspective and strong foreground parallax.
+No cuts, no dissolves, no separate scenes, no lens zoom, no orbiting camera, no deformed faces,
+no smeared person, no elastic buildings, no illustration, no CGI surfaces.
+'''

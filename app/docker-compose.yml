@@ -1,0 +1,37 @@
+# Touchdown hosted demo on a NAS: the server, plus an optional Cloudflare Tunnel.
+#   cp app/.env.example app/.env   (then fill it in)
+#   docker compose -f app/docker-compose.yml up -d --build                     # server only (LAN)
+#   docker compose -f app/docker-compose.yml --profile tunnel up -d --build    # server + Cloudflare Tunnel
+# The GPU worker runs on the desktop and pulls jobs from this server (see app/README.md).
+services:
+  touchdown:
+    build:
+      context: ..
+      dockerfile: app/Dockerfile
+    image: touchdown-server:local
+    restart: unless-stopped
+    environment:
+      TOUCHDOWN_WORKER_TOKEN: ${TOUCHDOWN_WORKER_TOKEN:?set TOUCHDOWN_WORKER_TOKEN in app/.env}
+      # the port is published on the LAN (and the tunnel in front of it may be public), and no passcode means
+      # the app is wide open: anyone who finds it can queue GPU jobs. So the passcode is required here.
+      TOUCHDOWN_PASSCODE: ${TOUCHDOWN_PASSCODE:?set TOUCHDOWN_PASSCODE in app/.env}
+      TOUCHDOWN_MAX_UPLOAD_MB: ${TOUCHDOWN_MAX_UPLOAD_MB:-12}
+      TOUCHDOWN_MAX_QUEUE: ${TOUCHDOWN_MAX_QUEUE:-10}
+      # trust X-Forwarded-* from cloudflared on this compose network
+      TOUCHDOWN_FORWARDED_IPS: "*"
+    volumes:
+      - ./data:/data
+    ports:
+      # LAN access; remove this if the tunnel is the only way in
+      - "${TOUCHDOWN_LAN_PORT:-8000}:8000"
+
+  cloudflared:
+    profiles: ["tunnel"]
+    # pin a release you have tested, e.g. cloudflare/cloudflared:2024.12.2
+    image: ${CLOUDFLARED_IMAGE:-cloudflare/cloudflared:latest}
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:-}   # required for the tunnel profile
+    depends_on:
+      - touchdown

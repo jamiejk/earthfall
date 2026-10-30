@@ -1,0 +1,18 @@
+{
+  "id": "opening-static-surface-v1",
+  "date": "2026-10-28",
+  "scope": "Final review only; canonical generation defaults unchanged",
+  "files": {
+    "opening_pin_experiment.py": "09e244fbbea40577b824b2feca153668780a1b8418e09e67d2a96bbe3ca98dd3",
+    "opening_motion_gate.py": "2b0e54eb0522da1381be6322dd189a915419363b504956ae7e48a11fa5d96fcf",
+    "canonical_review.py": "f3f77d26ae241d8259eacc6a6697666cc628f869129bc0b10c10b2b5f6662609"
+  },
+  "calibration": "outputs/touchdown/studio/giza-opening-motion-calibration-20261028",
+  "experiment": "outputs/touchdown/studio/studio-giza-opening-pin-strength-v1-20261028",
+  "experiment_accepted": false,
+  "tests": "17 focused tests passed",
+  "limitations": [
+    "Negative check only; never grants a motion pass",
+    "Does not detect all fades, morphs or late stalls"
+  ]
+}

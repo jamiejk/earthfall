@@ -1,0 +1,21 @@
+{
+  "style": "ligne claire / clear-line comic",
+  "role": "style reference only; not surveyed or geographic ground truth",
+  "origin": "Original generated illustrations edited from the Woodside 3DEP/NAIP storyboard frames using built-in imagegen on 2026-10-04",
+  "reference_basis": "USGS NAIP 2022 aerial drape on USGS 3DEP terrain; no Tintin panel or character used",
+  "style_brief": "Crisp uniform dark ink outlines, flat restrained daylight colours, clean roofs, individually legible tree canopies, minimal shading, no photographic texture, no 3D-render appearance.",
+  "images": [
+    {
+      "file": "woodside_clearline_wide.png",
+      "source_frame": "outputs/woodside_library_3dep/textured_storyboard/frame_0001.png",
+      "generation_prompt": "Edit the provided Woodside, California oblique aerial frame into an ORIGINAL ligne claire / clear-line European comic style reference for a geographic flyover. Preserve the same camera angle, ridge silhouette, road network, building placement, playing fields, and wooded suburban layout from the input as closely as an illustration allows. Replace the flat aerial-texture look with clearly drawn trees with visible canopies, low buildings with clean roof outlines and modest volume, tidy roads and fields. Use uniform crisp dark ink contours, flat restrained daylight colours, minimal shadows, no gradients, no aerial photo texture, no 3D render appearance. Remove the gold cone/halo location marker completely. No characters, no familiar comic characters, no speech balloons, no text, no panels, no logos, no borders. Wide 16:9 image. This is a STYLE reference; architectural placement remains guided by the supplied image.",
+      "sha256": "0fcd17349e66a9ec879bf64b1939b83f1d8e7c8e591f3eb1d64ee37bd55d21f6"
+    },
+    {
+      "file": "woodside_clearline_near.png",
+      "source_frame": "outputs/woodside_library_3dep/textured_storyboard/frame_0096.png",
+      "generation_prompt": "Create a second ORIGINAL clear-line / ligne claire style reference frame for the same Woodside California geographic flyover. Image 1 is the EDIT TARGET: preserve its oblique aerial camera angle and broad road, hillside, field, tree and building positions. Image 2 is ONLY a STYLE REFERENCE: match its crisp uniform dark ink outlines, flat restrained daylight palette, clean roof outlines, individually legible tree canopies, minimal shadows and no photographic or 3D-rendered texture. Remove the gold cone and ring completely and fill their former position with plausible nearby landscape. This should read as a coherent hand-drawn European clear-line comic landscape, wide 16:9. No characters, known comic figures, panels, captions, text, logos or border. Geographic fidelity is approximate; do not invent a new landmark.",
+      "sha256": "844a88b863f0a7adc7e49de957675c33499324c29b4490a66759543dac86028b"
+    }
+  ]
+}

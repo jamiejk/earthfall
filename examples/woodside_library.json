@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "project_id": "woodside-library",
+  "name": "Woodside Library flyover",
+  "longitude": -122.2580225,
+  "latitude": 37.4291056,
+  "projected_crs": "EPSG:26910",
+  "vertical_crs": "EPSG:5703",
+  "radius_m": 1200.0,
+  "radius_interpretation": "half_width_of_projected_square",
+  "origin_easting_m": 565645.8847276662,
+  "origin_northing_m": 4142734.5250981823,
+  "location_source": "OpenStreetMap node 368169993, geocoded with Nominatim; San Mateo County Libraries address",
+  "origin_source": "address point: 3140 Woodside Road, Woodside, CA 94062"
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Desert (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86b6db"/><stop offset="1" stop-color="#f2d9b5"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 150 L320 146 L320 200 L0 200Z" fill="#d9965f"/>
+  <path d="M58 150 V96 h40 v54Z" fill="#b0603a"/>
+  <path d="M210 150 V104 h8 v-18 h12 v18 h26 V150Z" fill="#a8582f"/>
+  <path d="M0 172 C90 164 200 178 320 168 L320 200 L0 200Z" fill="#b8693d"/>
+</svg>

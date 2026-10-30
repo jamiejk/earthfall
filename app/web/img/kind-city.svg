@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="City (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86b4dc"/><stop offset="1" stop-color="#eef0f2"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M40 160 V110 h30 v50Z M80 160 V80 h24 v80Z M112 160 V96 h34 v64Z M156 160 V60 h22 v100Z M186 160 V104 h30 v56Z M224 160 V86 h26 v74Z M258 160 V120 h28 v40Z" fill="#6b7686"/>
+  <path d="M0 160 H320 V200 H0Z" fill="#7f8a6a"/>
+  <path d="M0 175 H320 V182 H0Z" fill="#9aa0a6"/>
+</svg>

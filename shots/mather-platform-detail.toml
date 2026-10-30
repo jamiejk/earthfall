@@ -1,0 +1,165 @@
+# Fixed seeds for an unattended, one-candidate-per-stage trial. No picks or per-stage human/AI review.
+# Controlled geometry trial: same selected camera, endpoint seed and LTX seed as shared-platform.
+# photo_ranking reuses cached reference evidence; this manifest requires that baseline run.
+# Run from the repository root with --unattended; see shots/ONE_PASS.md.
+
+output = "outputs/touchdown"
+
+[shot]
+name = "mather-platform-detail"
+place = "grand-canyon-mather-point"           # place catalog id (US only: NAIP)
+person = "a woman in her thirties with long straight black hair in a loose ponytail, wearing a mustard-yellow puffer jacket, dark green hiking trousers and brown leather boots"
+scene = "at a pedestrian overlook near Mather Point, with the actual viewing surface and layered Grand Canyon cliffs beyond"
+region = "the Grand Canyon and high plateaus of northern Arizona"
+approach = "the high Kaibab Plateau, looking forward and down across pine forest toward Mather Point and the Grand Canyon rim"
+swoop_view = "the pine and juniper forest at the South Rim, about a hundred and seventy metres up, looking forward and down at open ground near Mather Point"
+swoop_toward = "the layered cliffs across the Grand Canyon"
+ambient = "pine branches sway and thin clouds cast moving shadows across the canyon walls"
+descent = "45"           # after the cloud: "45" dives at ~45 degrees (Jamie's pick), "90" tips straight down in the cloud
+
+[terrain]
+enabled = true
+project = "AZ_GrandCanyonNP_2019_B19"
+utm_zone = 12
+target_x = -12.0
+target_y = -4.0
+heading = 30.0       # fixed selected camera for comparison
+embedding_rank = false
+view_previews = 8
+search_radius_m = 260
+avoid_pavement = false
+photo_op = false
+platform_layout = true
+platform_fit = true
+photo_radius_km = 0.6
+photo_query = "An eye-level photograph of a scenic pedestrian overlook at Mather Point, showing the actual open standing area or viewing platform, path, railings and Grand Canyon cliffs beyond."
+view_query = "An eye-level view from the actual pedestrian overlook at Mather Point, with a level standing surface and Grand Canyon cliffs beyond."
+route_query = "Four consecutive views of a straight forward camera descent toward the pedestrian Mather Point viewing area, with its actual standing surface and canyon background preserved."
+
+[stills]
+photo_reference = true
+photo_ranking = "outputs/touchdown/mather-shared-platform/terrain/37714c5d8fab/photo_op_ranking.json"
+seed = 20261009          # orbit still = seed + 1, whiteout still = seed + 140 (as in r3-cloud)
+orbit_region = "the southwestern United States seen from about 400 kilometres up, the Colorado Plateau small and hazy at this scale, with a broad bright deck of white cumulus cloud covering northern Arizona below"
+# the end still when the shot gives none: wide, full length, like Twin Peaks' ground_end.png, so the swoop lands
+# on a scene and the living end pushes in (a waist-up FLUX portrait leaves the swoop nowhere to go)
+end_prompt = "Edit image 1 into a real eye-level photograph from exactly the same camera viewpoint and compass direction at Mather Point, Grand Canyon. Keep the actual measured standing surface beneath the figure, the nearby paths and shrubs, the distant canyon cliffs, sky and horizon in their existing positions. Preserve the shared pedestrian surface and its boundaries; do not replace it with sand or invent a vehicle road. In the center, about ten metres from the camera, add {person}, standing on that same level ground facing the camera, shown full length at realistic human scale. Natural daylight and realistic ground and rock textures, photorealistic, no text."
+opener_end_prompt = "A real photograph taken at eye level on open ground near Mather Point: {person} stands {scene}, seen full length, small in the middle of the frame, still and facing the camera. The layered Grand Canyon cliffs and forested rim fill the distant view. Natural daylight, thin clouds, 35mm lens, sharp natural colour, real photo, no text."
+
+[opener]                 # LTX 2.5 first/last, orbit -> whiteout -> end still; only `keep` frames are used
+frames = 241
+cloud_at = 0.15
+keep = 22                # at most this many opener frames before the cloud (was 26; Jamie 10 Oct: drop in quicker)
+seeds = [20261009]
+
+[cloud]                  # LTX 2.5 image-to-video from the opener's frame `keep`
+start_at = "auto"        # start from the last opener frame before it fogs (opener keep is the upper bound)
+fog_contrast = 0.6       # cut the opener once its contrast falls under this share of its first frames' (0.45 left haze)
+frames = 97
+speed = 10.0             # target flow (px/frame at 480 wide) for the integer-step retime (was 7: faster plunge)
+cap = 5                  # build_cloud CAP
+ramp = 6                 # step limit eases up from 1 over the first kept frames (a full step at the join popped)
+max_kept = 32            # speed rises until the cloud passage fits in this many frames (was 60: Jamie wants it quicker)
+prompt_45 = "The camera angle stays locked: it keeps looking forward and down at exactly the same angle, with the thin bright horizon line held at the top edge of the frame, while the camera flies fast forward and down into a towering bank of billowing white cumulus cloud. Dense cloud walls and torn wisps stream past the lens at high speed, sunlit edges and deep blue-grey shadow inside the cloud, turbulent churning vapour, the cloud growing denser until everything is bright glowing white haze. Steady locked camera angle, real aerial footage, natural light, photorealistic."
+prompt_90 = "One continuous shot with no cuts. The camera plunges into a towering bank of billowing white cumulus cloud and, as it dives, pitches steadily downward until it is looking straight down, the horizon sliding up and out of the top of the frame. Dense cloud walls and torn wisps stream past the lens at high speed, sunlit edges and deep blue-grey shadow inside the cloud, turbulent churning vapour rushing up toward the camera, the cloud growing denser until everything is bright glowing white haze. Real aerial footage, natural light, photorealistic."
+seeds = [4]
+
+[dive]                   # no model: nested NAIP squares around the landing; the sub-table matching the descent applies
+sea = false             # inland mountain scene; skip unnecessary water-mask model work
+clear = 16               # frames thinning out of the cloud mist
+aim = 15                 # metres past the landing the dive ends looking at
+# spin: heading the dive faces; this trial uses the catalogue heading above.
+
+[dive.oblique]           # descent 45: leave the cloud looking forward, tip to ~45 deg, dive at the landing
+from_height_m = 7000     # height at the cloud exit
+to_height_m = 175        # height at the hand-off to the swoop
+frames = 64              # was 93 (Jamie 10 Oct: less time in the computed section)
+start_pitch_deg = 70     # degrees from straight down at the cloud exit: horizon near the top, as in the cloud shot
+pitch_deg = 45
+turn_frames = 28
+
+[dive.nadir]             # descent 90: looking straight down after the cloud, pitch up at the end
+from_m = 8100            # footprint at the cloud exit
+to_m = 800               # footprint where the pitch-up starts
+nadir_frames = 36        # was 52
+pitch_frames = 30        # was 41
+pitch_deg = 32
+
+[swoop]                  # LTX 2.5 first/last: the dive's last frames -> the end still
+frames = 81              # measured terrain layout guide length
+prompt = "One continuous forward descent following the exact straight camera path of the guide video. The measured standing surface, nearby paths and shrubs, canyon cliffs, rim and pines remain in their measured positions. The person stands on the same measured standing surface throughout. The camera levels out toward {person} standing {scene} and eases into an eye-level view. Natural daylight, realistic depth and parallax, photorealistic."
+seeds = [7]              # fixed before this build; no per-stage selection
+# terrain v2v follows the rendered guide directly; no separate video prefix
+
+[body]
+max_step = 3             # build2: integer step = round(dive exit flow / swoop native flow), at most this
+low = 7.0                # step down (never back up) once step x native flow falls below this (px/frame at 480 wide)
+seam_span = 14           # build2 SOFT: frames of blur + Lab pull toward the dive's last frame
+[body.fx]                # dive_fx over the dive: shake, radial blur, drawn speed lines (Jamie keeps the lines)
+shake_px = 16.0          # was 12: the shake barely read on the 45-degree dive
+roll = 0.5
+blur = 0.035
+streaks = 12
+streak_width = 2         # thinner than the nadir lines (scratchy on the angled city) ...
+streak_alpha = 0.8       # ... but visible: 0.45 lost them (Jamie 10 Oct 19:23Z)
+
+[end]                    # LTX 2.5 locked living end with a video-prefix handoff
+# A pinned 9-frame video prefix carries the measured approach through the join. The endpoint pin
+# holds the scene stable; no digital zoom follows the swoop.
+frames = 73
+prefix_frames = 9
+zoom = 1.0
+zoom_focus_x = 0.5
+zoom_focus_y = 0.46
+lock_prompt = "A continuous locked-off real photograph of {person} standing on the same measured pedestrian overlook surface near Mather Point. Exact same camera view and framing throughout. She faces the camera for the entire shot, keeping her head and shoulders front-facing. She takes a gentle breath and blinks once, while her ponytail and jacket move lightly in the wind. Her feet stay planted; she does not walk or rotate. The nearby paths, shrubs, canyon cliffs, forest and horizon stay fixed. Natural daylight, realistic photographic detail, no cuts."
+settle = 3.5             # used only without `start`: mean grey difference (240 px wide) below which the swoop counts as settled (uncalibrated)
+ramp = 24
+prompt = "One continuous shot with no cuts, a real photograph come to life. The camera holds almost still, easing in only slightly toward {person} standing {scene}, who stays on the same spot, looking at the camera, breathing and blinking. Everything around is alive in a strong gusty breeze: {ambient}; their hair and clothes flap and ripple in the wind, and low white clouds slide visibly across the sky. Constant natural motion everywhere in the frame, natural colour, sharp photographic detail, photorealistic."
+seeds = [3]
+
+[face]                   # copy the actual face from the final shot, tracked onto the approach
+enabled = true
+source = "final_frame"    # literal pixels preserve identity; optional "flux" edit remains available
+reference_from_last = 20
+lead = 14
+ramp = 12
+hold_after = 8
+fade = 16
+strength = 0.65
+
+[sound]                  # LTX 2.3 Foley V2A, wind only (Jamie 10 Oct); windows placed by segment
+engine = "procedural"     # touchdown/wind_bed.py (sound thread); "foley" = the LTX Foley V2A windows below
+wind_seed = 7
+enabled = true           # procedural wind bed from the sound thread (Foley was "still nuts-o", Jamie 10 Oct)
+workflow = "ltx-2.3-foley-v2a.json"   # from the gated HF repo, not committed: put it next to this manifest or give a path
+lora = "ltx-2.3-22b-lora-foley-v2a-1.0.safetensors"
+checkpoint = "ltx-2.3-22b-dev-fp8.safetensors"            # as on the desktop's 8190 ComfyUI
+text_encoder = "gemma_3_12B_it_fp8_scaled.safetensors"   # loaded with LTXAVTextEncoderLoader
+decomb = true
+seeds = [7]
+fade = ["end-14", "end+56", -28]   # v4: 180:250 with the living end at f194
+[sound.pace]
+peak = 1.0              # accelerate into the computed-dive/LTX handoff, then ease to 1x near the person
+dive_start = 0.25       # share of the computed dive before acceleration begins
+swoop_end = 0.55        # share of the swoop by which playback is back to 1x
+[[sound.windows]]
+name = "dive"
+from = "opener"
+to = "swoop"
+prompt = "Pure wind noise only. Violent high-altitude wind roaring past at extreme speed, heavy buffeting turbulence and shuddering air pressure as the camera punches down through thick cloud, deep rumbling gusts, a sustained roaring rush of air through the dive."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, fabric, clicks, beeps, low quality, distorted, clipping, silence"
+gain_db = -8
+lowpass = 1500
+highpass = 80
+[[sound.windows]]
+name = "swoop"
+from = "swoop-9"
+to = "swoop+72"
+prompt = "Pure wind noise only. A fast rushing whoosh of wind as the camera sweeps down low over a hillside, the roar easing and softening as it slows."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, grass, fabric, clicks, beeps, low quality, distorted, clipping"
+[[sound.windows]]
+name = "hilltop"
+from = "end-36"
+to = "total"
+prompt = "Pure wind noise only. A soft, light, steady breeze on an open hilltop, gentle and quiet."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, seagull, animals, engine, traffic, cars, city, footsteps, rustling, fabric, flapping, clicks, beeps, low quality, distorted, clipping"

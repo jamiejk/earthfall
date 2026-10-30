@@ -1,0 +1,99 @@
+# Transfer test 2: same person as the Twin Peaks cut, new place (Battery Spencer, Golden Gate). Built from shots/TEMPLATE.toml (10 Oct 2026, Astra plan step 4).
+# Every stage renders its candidate seeds and stops for a pick; picks are logged as interventions.
+
+output = "outputs/touchdown"
+
+[shot]
+name = "t2-battery-spencer"
+place = "golden-gate-battery-spencer"
+person = "a young woman with short curly dark hair, wearing a bright red raincoat over a grey hoodie, black jeans and a small backpack"
+scene = "on a grassy headland at Battery Spencer above the Golden Gate, with the red Golden Gate Bridge and San Francisco across the water behind"
+region = "the coast of northern California and San Francisco Bay"
+approach = "the grassy Marin Headlands above the Golden Gate, looking forward and down at the winding road along the headland, old concrete gun emplacements and dry grass and scrub"
+swoop_view = "the Marin Headlands above the Golden Gate, about a hundred and seventy metres up, looking forward and down at the winding road along the headland, the old concrete battery and the dry grass and scrub around it"
+swoop_toward = "the Golden Gate Bridge"
+
+[stills]
+seed = 20261009          # orbit still = seed + 1, whiteout still = seed + 140 (as in r3-cloud)
+# the end still when the shot gives none: wide, full length, like Twin Peaks' ground_end.png, so the swoop lands
+# on a scene and the living end pushes in (a waist-up FLUX portrait leaves the swoop nowhere to go)
+end_prompt = "A real photograph taken at eye level from a path about fifteen metres away: {person} stands {scene}, seen full length, small in the middle of the frame, still and facing the camera. The wide view around and behind fills most of the frame, sharp and real. Natural daylight, a few soft clouds, 35mm lens, sharp, natural colour, real photo, no text."
+
+[opener]                 # LTX 2.5 first/last, orbit -> whiteout -> end still; only `keep` frames are used
+frames = 241
+cloud_at = 0.15
+keep = 26
+seeds = [20261009, 20261010, 20261011]
+
+[cloud]                  # LTX 2.5 image-to-video from the opener's frame `keep`
+start_at = "auto"        # start from the last opener frame before it fogs (opener keep is the upper bound)
+frames = 97
+speed = 7.0              # target flow (px/frame at 480 wide) for the integer-step retime ("T=7")
+cap = 5                  # build_cloud CAP
+prompt = "The camera angle stays locked: it keeps looking forward and down at exactly the same angle, with the thin bright horizon line held at the top edge of the frame, while the camera flies fast forward and down into a towering bank of billowing white cumulus cloud. Dense cloud walls and torn wisps stream past the lens at high speed, sunlit edges and deep blue-grey shadow inside the cloud, turbulent churning vapour, the cloud growing denser until everything is bright glowing white haze. Steady locked camera angle, real aerial footage, natural light, photorealistic."   # cloud_i2v2.py
+seeds = [4, 5, 6]
+
+[dive]                   # no model: NAIP squares 24.3 / 8.1 / 2.7 / 0.9 / 0.3 km around the landing
+from_m = 8100            # footprint at the cloud exit
+to_m = 800               # footprint where the pitch-up starts (tiltdive2 v5: ends 173.5 m up)
+nadir_frames = 52
+pitch_frames = 41
+pitch_deg = 32
+# spin: degrees the view turns while looking down, to face the end shot; default = the place's view
+# heading (46.9 at Twin Peaks, matching v3's ~47)
+clear = 16               # frames thinning out of the cloud mist
+aim = 15                 # metres past the landing the last pitched frame looks at
+
+[swoop]                  # LTX 2.5 first/last: the dive's last frame -> the end still
+frames = 161
+prompt = "One continuous shot with no cuts. The camera is already swooping forward and down over {swoop_view}. It flies straight ahead toward {swoop_toward} without turning, tilting up toward the horizon in one smooth, quick, steady move as it descends, levels out at eye level, and glides toward {person} standing {scene}, who stays still and looks at the camera. Steady camera, smooth continuous motion, real aerial photography, natural colour, sharp photographic detail, photorealistic."
+seeds = [7, 21, 42]
+
+[body]
+max_step = 3             # build2: integer step = round(dive exit flow / swoop native flow), at most this
+low = 7.0                # step down (never back up) once step x native flow falls below this (px/frame at 480 wide)
+seam_span = 14           # build2 SOFT: frames of blur + Lab pull toward the dive's last frame
+[body.fx]                # dive_fx over the dive: shake, radial blur, drawn speed lines (Jamie keeps the lines)
+shake_px = 12.0
+roll = 0.4
+blur = 0.035
+streaks = 14
+
+[end]                    # LTX 2.5 image-to-video from where the swoop settles: the living end
+start_frac = 0.8         # the living end starts 80% of the way through the kept swoop (v5: 0.83)
+frames = 73
+settle = 3.5             # used only without `start`: mean grey difference (240 px wide) below which the swoop counts as settled (uncalibrated)
+ramp = 24
+prompt = "One continuous shot with no cuts, a real photograph come to life. The camera drifts in slowly to a waist-up shot of {person} standing {scene}. The person stands on the same spot, looking at the camera, breathing and blinking. A strong gusty breeze blows across the place: the long grass and scrub ripple in waves, the leaves and branches sway, their hair and clothes flap in the wind, low white clouds slide visibly across the blue sky, and a pair of gulls glide past in the distance. Natural colour, sharp photographic detail, photorealistic."
+seeds = [3, 4, 5]
+
+[sound]                  # LTX 2.3 Foley V2A, wind only (Jamie 10 Oct); windows placed by segment
+enabled = true
+workflow = "ltx-2.3-foley-v2a.json"   # from the gated HF repo, not committed: put it next to this manifest or give a path
+lora = "ltx-2.3-22b-lora-foley-v2a-1.0.safetensors"
+checkpoint = "ltx-2.3-22b-dev-fp8.safetensors"            # as on the desktop's 8190 ComfyUI
+text_encoder = "gemma_3_12B_it_fp8_scaled.safetensors"   # loaded with LTXAVTextEncoderLoader
+decomb = true
+seeds = [7]
+fade = ["end-14", "end+56", -28]   # v4: 180:250 with the living end at f194
+[[sound.windows]]
+name = "dive"
+from = "opener"
+to = "swoop"
+prompt = "Pure wind noise only. Violent high-altitude wind roaring past at extreme speed, heavy buffeting turbulence and shuddering air pressure as the camera punches down through thick cloud, deep rumbling gusts, a sustained roaring rush of air through the dive."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, fabric, clicks, beeps, low quality, distorted, clipping, silence"
+gain_db = -8
+lowpass = 1500
+highpass = 80
+[[sound.windows]]
+name = "swoop"
+from = "swoop-9"
+to = "swoop+72"
+prompt = "Pure wind noise only. A fast rushing whoosh of wind as the camera sweeps down low over a hillside, the roar easing and softening as it slows."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, grass, fabric, clicks, beeps, low quality, distorted, clipping"
+[[sound.windows]]
+name = "hilltop"
+from = "end-36"
+to = "total"
+prompt = "Pure wind noise only. A soft, light, steady breeze on an open hilltop, gentle and quiet."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, seagull, animals, engine, traffic, cars, city, footsteps, rustling, fabric, flapping, clicks, beeps, low quality, distorted, clipping"

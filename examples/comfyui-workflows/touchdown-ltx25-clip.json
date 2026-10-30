@@ -1,0 +1,611 @@
+{
+  "44": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "orbit.png"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · load image"
+    }
+  },
+  "45": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "cloud.png"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · load image"
+    }
+  },
+  "46": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "opener_end.png"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · load image"
+    }
+  },
+  "300": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · model"
+    }
+  },
+  "302": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · VAE"
+    }
+  },
+  "304": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "type": "ltxv",
+      "device": "cpu"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · text encoder"
+    }
+  },
+  "305": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "304",
+        0
+      ],
+      "text": "One continuous shot with no cuts. The camera starts in low Earth orbit above the curved blue limb of the Earth, then dives straight down at a steady, unhurried pace into a thick white cloud layer that fills the whole frame, bursts out below the clouds high above the desert of northern Arizona and southern Utah, swoops fast and low over the rim of the Grand Canyon, looking forward and down across scrub and rock toward the canyon with strong motion blur, levels out at eye level, and spends the second half of the shot on a slow, steady push-in, ending on a waist-up shot of a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers standing on the South Rim of the Grand Canyon at Mather Point, with the canyon and its distant buttes behind her, who stays still and looks at the camera.thin dust drifts across the rim and the clouds move slowly over the canyon Real aerial photography, natural colour, photorealistic."
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · prompt"
+    }
+  },
+  "306": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "304",
+        0
+      ],
+      "text": "blurry, low quality, flicker, morphing, cuts, watermark, text, cartoon, CGI, clay, plastic, untextured"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · prompt"
+    }
+  },
+  "307": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "305",
+        0
+      ],
+      "negative": [
+        "306",
+        0
+      ],
+      "frame_rate": 24
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · conditioning"
+    }
+  },
+  "308": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 960,
+      "height": 544,
+      "length": 241,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · latent"
+    }
+  },
+  "312": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "307",
+        0
+      ],
+      "negative": [
+        "307",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "308",
+        0
+      ],
+      "image": [
+        "44",
+        0
+      ],
+      "frame_idx": 0,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "313": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "312",
+        0
+      ],
+      "negative": [
+        "312",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "312",
+        2
+      ],
+      "image": [
+        "45",
+        0
+      ],
+      "frame_idx": 32,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "314": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "313",
+        0
+      ],
+      "negative": [
+        "313",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "313",
+        2
+      ],
+      "image": [
+        "46",
+        0
+      ],
+      "frame_idx": -1,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "390": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261009
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · RandomNoise"
+    }
+  },
+  "391": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "300",
+        0
+      ],
+      "positive": [
+        "314",
+        0
+      ],
+      "negative": [
+        "314",
+        1
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "392": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler_ancestral"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · KSamplerSelect"
+    }
+  },
+  "393": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · ManualSigmas"
+    }
+  },
+  "394": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "390",
+        0
+      ],
+      "guider": [
+        "391",
+        0
+      ],
+      "sampler": [
+        "392",
+        0
+      ],
+      "sigmas": [
+        "393",
+        0
+      ],
+      "latent_image": [
+        "314",
+        2
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · sample"
+    }
+  },
+  "395": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "314",
+        0
+      ],
+      "negative": [
+        "314",
+        1
+      ],
+      "latent": [
+        "394",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · LTXVCropGuides"
+    }
+  },
+  "375": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "395",
+        2
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 128,
+      "temporal_overlap": 32
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · decode"
+    }
+  },
+  "376": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "375",
+        0
+      ],
+      "fps": 24
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · CreateVideo"
+    }
+  },
+  "377": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "376",
+        0
+      ],
+      "format": "auto",
+      "codec": "auto",
+      "filename_prefix": "geoblock/touchdown_opener_s20261009_stage1"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · save video"
+    }
+  },
+  "330": {
+    "class_type": "LatentUpscaleModelLoader",
+    "inputs": {
+      "model_name": "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · upscale model"
+    }
+  },
+  "331": {
+    "class_type": "LTXVLatentUpsampler",
+    "inputs": {
+      "samples": [
+        "395",
+        2
+      ],
+      "upscale_model": [
+        "330",
+        0
+      ],
+      "vae": [
+        "302",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · upscale"
+    }
+  },
+  "342": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "307",
+        0
+      ],
+      "negative": [
+        "307",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "331",
+        0
+      ],
+      "image": [
+        "44",
+        0
+      ],
+      "frame_idx": 0,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "343": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "342",
+        0
+      ],
+      "negative": [
+        "342",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "342",
+        2
+      ],
+      "image": [
+        "45",
+        0
+      ],
+      "frame_idx": 32,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "344": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "343",
+        0
+      ],
+      "negative": [
+        "343",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "343",
+        2
+      ],
+      "image": [
+        "46",
+        0
+      ],
+      "frame_idx": -1,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "360": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261010
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · RandomNoise"
+    }
+  },
+  "361": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "300",
+        0
+      ],
+      "positive": [
+        "344",
+        0
+      ],
+      "negative": [
+        "344",
+        1
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · guide"
+    }
+  },
+  "362": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler_ancestral"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · KSamplerSelect"
+    }
+  },
+  "363": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "0.909375, 0.725, 0.421875, 0.0"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · ManualSigmas"
+    }
+  },
+  "364": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "360",
+        0
+      ],
+      "guider": [
+        "361",
+        0
+      ],
+      "sampler": [
+        "362",
+        0
+      ],
+      "sigmas": [
+        "363",
+        0
+      ],
+      "latent_image": [
+        "344",
+        2
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · sample"
+    }
+  },
+  "365": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "344",
+        0
+      ],
+      "negative": [
+        "344",
+        1
+      ],
+      "latent": [
+        "364",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · LTXVCropGuides"
+    }
+  },
+  "370": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "365",
+        2
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 128,
+      "temporal_overlap": 32
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · decode"
+    }
+  },
+  "371": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "370",
+        0
+      ],
+      "fps": 24
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · CreateVideo"
+    }
+  },
+  "90": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "371",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_opener_s20261009_ltx25",
+      "format": "auto",
+      "codec": "auto"
+    },
+    "_meta": {
+      "title": "Touchdown LTX 2.5 clip · save video"
+    }
+  }
+}

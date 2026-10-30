@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workflow · Earthfall</title>
+  <meta name="description" content="Technical graph of Earthfall's photographic flight, models, ComfyUI nodes, Python orchestration and review gates.">
+  <link rel="stylesheet" href="/static/style.css?v=b674f9fb722d"><link rel="stylesheet" href="/static/workflow.css">
+  <link rel="icon" href="/static/img/icon.svg?v=3" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#workflow-graph">Skip to workflow graph</a>
+  <header class="top"><a class="brand" href="/" aria-label="Earthfall home"><img src="/static/img/icon.svg?v=3" width="32" height="32" alt=""><span>Earthfall</span></a><nav aria-label="Main navigation"><a href="/#make">Create</a><a href="/#gallery">Examples</a><a href="/#about">How it works</a><a class="active" href="/static/workflow.html" aria-current="page">Workflow</a></nav></header>
+  <main class="technical-workflow">
+    <div class="technical-heading"><div><span class="eyebrow">photographic-grounded-v1</span><h1>Workflow</h1></div><a class="ghost" href="/static/workflow-graph.json" download>Download graph data ↓</a></div>
+    <p class="technical-intro">Every stage Create runs, with the settings from the Bamburgh film. Click a box to see its models, scripts and ComfyUI nodes.</p>
+    <div class="graph-legend" aria-label="Node categories"><span data-kind="input">Input</span><span data-kind="model">ComfyUI generation</span><span data-kind="python">Python / FFmpeg</span><span data-kind="gate">Qwen / validation gate</span><span data-kind="hold">Hold</span></div>
+    <p id="graph-error" class="notice error" role="alert" hidden></p>
+    <div class="graph-controls"><label for="node-picker">Inspect node <select id="node-picker"><option value="">Select a stage…</option></select></label><div class="graph-zoom"><button class="ghost" id="zoom-out" type="button" aria-label="Zoom out">−</button><output id="zoom-level" aria-live="polite">100%</output><button class="ghost" id="zoom-in" type="button" aria-label="Zoom in">+</button><button class="ghost" id="zoom-fit" type="button">Fit graph</button><button class="ghost" id="zoom-reset" type="button">100%</button></div></div>
+    <p class="graph-help" id="graph-help">Arrows show dependencies; “pass” permits the next stage and red dashed paths lead to a hold. Scroll the graph to follow a connection. Nodes also work with Tab and Enter.</p>
+    <div class="graph-layout"><div id="workflow-graph" class="graph-viewport" tabindex="0" role="region" aria-label="Scrollable technical dependency graph" aria-describedby="graph-help"><svg id="graph-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1610 1585" role="group" aria-label="Earthfall workflow nodes and dependency arrows"></svg></div><aside class="graph-inspector" aria-labelledby="inspector-title"><span class="eyebrow" id="inspector-kind">Node details</span><h2 id="inspector-title">Select a node</h2><p id="inspector-summary">Choose a stage in the graph or the selector above to inspect its implementation.</p><div id="inspector-content"></div></aside></div>
+    <details class="graph-text"><summary>Read the connections as text</summary><div id="graph-text-content"></div></details>
+    <section class="graph-context" aria-label="Scope and reproducibility"><div><h2>What runs</h2><p>Create prepares the landing photo and moving portrait, generates the flight, then paints the view from orbit: an overhead texture, three FLUX Fill expansions, the curved-Earth projection and the orbital finish. LTX then generates a new opening that joins the flight inside the cloud.</p><p>The Bamburgh film is 195 frames at 24 fps (8.1 s). The new opening supplies frames 0–39; frames 40–194 are the original flight, unchanged.</p></div><div><h2>What is checked</h2><p>Qwen3.5 picks the frame below the clouds, sketches the land and water layout, and checks each expansion, the orbital image and the finished film. A failed or unsure check stops the build. These checks do not guarantee motion quality or geographic accuracy.</p><p>The flight code and settings are frozen copies of the accepted run, verified by hash before each build.</p></div></section>
+  </main><footer class="foot"><span>Earthfall · Workflow</span><a href="/#about">Back to How it works</a></footer>
+  <script src="/static/workflow.js?v=328c645cc050" defer></script>
+</body>
+</html>

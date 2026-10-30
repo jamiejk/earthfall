@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earthfall</title>
+  <meta name="description" content="Create an Earth-zoom film from your portrait and real location photographs.">
+  <link rel="stylesheet" href="/static/style.css?v=4bb917d7888c">
+  <link rel="icon" href="/static/img/icon.svg?v=3" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#form">Skip to creation controls</a>
+  <header class="top">
+    <a class="brand" href="/" aria-label="Earthfall home">
+      <img src="/static/img/icon.svg?v=3" width="32" height="32" alt="" aria-hidden="true">
+      <span>Earthfall</span>
+    </a>
+    <nav aria-label="Main navigation"><a class="active" href="#make">Create</a><a href="#gallery">Examples</a><a href="#about">How it works</a><a href="/static/workflow.html">Workflow</a></nav>
+  </header>
+
+  <main>
+    <p id="boot-error" class="notice error" role="alert" hidden></p>
+    <div id="mock-banner" class="notice" hidden>This server uses a test build. It does not generate real videos.</div>
+
+    <div class="intro"><h1 class="lede">Pick a landmark and add a figure. Earthfall makes an 8-second dive from orbit, through the clouds, down to that person standing there.</h1><p class="fine">Open-weight models (FLUX 3, LTX 2.5, Qwen3.5) running on one local GPU.</p></div>
+
+    <section id="make" class="studio" aria-label="Create an Earthfall film">
+      <div class="preview-column">
+        <div class="section-head example-picker" hidden><label class="sr-only" for="example-select">Example film</label><select id="example-select" aria-label="Choose an example film" disabled><option>Loading examples…</option></select></div>
+        <div class="screen" id="screen">
+          <video id="example-video" playsinline muted autoplay loop preload="auto" tabindex="0" aria-label="Example Earth-zoom film"></video>
+          <button id="play-example" class="play-example" type="button" aria-label="Play example film"><span aria-hidden="true">▶</span></button>
+          <div id="example-missing" class="screen-empty" hidden><p>This example film isn’t installed.</p><span>You can still explore the setup controls.</span></div>
+        </div>
+        <div class="preview-caption"><div><h2 id="preview-title">Chichén Itzá</h2><p id="preview-region">Yucatán, Mexico</p></div><span id="preview-duration" class="duration"></span></div>
+        <p id="preview-method" class="fine"></p>
+        <section id="gallery" class="examples-strip" aria-labelledby="examples-heading"><h2 id="examples-heading" class="sr-only">Examples</h2><div id="gallery-items" class="gallery"></div><p id="gallery-empty" class="fine" hidden>Example films aren’t installed on this server yet.</p></section>
+      </div>
+
+      <form id="form" class="creation" novalidate>
+                <div class="creation-head"><h2>Create</h2><span id="save-state" class="fine" aria-live="polite">New setup</span></div>
+        <fieldset id="setup-fields">
+          <section class="form-section" aria-labelledby="place-heading">
+            <h3 id="place-heading"><span class="step-number">01</span> Choose a place</h3>
+            <div class="place-controls">
+              <label class="field"><span>Landmarks &amp; city views</span><select id="destination" aria-label="Landmark or city view"></select></label>
+              <div class="field"><label for="place-search">Or a custom place</label><div class="search-box"><input id="place-search" type="search" placeholder="Place name…" autocomplete="off" maxlength="120" aria-controls="search-results"><button id="search-go" type="button" aria-label="Search custom place">↵</button></div></div>
+            </div>
+            <div id="search-panel" class="search-panel" hidden><p id="search-status" role="status"></p><ul id="search-results"></ul><button id="use-name" class="text-button" type="button" hidden></button></div>
+            <p id="chosen" class="chosen" aria-live="polite"></p>
+            <details id="reference-details" class="reference-details">
+              <summary>Location photos <span id="reference-count"></span><span class="summary-action">View / add +</span></summary>
+              <p id="reference-hint" class="fine" role="status"></p>
+              <div id="automatic-previews" class="reference-previews"></div>
+              <button id="find-photos" class="text-button" type="button">Find location photos</button>
+              <label class="reference-upload">+ Add your own photos (optional)<input id="reference-input" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/heic-sequence,image/heif-sequence,.jpg,.jpeg,.png,.webp,.heic,.heif,.hif" multiple><span class="sr-only">JPEG, PNG, WebP or HEIC/HEIF, up to four photos</span></label>
+              <p id="reference-status" class="fine" role="status" hidden>Preparing location photo previews…</p>
+              <div id="reference-previews" class="reference-previews"></div>
+              <p class="fine">A wide view with open ground in front works best.</p>
+            </details>
+          </section>
+
+          <section class="form-section" aria-labelledby="person-heading">
+            <h3 id="person-heading"><span class="step-number">02</span> Add a person</h3>
+            <div id="drop" class="drop">
+              <label for="photo" class="photo-label"><span class="upload-symbol" aria-hidden="true">↑</span><img id="photo-preview" alt="Your selected portrait" hidden><span><strong id="photo-label">Choose a photo</strong><small id="photo-note" role="status">JPG, PNG, WebP or HEIC/HEIF</small></span><input type="file" id="photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/heic-sequence,image/heif-sequence,.jpg,.jpeg,.png,.webp,.heic,.heif,.hif"></label>
+              <button id="photo-remove" type="button" class="remove-photo" aria-label="Remove portrait" hidden>×</button>
+            </div>
+            <p class="fine upload-hint">A clear face and visible clothing work best.</p>
+          </section>
+
+          <section class="form-section" aria-labelledby="ending-heading">
+            <h3 id="ending-heading"><span class="step-number">03</span> Choose the ending</h3>
+            <label class="field ending-field"><span>Pose</span><select id="ending"></select></label>
+            <p id="ending-hint" class="fine ending-hint"></p>
+            <div class="field"><span id="framing-label">Final framing</span><div id="framings" class="framings" role="radiogroup" aria-labelledby="framing-label"></div></div>
+            <p id="framing-hint" class="fine" role="status"></p>
+          </section>
+
+          <details class="more-options"><summary>More options</summary><label class="field"><span>Clothing override <em>(optional)</em></span><input id="wearing" type="text" maxlength="300" placeholder="Keep the clothes from your photo"><small>Leave empty to use the clothes in your photo.</small></label></details>
+          <div class="save-actions"><button id="create" class="primary" type="button" disabled>Create film</button><button id="save" class="text-button" type="submit" disabled><span>Save setup</span></button><p id="availability" class="availability" role="status">Checking generation availability…</p></div>
+        </fieldset>
+        <p id="form-error" class="notice error" role="alert" hidden></p>
+        <div id="saved" class="saved" hidden><p id="saved-message" role="status"></p><label class="sr-only" for="saved-link">Link to your saved setup</label><div class="saved-link"><input id="saved-link" type="text" readonly><button id="copy-link" type="button">Copy link</button></div></div>
+        <p class="privacy-note">Create runs every stage shown under How it works. A failed or unsure automatic check stops the build and keeps the take. Your photos are never added to the examples.</p>
+      </form>
+    </section>
+
+    <section id="job" class="panel" hidden>
+      <div class="job-head"><div><h2 id="job-title">Your Earthfall</h2><p id="job-status" class="status" aria-live="polite"></p></div><div class="job-side"><span id="job-clock" class="job-clock" hidden></span><button id="cancel" class="ghost" hidden>Cancel</button></div></div>
+      <div id="monitor" class="monitor" hidden><ol id="stages" class="stages"></ol><div class="bar" role="progressbar" aria-label="Build progress" aria-valuemin="0" aria-valuemax="100"><span id="job-bar"></span></div><p id="job-estimate" class="fine"></p></div>
+      <div id="result" class="result" hidden><video id="video" controls playsinline preload="metadata"></video><div class="actions"><a id="download" class="primary" href="#" download>Download MP4</a><a class="ghost" href="/">Make another</a></div></div>
+      <p id="review-note" class="notice" hidden></p><ul id="review-findings" class="fine" hidden></ul>
+      <section id="enhancement" class="enhancement" hidden aria-labelledby="enhance-heading"><h3 id="enhance-heading">Refine to 4K</h3><p>Re-render at 4K for sharper detail. About 50 minutes for an 8-second film on an RTX 4090. The original is kept.</p><button id="enhance-button" class="primary" type="button">Refine to 4K</button><p id="enhance-status" role="status"></p><div id="enhance-links" class="actions"></div></section>
+      <section id="canonical-check" class="canonical-check" hidden><h3>Workflow checks</h3><p id="canonical-check-status" role="status"></p><details><summary>Latest stage evidence</summary><div id="canonical-check-assets"></div></details></section>
+      <p id="job-setup-link" class="fine"></p><div id="previews" class="previews"></div><details id="job-error-details" hidden><summary>Details</summary><pre id="job-error" class="error-tail"></pre></details><p class="fine" id="job-link"></p>
+    </section>
+
+    
+    <section id="about" class="workflow" aria-labelledby="about-heading">
+      <div class="workflow-heading"><div><h2 id="about-heading">How it works</h2></div></div>
+      <p class="workflow-intro">The flight is made backwards: Earthfall flies away from the person and up through the clouds, then plays it in reverse. The view from orbit is painted afterwards from the landscape that flight reveals, so the two match. <a href="/static/workflow.html">Full technical graph →</a></p>
+      <figure class="workflow-diagram" aria-labelledby="workflow-caption">
+        <div class="workflow-lane">
+          <h3><span class="workflow-number">01</span> Fly away from the person</h3>
+          <ol class="workflow-steps workflow-three">
+            <li><span class="workflow-tool">Photographic inputs</span><h4>Person + place</h4><p>Your portrait sets the person. Photos of the landmark, from Wikimedia Commons or your own, set the place.</p></li>
+            <li><span class="workflow-tool">FLUX 3 → LTX 2.5</span><h4>Landing + living portrait</h4><p>FLUX 3 places the person at the landmark. LTX 2.5 animates the ending pose.</p></li>
+            <li><span class="workflow-tool">LTX 2.5 · Prompt Relay</span><h4>Generate the flight</h4><p>LTX flies the camera away from the person, over the landscape and up into cloud. Played backwards, it becomes the dive.</p></li>
+          </ol>
+        </div>
+        <div class="workflow-handoff"><span aria-hidden="true">↓</span> Qwen picks a clear frame below the clouds</div>
+        <div class="workflow-lane workflow-grounding">
+          <h3><span class="workflow-number">02</span> Paint the view from orbit</h3>
+          <ol class="workflow-steps workflow-four">
+            <li><span class="workflow-tool">Qwen layout + FLUX 3</span><h4>Overhead texture</h4><p>Qwen sketches the broad land and water shapes in that frame. FLUX 3 turns the sketch into a straight-down photograph.</p></li>
+            <li><span class="workflow-tool">Native FLUX Fill</span><h4>Expand the region</h4><p>FLUX Fill widens the overhead view three times, to 8× the width. Qwen checks each pass.</p></li>
+            <li><span class="workflow-tool">Curved Earth projection</span><h4>Wrap onto the globe</h4><p>The wide texture is wrapped onto a curved Earth, with the landmark in the middle.</p></li>
+            <li><span class="workflow-tool">FLUX 3</span><h4>Finish the orbital view</h4><p>FLUX 3 adds atmosphere, detail and cloud, keeping the land shapes.</p></li>
+            <li class="workflow-opening"><span class="workflow-tool">LTX 2.5 · Prompt Relay</span><h4>Rush toward Earth</h4><p>LTX generates a new opening from orbit into the same moving clouds.</p></li>
+          </ol>
+        </div>
+        <div class="workflow-handoff"><span aria-hidden="true">↓</span> The new opening meets the flight inside the cloud</div>
+        <div class="workflow-lane">
+          <h3><span class="workflow-number">03</span> Join and check</h3>
+          <ol class="workflow-steps workflow-two">
+            <li><span class="workflow-tool">Frame-matched assembly</span><h4>Join inside the cloud</h4><p>The new opening replaces the first 40 frames. The rest of the flight keeps its frames and timing.</p></li>
+            <li><span class="workflow-tool">Qwen3.5 checks</span><h4>Check the finished film</h4><p>Qwen checks the cloud join, the landmark and the person. Every check, setting and seed is saved with the film.</p></li>
+          </ol>
+        </div>
+        <div class="workflow-result"><span class="workflow-result-label">The film you see</span><ol aria-label="Final film sequence"><li>Orbit</li><li>Through clouds</li><li>Landmark approach</li><li>Living portrait</li></ol></div>
+        <figcaption id="workflow-caption">The join is a straight cut inside the cloud, with no crossfade.</figcaption>
+      </figure>
+      <details class="workflow-notes"><summary>Limits</summary><div class="workflow-note-grid"><div><h3>What is generated</h3><p>Everything except your portrait and the landmark photos is generated: the landing photo, the flight, the land around the landmark and the view from orbit. Beyond the landmark itself the geography is invented. It is not a map.</p></div><div><h3>What the checks do</h3><p>A local Qwen3.5 model sketches the regional layout and checks each stage. When a check fails or is unsure, the build stops and keeps the take. Small models miss things, so watch the film before sharing it. Endings marked “trial” fail more often.</p></div></div></details>
+    </section>
+    <details id="credits" class="credits"><summary>Photo credits</summary><div id="photo-credits"></div><p>The example posters are frames from the generated films.</p></details>
+  </main>
+  <footer class="foot"><span>Earthfall</span><div><a href="#credits">Photo credits</a><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">Place search © OpenStreetMap</a></div></footer>
+  <dialog id="pass"><form id="pass-form"><h2>Enter passcode</h2><p>This studio is private.</p><input type="password" id="pass-input" autocomplete="current-password" required aria-label="Passcode"><p id="pass-error" class="error" hidden>That passcode didn’t work.</p><div class="actions"><button class="primary" type="submit">Enter</button><button id="pass-cancel" class="ghost" type="button">Cancel</button></div></form></dialog>
+  <script src="/static/app.js?v=a9b923848936"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+touchdown_flux_fill:
+  base_path: ../../models/FLUX-Fill
+  is_default: true
+  diffusion_models: diffusion_models
+  text_encoders: text_encoders
+  vae: vae

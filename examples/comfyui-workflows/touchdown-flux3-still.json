@@ -1,0 +1,192 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux3-image-klein-bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · model"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_4b_bf16.safetensors",
+      "type": "flux3",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · text encoder"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · VAE"
+    }
+  },
+  "4": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "max_shift": 2.77259,
+      "base_shift": 2.77259,
+      "width": 1024,
+      "height": 1024
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · ModelSamplingFlux"
+    }
+  },
+  "10": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "Make a real eye-level photograph from exactly the same camera viewpoint and compass direction as image 1. Keep the outlines and positions of the distant buttes and mesas, the horizon and the sky where image 1 has them; do not rotate or move them. Draw every butte, mesa and slope as real weathered sandstone with horizontal rock layers and desert varnish. In the centre, about ten metres from the camera, add a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers, standing still facing the camera, shown full length. The near ground is natural rock and sparse desert scrub. Natural daylight and realistic human scale. No text."
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · prompt"
+    }
+  },
+  "11": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": ""
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · prompt"
+    }
+  },
+  "r0": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "guide_frame_0081.png"
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · load image"
+    }
+  },
+  "r1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "subject.jpg"
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · load image"
+    }
+  },
+  "12": {
+    "class_type": "ReferenceMultiLatent",
+    "inputs": {
+      "positive": [
+        "10",
+        0
+      ],
+      "negative": [
+        "11",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "resolution": "resize",
+      "resolution.megapixels": 1.0,
+      "images.image0": [
+        "r0",
+        0
+      ],
+      "images.image1": [
+        "r1",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · reference"
+    }
+  },
+  "13": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · latent"
+    }
+  },
+  "14": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "seed": 20261009,
+      "steps": 16,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "positive": [
+        "12",
+        0
+      ],
+      "negative": [
+        "12",
+        1
+      ],
+      "latent_image": [
+        "13",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · sample"
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · decode"
+    }
+  },
+  "16": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_end"
+    },
+    "_meta": {
+      "title": "FLUX 3 Image Klein still · save image"
+    }
+  }
+}

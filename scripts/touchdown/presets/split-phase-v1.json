@@ -1,0 +1,42 @@
+{
+  "version": "split-phase-v1",
+  "engine": "ltx-2.5-prompt-relay",
+  "fps": 24,
+  "bounds": [
+    0,
+    29,
+    58,
+    108,
+    156,
+    192
+  ],
+  "regional_altitude_ft": 30000,
+  "regional_altitude_m": 9144,
+  "hold_trimming": false,
+  "retiming": false,
+  "split": {
+    "parent_handles": 48,
+    "high_join": "parent",
+    "opening_frames": 72,
+    "anchor_delivery_frame": 120,
+    "anchor_strength": 0.5,
+    "high_delivery_frame": 64,
+    "high_strength": 0.5,
+    "high_motion_frames": 0,
+    "high_zoom": 1.25,
+    "parent_layout": false,
+    "layout_strength": 0.4,
+    "layout_nest": 0.012,
+    "layout_rungs": 6,
+    "ladder_drift": 0.01,
+    "seam_carry_frames": 0,
+    "seam_carry_strength": 0.7,
+    "seam_carry_accel": 4.0,
+    "seam_bridge_frames": 0,
+    "seam_carry_source": "parent",
+    "descent_frames": 121,
+    "prefix_frames": 25,
+    "width": 1280,
+    "height": 736
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Mountains (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb0dc"/><stop offset="1" stop-color="#e6eef6"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 160 L70 80 L120 130 L180 60 L250 140 L290 100 L320 130 V200 H0Z" fill="#6f7d8c"/>
+  <path d="M160 82 L180 60 L200 84 L190 80 L180 88 L170 80Z M62 90 L70 80 L80 92 L70 96Z" fill="#f4f6f8"/>
+  <path d="M0 175 C80 160 200 185 320 165 V200 H0Z" fill="#5c7448"/>
+</svg>

@@ -1,0 +1,29 @@
+{
+  "version": "photographic-opening-rush-v1",
+  "fps": 24,
+  "source_frames": 49,
+  "global_prompt": "One uninterrupted live-action photographic camera flight, filmed with a fixed focal length rectilinear lens. The CAMERA rapidly translates BACKWARD AND UPWARD away from Earth along one fixed heading. This is a powerful sustained physical retreat, with strong perspective and parallax. Nearby cloud structures recede much faster than distant terrain. Stable natural daylight and exposure. No hovering, sideways orbit, lens zoom, cuts, dissolves, fades, flat cloud overlay, morphing or CGI.",
+  "generation_beats": [
+    {
+      "name": "bound_cloud_motion",
+      "start_frame": 0,
+      "end_frame": 9,
+      "prompt": "Continue the supplied moving cloud passage in its exact direction, retreating BACKWARD AND UPWARD through substantial three-dimensional clouds. Opaque cloud surrounds the camera. The camera keeps travelling fast, not watching clouds drift past a stationary viewpoint."
+    },
+    {
+      "name": "rapid_cloud_exit",
+      "start_frame": 9,
+      "end_frame": 25,
+      "prompt": "The camera rockets BACKWARD AND UPWARD out through the upper cloud surface. Nearby billowing cloud banks rapidly recede into depth, revealing the connected planetary surface beneath. Terrain and cloud formations contract toward the same vanishing point as the camera gains distance. Maintain one heading and strong outward camera translation."
+    },
+    {
+      "name": "rapid_planet_retreat",
+      "start_frame": 25,
+      "end_frame": 49,
+      "prompt": "Keep rocketing BACKWARD AND UPWARD away from the planet, never slowing. The same terrain and weather systems visibly SHRINK and more surrounding surface enters from every edge because the camera is rapidly gaining altitude. Initially the planetary surface fills the entire image with NO visible horizon or space. Only during the FINAL twelve frames does the curved Earth horizon enter from ABOVE the top edge, descending slightly into view and revealing a narrow blue limb and strip of black space. Reach the supplied close-Earth endpoint while still moving rapidly. Never reveal a small isolated globe."
+    }
+  ],
+  "single_prompt": "One uninterrupted live-action photographic camera flight, filmed with a fixed focal length rectilinear lens. The CAMERA rapidly translates BACKWARD AND UPWARD away from Earth along one fixed heading. This is a powerful sustained physical retreat, with strong perspective and parallax. Nearby cloud structures recede much faster than distant terrain. Stable natural daylight and exposure. No hovering, sideways orbit, lens zoom, cuts, dissolves, fades, flat cloud overlay, morphing or CGI. Continue the supplied moving cloud passage in its exact direction, retreating BACKWARD AND UPWARD through substantial three-dimensional clouds. Opaque cloud surrounds the camera. The camera keeps travelling fast, not watching clouds drift past a stationary viewpoint. The camera rockets BACKWARD AND UPWARD out through the upper cloud surface. Nearby billowing cloud banks rapidly recede into depth, revealing the connected planetary surface beneath. Terrain and cloud formations contract toward the same vanishing point as the camera gains distance. Maintain one heading and strong outward camera translation. Keep rocketing BACKWARD AND UPWARD away from the planet, never slowing. The same terrain and weather systems visibly SHRINK and more surrounding surface enters from every edge because the camera is rapidly gaining altitude. Initially the planetary surface fills the entire image with NO visible horizon or space. Only during the FINAL twelve frames does the curved Earth horizon enter from ABOVE the top edge, descending slightly into view and revealing a narrow blue limb and strip of black space. Reach the supplied close-Earth endpoint while still moving rapidly. Never reveal a small isolated globe.",
+  "epsilon": 0.1,
+  "temporal_stride": 8
+}

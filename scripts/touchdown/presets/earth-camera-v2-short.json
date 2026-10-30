@@ -1,0 +1,51 @@
+{
+  "name": "earth-camera-v2-short",
+  "status": "experimental",
+  "engine": "wan-2.2-i2v-earth-camera",
+  "frames": 81,
+  "source_fps": 16,
+  "delivery_fps": 24,
+  "width": 832,
+  "height": 480,
+  "seed_offset": 41,
+  "lora_strength": 1.0,
+  "deterministic": true,
+  "models": {
+    "high": {
+      "kind": "diffusion_models",
+      "name": "wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors"
+    },
+    "low": {
+      "kind": "diffusion_models",
+      "name": "wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors"
+    },
+    "text_encoder": {
+      "kind": "text_encoders",
+      "name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors"
+    },
+    "vae": {
+      "kind": "vae",
+      "name": "wan_2.1_vae.safetensors"
+    },
+    "lora": {
+      "kind": "loras",
+      "name": "wan22-camera-earthzoomout.safetensors"
+    }
+  },
+  "review": {
+    "required_order": [
+      "orbit",
+      "cloud_cover",
+      "high_regional",
+      "detailed_ground"
+    ],
+    "regional_altitude_ft": 30000,
+    "regional_altitude_m": 9144,
+    "sample_seconds": 0.25,
+    "minimum_regional_seconds": 0.5,
+    "minimum_cloud_seconds": 0.25,
+    "minimum_orbit_seconds": 0.25,
+    "require_transition_travel": true
+  },
+  "prompt_template": "Earth zoom out. A single continuous camera shot pulls rapidly backward and upward from this photograph at {place}, over the connected {support}, revealing {region}. The person and landmark shrink naturally into a vast regional landscape seen from {altitude_ft} FEET ({altitude_m} METRES): many kilometres of connected terrain, tiny settlements, no readable landmark. The camera keeps rising through a thick opaque cloud layer, billowing clouds passing close to the lens. Finally it emerges above all clouds into orbit, showing the curved Earth against black space. End in orbit. Continuous backward movement, increasing altitude throughout, fixed focal length, natural perspective, photorealistic."
+}

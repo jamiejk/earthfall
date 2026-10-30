@@ -1,0 +1,26 @@
+{
+  "name": "Worm's Head and Rhossili headland",
+  "latitude": 51.5643,
+  "longitude": -4.3241,
+  "categories": ["Category:Worm's Head"],
+  "search_terms": ["Worm's Head Rhossili", "Worms Head Rhossili"],
+  "selected_page_ids": [
+    106418392,
+    155675895,
+    115697390,
+    172517633,
+    166711686,
+    133768741,
+    150151123
+  ],
+  "roles": {
+    "106418392": "Outer Head shape and Devil's Bridge geology",
+    "155675895": "Opening view from Rhossili Point towards Inner Head",
+    "115697390": "Opening lookout view with the Rhossili cliff edge and full Worm's Head",
+    "172517633": "Intertidal causeway and rock texture at low tide",
+    "166711686": "Inner Head and Outer Head silhouette from Rhossili",
+    "133768741": "Overhead continuity from the headland to Outer Head",
+    "150151123": "Reverse view east from Outer Head towards Rhossili"
+  },
+  "motion_reference": "outputs/B_lidar_full_2m/flyover_reference_h3.mp4"
+}

@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "root": "../..",
+  "limitations": "Small manually labelled development probe from two settings and three related clips, not an independent benchmark or calibrated accuracy estimate. Roof windows overlap; intent controls reuse pixels; request-mismatch controls are synthetic task changes. Labels assess only named checks and are never supplied to the model. No real beach or independently generated elevated-destination transfer clip is included.",
+  "cases": [
+    {
+      "id": "roof-becomes-square",
+      "source": "outputs/touchdown/photo-only-paris/portrait-controlled/earth_zoom.mp4",
+      "times": [
+        4.25,
+        4.5,
+        4.75,
+        5.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie, standing on a ground-level public square with paving connected to gardens and paths. The Eiffel Tower is beyond her.",
+      "expected": {
+        "support_context": "fail",
+        "surface_continuity": "fail"
+      },
+      "annotation": "Known user-reported defect. Central building facade beneath the woman becomes the final square. Reviewed in roof-transition-review.jpg.",
+      "group": "known_roof_failure",
+      "support_box": [
+        0.25,
+        0.3,
+        0.8,
+        1
+      ],
+      "allowed_supports": [
+        "ground_paving"
+      ]
+    },
+    {
+      "id": "roof-ground-request",
+      "source": "outputs/touchdown/photo-only-paris/portrait-controlled/earth_zoom.mp4",
+      "times": [
+        4.375,
+        4.5,
+        4.625
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie, standing on a ground-level public square with paving connected to gardens and paths. The Eiffel Tower is beyond her.",
+      "expected": {
+        "support_context": "fail"
+      },
+      "annotation": "Shorter view before the transformation: she appears on the roof of a building, incompatible with the requested connected ground square. Correlated with the first case.",
+      "group": "known_roof_failure",
+      "support_box": [
+        0.25,
+        0.3,
+        0.8,
+        1
+      ],
+      "allowed_supports": [
+        "ground_paving"
+      ]
+    },
+    {
+      "id": "roof-intended-roof",
+      "source": "outputs/touchdown/photo-only-paris/portrait-controlled/earth_zoom.mp4",
+      "times": [
+        4.375,
+        4.5,
+        4.625
+      ],
+      "description": "A woman in a red coat standing deliberately on an elevated paved roof terrace of a stone building, with the Eiffel Tower beyond. An elevated roof is the intended destination.",
+      "expected": {
+        "support_context": "pass"
+      },
+      "annotation": "Same pixels as roof-ground-request with an intentionally elevated destination. This checks request sensitivity, not a separately generated rooftop scene or continuity.",
+      "group": "intent_control",
+      "support_box": [
+        0.25,
+        0.3,
+        0.8,
+        1
+      ],
+      "allowed_supports": [
+        "building_roof",
+        "raised_deck"
+      ]
+    },
+    {
+      "id": "open-garden-approach",
+      "source": "outputs/touchdown/photo-only-paris/portrait-ground-route/earth_zoom.mp4",
+      "times": [
+        4.5,
+        5.0,
+        5.5,
+        6.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie, standing on a ground-level public square with paving connected to gardens and paths. The Eiffel Tower is beyond her.",
+      "expected": {
+        "support_context": "pass"
+      },
+      "annotation": "Improved route visibly follows the open garden and paved plaza corridor. Label concerns support context only, not all geometry or motion.",
+      "group": "acceptable_context",
+      "support_box": [
+        0.25,
+        0.3,
+        0.8,
+        1
+      ],
+      "allowed_supports": [
+        "ground_paving"
+      ]
+    },
+    {
+      "id": "paved-full-body-contact",
+      "source": "outputs/touchdown/photo-only-paris/portrait-ground-route/earth_zoom.mp4",
+      "times": [
+        6.0,
+        6.125
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie, standing on a ground-level public square with paving connected to gardens and paths. The Eiffel Tower is beyond her.",
+      "expected": {
+        "foot_contact": "pass",
+        "support_context": "pass"
+      },
+      "annotation": "At these two frames both white shoes are visible on the paving. This narrow late approach does not establish full-flight continuity.",
+      "group": "acceptable_context",
+      "support_box": [
+        0.25,
+        0.3,
+        0.8,
+        1
+      ],
+      "allowed_supports": [
+        "ground_paving"
+      ]
+    },
+    {
+      "id": "portrait-hidden-feet",
+      "source": "outputs/touchdown/photo-only-paris/portrait-ground-route/earth_zoom.mp4",
+      "times": [
+        7.5,
+        8.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie, standing on a ground-level public square with paving connected to gardens and paths. The Eiffel Tower is beyond her.",
+      "expected": {
+        "foot_contact": "unclear",
+        "appearance": "pass",
+        "figure_clarity": "pass"
+      },
+      "annotation": "Close portrait hides feet; broad appearance and facial clarity are visible.",
+      "group": "insufficient_evidence",
+      "subject": "shots/subjects/test-subject-red-coat.jpg"
+    },
+    {
+      "id": "paris-arrival-still",
+      "source": "outputs/touchdown/photo-only-paris/arrival.png",
+      "times": [
+        0.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie, standing on a ground-level public square with paving connected to gardens and paths. The Eiffel Tower is beyond her.",
+      "expected": {
+        "foot_contact": "unclear",
+        "surface_continuity": "unclear",
+        "appearance": "pass",
+        "figure_clarity": "pass"
+      },
+      "annotation": "Waist-up source photograph hides feet. One image cannot show continuity.",
+      "group": "insufficient_evidence",
+      "subject": "shots/subjects/test-subject-red-coat.jpg"
+    },
+    {
+      "id": "canyon-connected-overlook",
+      "source": "outputs/touchdown/photo-only-canyonlands/polish-v2/earth_zoom.mp4",
+      "times": [
+        4.0,
+        4.5,
+        5.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie on a connected natural sandstone overlook above a desert canyon, with layered copper mesas and scrub.",
+      "expected": {
+        "support_context": "pass"
+      },
+      "annotation": "Rocky standing area is connected to the natural ridge and scrub. No claim about fine foot contact at this scale.",
+      "group": "acceptable_context",
+      "support_box": [
+        0.3,
+        0.3,
+        0.8,
+        1
+      ],
+      "allowed_supports": [
+        "natural_rock"
+      ]
+    },
+    {
+      "id": "canyon-arrival-still",
+      "source": "outputs/touchdown/photo-only-canyonlands/arrival.png",
+      "times": [
+        0.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie on a connected natural sandstone overlook above a desert canyon, with layered copper mesas and scrub.",
+      "expected": {
+        "foot_contact": "unclear",
+        "surface_continuity": "unclear",
+        "support_context": "pass"
+      },
+      "annotation": "The portrait cuts off feet; the surrounding support context is natural sandstone. A single image cannot establish temporal continuity.",
+      "group": "insufficient_evidence",
+      "allowed_supports": [
+        "natural_rock"
+      ]
+    },
+    {
+      "id": "clouds-no-visible-person",
+      "source": "outputs/touchdown/photo-only-canyonlands/polish-v2/earth_zoom.mp4",
+      "times": [
+        0.5,
+        1.0
+      ],
+      "description": "A woman with short dark curly hair in a red raincoat over a grey hoodie on a connected natural sandstone overlook above a desert canyon, with layered copper mesas and scrub.",
+      "expected": {
+        "foot_contact": "unclear",
+        "support_context": "unclear"
+      },
+      "annotation": "Upper flight and cloud cover provide no visible person or standing-surface evidence.",
+      "group": "insufficient_evidence",
+      "allowed_supports": [
+        "natural_rock"
+      ]
+    },
+    {
+      "id": "wrong-clothing-control",
+      "source": "outputs/touchdown/photo-only-paris/arrival.png",
+      "times": [
+        0.0
+      ],
+      "description": "A woman wearing a bright blue raincoat over a yellow shirt, with long straight blonde hair, in front of the Eiffel Tower.",
+      "expected": {
+        "appearance": "fail"
+      },
+      "annotation": "Deliberately wrong requested appearance versus the existing red-coat/short-dark-curls image. A request-mismatch control, not a natural generation defect.",
+      "group": "negative_control"
+    },
+    {
+      "id": "wrong-landmark-control",
+      "source": "outputs/touchdown/photo-only-paris/arrival.png",
+      "times": [
+        0.0
+      ],
+      "description": "A woman standing in front of the Statue of Liberty in New York harbour; the Statue of Liberty must be recognisable in the background.",
+      "expected": {
+        "scene_match": "fail"
+      },
+      "annotation": "Deliberately mismatched landmark request. A negative control, not an independently generated failed scene.",
+      "group": "negative_control"
+    }
+  ]
+}

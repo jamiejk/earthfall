@@ -1,0 +1,25 @@
+[
+ {
+  "name": "dive",
+  "start": 0,
+  "frames": 129,
+  "prompt": "Pure wind noise only. Violent high-altitude wind roaring past at extreme speed, heavy buffeting turbulence and shuddering air pressure as the camera punches down through thick cloud, deep rumbling gusts, a sustained roaring rush of air through the dive.",
+  "negative": "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, fabric, clicks, beeps, low quality, distorted, clipping, silence",
+  "gain_db": -8,
+  "lowpass": 1500,
+  "highpass": 80
+ },
+ {
+  "name": "swoop",
+  "start": 120,
+  "frames": 143,
+  "prompt": "Pure wind noise only. A fast rushing whoosh of wind as the camera sweeps down low over a hillside, the roar easing and softening as it slows.",
+  "negative": "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, grass, fabric, clicks, beeps, low quality, distorted, clipping",
+  "loop": [
+   "swoop",
+   0.5,
+   1.7
+  ],
+  "note": "mix-time only: holds the swoop's wind bed (0.5-1.7 s of its raw audio) to the end; the fade does the rest"
+ }
+]

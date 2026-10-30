@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Grand Canyon (illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8bb7dc"/><stop offset="1" stop-color="#efe1cf"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 92 L320 88 L320 200 L0 200Z" fill="#c9a07e"/>
+  <path d="M0 104 C60 100 120 110 180 102 S280 98 320 104 L320 200 L0 200Z" fill="#bd7a52"/>
+  <path d="M0 118 C70 112 110 126 170 116 S260 112 320 120 L320 200 L0 200Z" fill="#d49a6a"/>
+  <path d="M0 134 C50 128 120 142 190 132 S270 126 320 136 L320 200 L0 200Z" fill="#a85d3a"/>
+  <path d="M0 150 C80 144 140 156 200 148 S290 144 320 150 L320 200 L0 200Z" fill="#c88758"/>
+  <path d="M0 170 L120 160 L150 172 L320 166 L320 200 L0 200Z" fill="#6f7f4f"/>
+  <circle cx="40" cy="166" r="7" fill="#4f6038"/><circle cx="62" cy="168" r="5" fill="#4f6038"/><circle cx="290" cy="170" r="8" fill="#4f6038"/>
+</svg>

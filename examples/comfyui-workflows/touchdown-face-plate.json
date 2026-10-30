@@ -1,0 +1,247 @@
+{
+  "42": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "approach_frame.png"
+    },
+    "_meta": {
+      "title": "Touchdown face plate · load image"
+    }
+  },
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-9b-fp8.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Touchdown face plate · model"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_8b_fp8mixed.safetensors",
+      "type": "flux2",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "Touchdown face plate · text encoder"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown face plate · VAE"
+    }
+  },
+  "100": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "Turn the blurry approach crop into a sharp, detailed close-up photograph of the same woman's face, at the same angle and with the same expression. Keep her identity, hair and clothing. Real skin texture, sharp eyes, no smoothing, no plastic skin. Natural daylight, no text."
+    },
+    "_meta": {
+      "title": "Touchdown face plate · prompt"
+    }
+  },
+  "101": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "100",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown face plate · ConditioningZeroOut"
+    }
+  },
+  "100r0s": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "image": [
+        "42",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    },
+    "_meta": {
+      "title": "Touchdown face plate · scale"
+    }
+  },
+  "100r0e": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "100r0s",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown face plate · VAEEncode"
+    }
+  },
+  "100r0p": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "100",
+        0
+      ],
+      "latent": [
+        "100r0e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown face plate · reference"
+    }
+  },
+  "100r0n": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "101",
+        0
+      ],
+      "latent": [
+        "100r0e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown face plate · reference"
+    }
+  },
+  "102": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 768,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown face plate · latent"
+    }
+  },
+  "103": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 768
+    },
+    "_meta": {
+      "title": "Touchdown face plate · Flux2Scheduler"
+    }
+  },
+  "104": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "100r0p",
+        0
+      ],
+      "negative": [
+        "100r0n",
+        0
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown face plate · guide"
+    }
+  },
+  "105": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "100n",
+        0
+      ],
+      "guider": [
+        "104",
+        0
+      ],
+      "sampler": [
+        "100s",
+        0
+      ],
+      "sigmas": [
+        "103",
+        0
+      ],
+      "latent_image": [
+        "102",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown face plate · sample"
+    }
+  },
+  "100n": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261009
+    },
+    "_meta": {
+      "title": "Touchdown face plate · RandomNoise"
+    }
+  },
+  "100s": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "_meta": {
+      "title": "Touchdown face plate · KSamplerSelect"
+    }
+  },
+  "106": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "105",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown face plate · decode"
+    }
+  },
+  "107": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "106",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_face_plate"
+    },
+    "_meta": {
+      "title": "Touchdown face plate · save image"
+    }
+  }
+}

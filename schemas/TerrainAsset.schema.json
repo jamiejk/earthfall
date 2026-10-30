@@ -1,0 +1,339 @@
+{
+  "$defs": {
+    "SourceRecord": {
+      "additionalProperties": true,
+      "properties": {
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "dataset": {
+          "title": "Dataset",
+          "type": "string"
+        },
+        "source_type": {
+          "default": "DTM",
+          "title": "Source Type",
+          "type": "string"
+        },
+        "horizontal_crs": {
+          "title": "Horizontal Crs",
+          "type": "string"
+        },
+        "vertical_crs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vertical Crs"
+        },
+        "vertical_reference_verified": {
+          "default": false,
+          "title": "Vertical Reference Verified",
+          "type": "boolean"
+        },
+        "nominal_resolution_m": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Nominal Resolution M"
+        },
+        "native_pixel_spacing": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Pixel Spacing"
+        },
+        "native_pixel_spacing_units": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Pixel Spacing Units"
+        },
+        "nodata_policy": {
+          "default": "source_mask_only",
+          "title": "Nodata Policy",
+          "type": "string"
+        },
+        "license": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "License"
+        },
+        "attribution": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attribution"
+        },
+        "acquisition_dates": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Acquisition Dates"
+        },
+        "source_uri": {
+          "title": "Source Uri",
+          "type": "string"
+        },
+        "retrieval_utc": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retrieval Utc"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "checksum_scope": {
+          "default": "acquired_local_raster",
+          "title": "Checksum Scope",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "dataset",
+        "horizontal_crs",
+        "source_uri"
+      ],
+      "title": "SourceRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "variant": {
+      "title": "Variant",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/SourceRecord"
+    },
+    "project_crs_wkt": {
+      "title": "Project Crs Wkt",
+      "type": "string"
+    },
+    "horizontal_operation": {
+      "title": "Horizontal Operation",
+      "type": "string"
+    },
+    "horizontal_operation_accuracy_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Horizontal Operation Accuracy M"
+    },
+    "origin_easting_m": {
+      "title": "Origin Easting M",
+      "type": "number"
+    },
+    "origin_northing_m": {
+      "title": "Origin Northing M",
+      "type": "number"
+    },
+    "bounds_local_m": {
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Bounds Local M",
+      "type": "array"
+    },
+    "common_vertical_crs": {
+      "title": "Common Vertical Crs",
+      "type": "string"
+    },
+    "vertical_operation": {
+      "title": "Vertical Operation",
+      "type": "string"
+    },
+    "vertical_operation_accuracy_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Vertical Operation Accuracy M"
+    },
+    "height_alignment": {
+      "title": "Height Alignment",
+      "type": "string"
+    },
+    "raster_spacing_m": {
+      "title": "Raster Spacing M",
+      "type": "number"
+    },
+    "mesh_spacing_m": {
+      "title": "Mesh Spacing M",
+      "type": "number"
+    },
+    "mesh_vertices": {
+      "title": "Mesh Vertices",
+      "type": "integer"
+    },
+    "mesh_triangles": {
+      "title": "Mesh Triangles",
+      "type": "integer"
+    },
+    "coverage_fraction": {
+      "title": "Coverage Fraction",
+      "type": "number"
+    },
+    "elevation_min_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Elevation Min M"
+    },
+    "elevation_max_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Elevation Max M"
+    },
+    "gltf_basis": {
+      "default": "local (east,north,up) -> glTF (east,up,-north)",
+      "title": "Gltf Basis",
+      "type": "string"
+    },
+    "files_sha256": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Files Sha256",
+      "type": "object"
+    }
+  },
+  "required": [
+    "project_id",
+    "variant",
+    "source",
+    "project_crs_wkt",
+    "horizontal_operation",
+    "origin_easting_m",
+    "origin_northing_m",
+    "bounds_local_m",
+    "common_vertical_crs",
+    "vertical_operation",
+    "height_alignment",
+    "raster_spacing_m",
+    "mesh_spacing_m",
+    "mesh_vertices",
+    "mesh_triangles",
+    "coverage_fraction",
+    "files_sha256"
+  ],
+  "title": "TerrainAsset",
+  "type": "object"
+}

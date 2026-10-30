@@ -1,0 +1,27 @@
+{
+  "id": "photographic-generic-orbit-v1",
+  "date": "2026-10-28",
+  "base": "photographic-grounded-v1-overhead-guidance-v2",
+  "stages": ["references", "flight", "opening", "review"],
+  "checkpoints": ["flight", "final"],
+  "changes": [
+    "generic opening: cached generic orbit and cumulus stills (assets/touchdown/opening) instead of a destination orbit",
+    "join at the flight's first full-frame cloud frame J, detected automatically, instead of fixed frame 40",
+    "dive speed matched to the flight's ECC zoom rate at J",
+    "49-frame LTX opening on Layout To Render 0.5 from a camera-only proxy; flight J+8..J pinned at frame 0",
+    "layout, texture, three outpaints, projection and orbit stages and their checkpoints skipped"
+  ],
+  "unchanged": [
+    "reference preparation, arrival gate and native portrait",
+    "frozen photographic flight and its review",
+    "opening motion gate and Qwen final review",
+    "assembly without crossfade or retiming"
+  ],
+  "driver": "scripts/touchdown/generic_opening.py",
+  "selected_by": "default; TOUCHDOWN_CANONICAL_RECIPE=photographic-grounded-v1 selects the previous recipe",
+  "evidence": "Giza opening v10, outputs/touchdown/studio/studio-giza-opening-generic-orbit-v10-20261028 (films branch claude/giza-films-20261028)",
+  "known_limits": [
+    "LTX smooths the cumulus into waxy shapes over the middle of the dive",
+    "a mild brightness step remains at the cut into the flight"
+  ]
+}

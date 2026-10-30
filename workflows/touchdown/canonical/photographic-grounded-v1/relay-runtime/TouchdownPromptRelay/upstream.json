@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/kijai/ComfyUI-PromptRelay",
+  "commit": "ca5d4e3edb6abd9c2a4c68a3a6798eec1980f450",
+  "files": {
+    "patches.py": {
+      "url": "https://raw.githubusercontent.com/kijai/ComfyUI-PromptRelay/ca5d4e3edb6abd9c2a4c68a3a6798eec1980f450/patches.py",
+      "sha256": "ba2386e9a89f03e96d7d3ddcb0d9b76b40a0fd7721884b35c0844219e2d9e622"
+    },
+    "prompt_relay.py": {
+      "url": "https://raw.githubusercontent.com/kijai/ComfyUI-PromptRelay/ca5d4e3edb6abd9c2a4c68a3a6798eec1980f450/prompt_relay.py",
+      "sha256": "c13a99550fae816231eea444db11c33b42502f1bd204418bf1446b7ef1b62a17"
+    }
+  }
+}

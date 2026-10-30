@@ -1,0 +1,82 @@
+place = "El Castillo, Chichén Itzá, Yucatán, Mexico"
+subject = "../subjects/test-subject-red-coat.jpg"
+reference_manifest = "../../outputs/touchdown/photo-only-chichen-itza/reference_photos/manifest.json"
+reference_ids = [2869110, 8324207]
+seed = 577072980
+look = "Real travel photography, warm soft tropical daylight, weathered pale limestone, green short grass, low Yucatan forest, blue sky with moving white clouds."
+
+[models]
+unet = "flux3-image-klein-int8-convrot.safetensors"
+clip = "qwen3vl_4b_int8_convrot.safetensors"
+vae = "flux2-vae.safetensors"
+
+[video]
+frames = 217
+width = 960
+height = 544
+
+[gate]
+checker_version = "visual-check-4"
+description = "A woman with short dark curly hair, a red raincoat over a grey hoodie, black trousers and white shoes, standing on flat ordinary grass in the open ground-level forecourt of El Castillo at Chichen Itza. The recognisable stepped pyramid with a central stairway and square summit temple stands beyond her on the same connected lawn, with low trees around it. Her actual shoes should be visibly planted on the grass."
+arrival_report = "../../outputs/touchdown/photo-only-chichen-itza/gates/arrival/report.json"
+model = "qwen3.5:4b"
+model_digest = "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04"
+checks = ["foot_contact", "support_context", "appearance", "scene_match"]
+allowed_supports = ["grass"]
+
+[prompts]
+arrival = '''
+Create one integrated, beautiful real travel photograph of this woman at El Castillo in Chichen Itza.
+Image 1 is an actual location photograph: preserve the recognisable broad stepped limestone pyramid,
+its central stone stairway and small square summit temple, the open grassy forecourt and low trees.
+Image 2 is a real close photograph: draw on its weathered limestone masonry and temple details.
+Image 3 identifies the woman: preserve her face, short dark curls, red raincoat over a grey hoodie,
+black trousers and white shoes. She stands slightly right of centre, naturally smiling toward us.
+A FULL-BODY environmental portrait: include the complete head, both legs and BOTH ACTUAL WHITE SHOES.
+Her whole body occupies about two-thirds of the image height. Leave a clear visible band of grass
+beneath both shoes and a little space above her hair. Her face is detailed and naturally lit.
+Both soles rest firmly on the same flat, short green grass. Grass extends continuously from the
+bottom of the picture beneath her shoes and into the open forecourt around the pyramid.
+The grass is ordinary ground, connected to the wider lawn and low trees; no platform beneath her.
+Place the entire recognisable stepped pyramid to her left in the middle distance, its complete
+base visible on the same broad lawn. Keep it clear of her silhouette. Surround it with low green
+Yucatan trees and open sky. Invent plausible small surroundings while retaining these visible
+connections and photographic materials. We need a coherent photograph, not surveyed topography.
+Eye-level 35mm travel photograph, consistent perspective, warm soft light from the left, broken
+white tropical clouds, clear natural colour, sharp face and fabric, detailed real stone and grass.
+She and the place are photographed together. No pasted cutout, no pedestal, no roof terrace,
+no raised slab or stage, no figure standing on the pyramid, no cropped feet, no text, no illustration.
+'''
+near = '''
+One continuous live-action photographic camera push toward the same woman on the same grassy
+forecourt in this photograph. Start on this full-body view, with both white shoes on the lawn.
+Over two seconds gently dolly forward about two metres to a clear waist-up environmental portrait.
+The feet leave the frame only because the camera physically approaches. Her position on the
+same patch of grass stays fixed. Preserve the recognisable stepped El Castillo pyramid and its
+summit temple beyond her on the left, the connected lawn and low tropical trees. Fixed lens.
+Her arms stay down, she breathes quietly, blinks once and makes a slight closed-mouth smile.
+A light breeze moves individual dark curls and loose red coat folds. Keep her face sharp,
+eyes and lips crisp, natural skin, same likeness and warm daylight. Deep focus and short exposure.
+No speaking, no gestures, no large head turn, no lens zoom, no cut, no dissolve, no frozen photograph.
+'''
+prefix_flight = '''
+Continue the supplied photographic camera retreat into one uninterrupted fast aerial flight.
+Preserve the first two seconds of supplied moving portrait footage, retreating from waist-up to
+full-body. The woman stands on the same flat patch of short green GRASS throughout. Her white
+shoes touch ordinary ground. The lawn connects continuously to the broad open grassy forecourt.
+After this supplied sequence accelerate backward and upward at about 45 degrees over the OPEN
+GRASSY FORECOURT, revealing the fixed woman, the full stepped El Castillo pyramid beyond her,
+and its unchanged base on the same connected lawn. Keep the pyramid to the same side and heading.
+The forecourt and surrounding low green trees expand with strong real camera parallax.
+Fly over open ground first, with no roof, slab, new structure or raised platform beneath her.
+At greater height reveal broad low tropical Yucatan forest, scattered clearings and pale paths.
+The woman becomes a tiny red speck. One coherent mostly flat green landscape; the local pyramid
+becomes small naturally and appears only once. No giant mountains, new pyramids or city blocks.
+Continue climbing rapidly, pass briefly inside a dense rolling white cloud bank which fills the
+lens, then emerge over the cloud tops and keep climbing to the curved blue atmospheric limb of
+Earth against black space above the Yucatan peninsula and Caribbean region. Green land, distant
+turquoise water and natural white weather systems. Same warm sunlight from the left at every scale.
+One fixed-focal-length physical camera flight with one heading. Real photographic textures,
+connected terrain, moving clouds. No optical zoom, no camera orbit, no cut, no crossfade, no
+morphing architecture, no surface replacement. The woman remains natural with relaxed arms.
+'''

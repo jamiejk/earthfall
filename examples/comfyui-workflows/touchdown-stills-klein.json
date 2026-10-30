@@ -1,0 +1,820 @@
+{
+  "42": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "guide_frame_0081.png"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · load image"
+    }
+  },
+  "41": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "subject.jpg"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · load image"
+    }
+  },
+  "43": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "scene.jpg"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · load image"
+    }
+  },
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-9b-fp8.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · model"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_8b_fp8mixed.safetensors",
+      "type": "flux2",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · text encoder"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · VAE"
+    }
+  },
+  "100": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "Make a real eye-level photograph from exactly the same camera viewpoint and compass direction as image 1. Keep the outlines and positions of the distant buttes and mesas, the horizon and the sky where image 1 has them; do not rotate or move them. Draw every butte, mesa and slope as real weathered sandstone with horizontal rock layers and desert varnish. In the centre, about ten metres from the camera, add a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers, standing still facing the camera, shown full length. The near ground is natural rock and sparse desert scrub. Natural daylight and realistic human scale. No text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · prompt"
+    }
+  },
+  "101": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "100",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · ConditioningZeroOut"
+    }
+  },
+  "100r0s": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "image": [
+        "42",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · scale"
+    }
+  },
+  "100r0e": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "100r0s",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · VAEEncode"
+    }
+  },
+  "100r0p": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "100",
+        0
+      ],
+      "latent": [
+        "100r0e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · reference"
+    }
+  },
+  "100r0n": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "101",
+        0
+      ],
+      "latent": [
+        "100r0e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · reference"
+    }
+  },
+  "100r1s": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "image": [
+        "41",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · scale"
+    }
+  },
+  "100r1e": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "100r1s",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · VAEEncode"
+    }
+  },
+  "100r1p": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "100r0p",
+        0
+      ],
+      "latent": [
+        "100r1e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · reference"
+    }
+  },
+  "100r1n": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "100r0n",
+        0
+      ],
+      "latent": [
+        "100r1e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · reference"
+    }
+  },
+  "100r2s": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "image": [
+        "43",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · scale"
+    }
+  },
+  "100r2e": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "100r2s",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · VAEEncode"
+    }
+  },
+  "100r2p": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "100r1p",
+        0
+      ],
+      "latent": [
+        "100r2e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · reference"
+    }
+  },
+  "100r2n": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "100r1n",
+        0
+      ],
+      "latent": [
+        "100r2e",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · reference"
+    }
+  },
+  "102": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · latent"
+    }
+  },
+  "103": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 1344,
+      "height": 768
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · Flux2Scheduler"
+    }
+  },
+  "104": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "100r2p",
+        0
+      ],
+      "negative": [
+        "100r2n",
+        0
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · guide"
+    }
+  },
+  "105": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "100n",
+        0
+      ],
+      "guider": [
+        "104",
+        0
+      ],
+      "sampler": [
+        "100s",
+        0
+      ],
+      "sigmas": [
+        "103",
+        0
+      ],
+      "latent_image": [
+        "102",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · sample"
+    }
+  },
+  "100n": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261009
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · RandomNoise"
+    }
+  },
+  "100s": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · KSamplerSelect"
+    }
+  },
+  "106": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "105",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · decode"
+    }
+  },
+  "107": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "106",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_end"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · save image"
+    }
+  },
+  "120": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "A real photograph taken from low Earth orbit, looking down at an angle at the desert of northern Arizona and southern Utah: the curved blue limb of the Earth with a thin glowing atmosphere near the top of the frame, black space above it, white cloud systems and land below, daylight, natural colour, no text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · prompt"
+    }
+  },
+  "121": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "120",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · ConditioningZeroOut"
+    }
+  },
+  "122": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · latent"
+    }
+  },
+  "123": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 1344,
+      "height": 768
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · Flux2Scheduler"
+    }
+  },
+  "124": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "120",
+        0
+      ],
+      "negative": [
+        "121",
+        0
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · guide"
+    }
+  },
+  "125": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "120n",
+        0
+      ],
+      "guider": [
+        "124",
+        0
+      ],
+      "sampler": [
+        "120s",
+        0
+      ],
+      "sigmas": [
+        "123",
+        0
+      ],
+      "latent_image": [
+        "122",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · sample"
+    }
+  },
+  "120n": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261010
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · RandomNoise"
+    }
+  },
+  "120s": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · KSamplerSelect"
+    }
+  },
+  "126": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "125",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · decode"
+    }
+  },
+  "127": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "126",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_orbit"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · save image"
+    }
+  },
+  "140": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "A real photograph from inside a thick white cloud: soft white and pale grey mist fills the whole frame evenly, slightly brighter towards the top, nothing else visible, no text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · prompt"
+    }
+  },
+  "141": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "140",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · ConditioningZeroOut"
+    }
+  },
+  "142": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · latent"
+    }
+  },
+  "143": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 1344,
+      "height": 768
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · Flux2Scheduler"
+    }
+  },
+  "144": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "140",
+        0
+      ],
+      "negative": [
+        "141",
+        0
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · guide"
+    }
+  },
+  "145": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "140n",
+        0
+      ],
+      "guider": [
+        "144",
+        0
+      ],
+      "sampler": [
+        "140s",
+        0
+      ],
+      "sigmas": [
+        "143",
+        0
+      ],
+      "latent_image": [
+        "142",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · sample"
+    }
+  },
+  "140n": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261149
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · RandomNoise"
+    }
+  },
+  "140s": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · KSamplerSelect"
+    }
+  },
+  "146": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "145",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · decode"
+    }
+  },
+  "147": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "146",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_cloud"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · save image"
+    }
+  },
+  "160": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "text": "A real photograph taken at eye level about fifteen metres away: a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers stands on the South Rim of the Grand Canyon at Mather Point, with the canyon and its distant buttes behind her, seen full length, small in the middle of the frame, facing the camera, on the rim. The wide canyon view fills most of the frame. Natural daylight, a few soft clouds, 35mm lens, sharp, real photo, no text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · prompt"
+    }
+  },
+  "161": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "160",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · ConditioningZeroOut"
+    }
+  },
+  "162": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · latent"
+    }
+  },
+  "163": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 1344,
+      "height": 768
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · Flux2Scheduler"
+    }
+  },
+  "164": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "160",
+        0
+      ],
+      "negative": [
+        "161",
+        0
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · guide"
+    }
+  },
+  "165": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "160n",
+        0
+      ],
+      "guider": [
+        "164",
+        0
+      ],
+      "sampler": [
+        "160s",
+        0
+      ],
+      "sigmas": [
+        "163",
+        0
+      ],
+      "latent_image": [
+        "162",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · sample"
+    }
+  },
+  "160n": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261009
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · RandomNoise"
+    }
+  },
+  "160s": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · KSamplerSelect"
+    }
+  },
+  "166": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "165",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · decode"
+    }
+  },
+  "167": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "166",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_opener_end"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX.2 klein) · save image"
+    }
+  }
+}

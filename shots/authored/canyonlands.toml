@@ -1,0 +1,15 @@
+place = "Grand View Point, Canyonlands, Utah"
+subject = "../subjects/test-subject-red-coat.jpg"
+reference_manifest = "../../outputs/touchdown/canyonlands-grand-view/reference_photos/canyonlands-grand-view/manifest.json"
+# Reviewed local photographs: broad canyon, storm-lit mesas, and sandstone detail.
+reference_ids = [54231383, 29106150, 52412515]
+aerial_layout = "../../outputs/touchdown/canyonlands-grand-view/terrain/b46baae38211/scene/dive_frames/0020.png"
+orbit_layout = "../../outputs/touchdown/canyonlands-grand-view/stills/c3723a2d4015/orbit.png"
+seed = 2026102101
+character = "Immense horizontally layered sandstone mesas, deep branching ravines, pale warm rim rock, muted rust-red cliff bands, sparse grey-green desert scrub, blue atmospheric distance. Preserve this character across all scales."
+look = "Photographic cinematic daylight just after a storm. Warm low sunlight from camera-left, cool blue-grey cloud shadows, restrained copper and cream sandstone, soft atmospheric depth. Rich natural detail, no neon orange, no HDR halos."
+
+[models]
+unet = "flux3-image-klein-int8-convrot.safetensors"
+clip = "qwen3vl_4b_int8_convrot.safetensors"
+vae = "flux2-vae.safetensors"

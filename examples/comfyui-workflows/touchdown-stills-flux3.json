@@ -1,0 +1,570 @@
+{
+  "42": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "guide_frame_0081.png"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · load image"
+    }
+  },
+  "41": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "subject.jpg"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · load image"
+    }
+  },
+  "43": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "scene.jpg"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · load image"
+    }
+  },
+  "f3u": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux3-image-klein-bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · model"
+    }
+  },
+  "f3c": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_4b_bf16.safetensors",
+      "type": "flux3",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · text encoder"
+    }
+  },
+  "f3v": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · VAE"
+    }
+  },
+  "f3m": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "model": [
+        "f3u",
+        0
+      ],
+      "max_shift": 2.77259,
+      "base_shift": 2.77259,
+      "width": 1024,
+      "height": 1024
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · ModelSamplingFlux"
+    }
+  },
+  "100": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": "Make a real eye-level photograph from exactly the same camera viewpoint and compass direction as image 1. Keep the outlines and positions of the distant buttes and mesas, the horizon and the sky where image 1 has them; do not rotate or move them. Draw every butte, mesa and slope as real weathered sandstone with horizontal rock layers and desert varnish. In the centre, about ten metres from the camera, add a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers, standing still facing the camera, shown full length. The near ground is natural rock and sparse desert scrub. Natural daylight and realistic human scale. No text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "101": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": ""
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "108": {
+    "class_type": "ReferenceMultiLatent",
+    "inputs": {
+      "positive": [
+        "100",
+        0
+      ],
+      "negative": [
+        "101",
+        0
+      ],
+      "vae": [
+        "f3v",
+        0
+      ],
+      "resolution": "resize",
+      "resolution.megapixels": 1.0,
+      "images.image0": [
+        "42",
+        0
+      ],
+      "images.image1": [
+        "41",
+        0
+      ],
+      "images.image2": [
+        "43",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · reference"
+    }
+  },
+  "102": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 2688,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · latent"
+    }
+  },
+  "103": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "f3m",
+        0
+      ],
+      "seed": 20261009,
+      "steps": 16,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "positive": [
+        "108",
+        0
+      ],
+      "negative": [
+        "108",
+        1
+      ],
+      "latent_image": [
+        "102",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · sample"
+    }
+  },
+  "104": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "103",
+        0
+      ],
+      "vae": [
+        "f3v",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · decode"
+    }
+  },
+  "106": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "104",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1344,
+      "height": 768,
+      "crop": "center"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · scale"
+    }
+  },
+  "107": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "106",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_end"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · save image"
+    }
+  },
+  "105": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "104",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_end_full"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · save image"
+    }
+  },
+  "120": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": "A real photograph from a spacecraft in low Earth orbit, looking forward at a shallow oblique angle toward the horizon over the desert of northern Arizona and southern Utah. The curved blue limb of the Earth with a thin glowing band of atmosphere crosses the upper third of the frame, black space above it. Below the horizon a wide field of small white cumulus clouds is scattered over the land and recedes in perspective toward the horizon, the clouds smaller and denser with distance. The bottom of the frame is open ground between small, flat, distant clouds: no large cloud, cloud bank or towering cloud in the near foreground. Daylight, natural colour, sharp, no spacecraft parts, no text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "121": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": ""
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "122": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 2688,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · latent"
+    }
+  },
+  "123": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "f3m",
+        0
+      ],
+      "seed": 20261010,
+      "steps": 16,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "positive": [
+        "120",
+        0
+      ],
+      "negative": [
+        "121",
+        0
+      ],
+      "latent_image": [
+        "122",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · sample"
+    }
+  },
+  "124": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "123",
+        0
+      ],
+      "vae": [
+        "f3v",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · decode"
+    }
+  },
+  "126": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "124",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1344,
+      "height": 768,
+      "crop": "center"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · scale"
+    }
+  },
+  "127": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "126",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_orbit"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · save image"
+    }
+  },
+  "140": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": "A real photograph from an aircraft flying forward through a thick, bright white cloud: almost even bright white mist fills the whole frame, only faint soft wisps of slightly denser vapour drift slowly in from the edges of the frame toward a brighter glow just above the centre. Very low contrast, no dark grey, no ground, no sky, no horizon, nothing else visible, no text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "141": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": ""
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "142": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 2688,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · latent"
+    }
+  },
+  "143": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "f3m",
+        0
+      ],
+      "seed": 20261149,
+      "steps": 16,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "positive": [
+        "140",
+        0
+      ],
+      "negative": [
+        "141",
+        0
+      ],
+      "latent_image": [
+        "142",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · sample"
+    }
+  },
+  "144": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "143",
+        0
+      ],
+      "vae": [
+        "f3v",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · decode"
+    }
+  },
+  "146": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "144",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1344,
+      "height": 768,
+      "crop": "center"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · scale"
+    }
+  },
+  "147": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "146",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_cloud"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · save image"
+    }
+  },
+  "160": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": "A real photograph taken at eye level about fifteen metres away: a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers stands on the South Rim of the Grand Canyon at Mather Point, with the canyon and its distant buttes behind her, seen full length, small in the middle of the frame, facing the camera, on the rim. The wide canyon view fills most of the frame. Natural daylight, a few soft clouds, 35mm lens, sharp, real photo, no text."
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "161": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "f3c",
+        0
+      ],
+      "text": ""
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · prompt"
+    }
+  },
+  "162": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 2688,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · latent"
+    }
+  },
+  "163": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "f3m",
+        0
+      ],
+      "seed": 20261009,
+      "steps": 16,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "positive": [
+        "160",
+        0
+      ],
+      "negative": [
+        "161",
+        0
+      ],
+      "latent_image": [
+        "162",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · sample"
+    }
+  },
+  "164": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "163",
+        0
+      ],
+      "vae": [
+        "f3v",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · decode"
+    }
+  },
+  "166": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "164",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1344,
+      "height": 768,
+      "crop": "center"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · scale"
+    }
+  },
+  "167": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "166",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_touchdown_opener_end"
+    },
+    "_meta": {
+      "title": "Touchdown stills (FLUX 3) · save image"
+    }
+  }
+}

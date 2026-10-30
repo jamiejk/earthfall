@@ -1,0 +1,10 @@
+{
+  "required_order": ["orbit", "cloud_cover", "high_regional", "detailed_ground"],
+  "regional_altitude_ft": 30000,
+  "regional_altitude_m": 9144,
+  "sample_seconds": 0.25,
+  "minimum_regional_seconds": 0.5,
+  "minimum_cloud_seconds": 0.25,
+  "minimum_orbit_seconds": 0.25,
+  "require_transition_travel": true
+}

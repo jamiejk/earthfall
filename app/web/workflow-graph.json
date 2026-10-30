@@ -1,0 +1,1223 @@
+{
+  "version": "photographic-generic-orbit-v1",
+  "evidence": "Generic-orbit opening tested on Giza (v10, 28 Oct 2026); flight stages as the accepted Bamburgh run, 2026-10-27",
+  "scope": "Create prepares fresh inputs and a fresh flight, then opens on a generic Earth from orbit (two cached photographs, not the destination) and dives into cloud, joining the flight inside its own cloud. Qwen and an automatic motion check review the result; failures or uncertainty hold the take. The earlier destination-specific orbit recipe stays selectable with TOUCHDOWN_CANONICAL_RECIPE=photographic-grounded-v1.",
+  "columns": [
+    "Source scene preparation (reused)",
+    "Fresh photographic flight",
+    "Generic orbit opening",
+    "Opening, assembly & review"
+  ],
+  "nodes": [
+    {
+      "id": "inputs",
+      "x": 35,
+      "y": 100,
+      "title": "Portrait + location photos",
+      "summary": "Upload / Wikimedia Commons",
+      "kind": "input",
+      "script": [
+        "app/server/studio.py",
+        "app/server/location_photos.py"
+      ],
+      "detail": "Saved subject and allowlisted location photographs, including source/licence credits and content hashes. Existing prepared inputs were reused in the accepted nine-job Bamburgh run. Create prepares these inputs freshly; reuse applies only to the recorded Bamburgh control.",
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "brief",
+      "x": 35,
+      "y": 285,
+      "title": "Qwen scene brief",
+      "summary": "Reference choice · scene description",
+      "kind": "gate",
+      "script": [
+        "scripts/touchdown/studio_brief.py: grounding(), scene_config()"
+      ],
+      "detail": "Qwen3.5 4B selects references and describes region, connected support and subject appearance. This is upstream scene preparation, not a fresh job in the accepted replay. Separate from FLUX’s Qwen3-VL text encoder.",
+      "models": [
+        "qwen"
+      ],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "photos",
+      "x": 35,
+      "y": 470,
+      "title": "Arrival / regional / orbit stills",
+      "summary": "FLUX photographic scene assets",
+      "kind": "model",
+      "script": [
+        "scripts/touchdown/authored_scene.py: generate_asset()",
+        "scripts/touchdown/photo_only.py: asset_plan()"
+      ],
+      "detail": "Integrated person-and-landmark arrival plus broad regional and initial orbital photographs. These saved scene photographs seed the original split flight; the later grounded orbital photograph replaces only its opening. Create prepares these inputs freshly; reuse applies only to the recorded Bamburgh control.",
+      "models": [
+        "flux"
+      ],
+      "comfy_nodes": [
+        {
+          "id": "1",
+          "type": "UNETLoader"
+        },
+        {
+          "id": "2",
+          "type": "CLIPLoader"
+        },
+        {
+          "id": "3",
+          "type": "VAELoader"
+        },
+        {
+          "id": "4",
+          "type": "ModelSamplingFlux"
+        },
+        {
+          "id": "10",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "11",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "r0",
+          "type": "LoadImage"
+        },
+        {
+          "id": "r1",
+          "type": "LoadImage"
+        },
+        {
+          "id": "r2",
+          "type": "LoadImage"
+        },
+        {
+          "id": "12",
+          "type": "ReferenceMultiLatent"
+        },
+        {
+          "id": "13",
+          "type": "EmptyFlux2LatentImage"
+        },
+        {
+          "id": "14",
+          "type": "KSampler"
+        },
+        {
+          "id": "15",
+          "type": "VAEDecode"
+        },
+        {
+          "id": "16",
+          "type": "SaveImage"
+        }
+      ],
+      "reused": false,
+      "model_loaders": [
+        {
+          "id": "1",
+          "type": "UNETLoader",
+          "settings": {
+            "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        {
+          "id": "2",
+          "type": "CLIPLoader",
+          "settings": {
+            "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+            "type": "flux3",
+            "device": "default"
+          }
+        },
+        {
+          "id": "3",
+          "type": "VAELoader",
+          "settings": {
+            "vae_name": "flux2-vae.safetensors"
+          }
+        }
+      ]
+    },
+    {
+      "id": "arrivalgate",
+      "x": 35,
+      "y": 655,
+      "title": "Qwen arrival gate",
+      "summary": "Required checks + hash binding",
+      "kind": "gate",
+      "script": [
+        "scripts/touchdown/photo_gate.py: require_arrival_gate()",
+        "scripts/touchdown/vision_check.py"
+      ],
+      "detail": "Required checks cover foot contact, allowed support, appearance and scene match. The flight validates the saved pass report, checker/model identity, scene brief and actual evidence hashes. A mismatch or failed check holds video generation. Saved pass evidence is reused; it is not a fresh Qwen inference in the nine-job run.",
+      "models": [
+        "qwen"
+      ],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "portrait",
+      "x": 35,
+      "y": 840,
+      "title": "Native moving portrait",
+      "summary": "LTX ending gesture + camera move",
+      "kind": "model",
+      "script": [
+        "scripts/touchdown/studio_build.py",
+        "scripts/touchdown/split_flight.py"
+      ],
+      "detail": "The saved native portrait supplies the first 25 reversed frames as flight context and the original moving ending in the final assembly. Reused in the accepted run. The saved portrait graph includes latent 2× refinement; this is separate from the unrefined fresh flight/opening. Create prepares these inputs freshly; reuse applies only to the recorded Bamburgh control.",
+      "models": [
+        "portrait-ltx"
+      ],
+      "comfy_nodes": [
+        {
+          "id": "44",
+          "type": "LoadImage"
+        },
+        {
+          "id": "300",
+          "type": "UNETLoader"
+        },
+        {
+          "id": "302",
+          "type": "VAELoader"
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader"
+        },
+        {
+          "id": "305",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "306",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "307",
+          "type": "LTXVConditioning"
+        },
+        {
+          "id": "308",
+          "type": "EmptyLTXVLatentVideo"
+        },
+        {
+          "id": "312",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "390",
+          "type": "RandomNoise"
+        },
+        {
+          "id": "391",
+          "type": "CFGGuider"
+        },
+        {
+          "id": "392",
+          "type": "KSamplerSelect"
+        },
+        {
+          "id": "393",
+          "type": "ManualSigmas"
+        },
+        {
+          "id": "394",
+          "type": "SamplerCustomAdvanced"
+        },
+        {
+          "id": "395",
+          "type": "LTXVCropGuides"
+        },
+        {
+          "id": "375",
+          "type": "VAEDecodeTiled"
+        },
+        {
+          "id": "376",
+          "type": "CreateVideo"
+        },
+        {
+          "id": "377",
+          "type": "SaveVideo"
+        },
+        {
+          "id": "330",
+          "type": "LatentUpscaleModelLoader"
+        },
+        {
+          "id": "331",
+          "type": "LTXVLatentUpsampler"
+        },
+        {
+          "id": "342",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "360",
+          "type": "RandomNoise"
+        },
+        {
+          "id": "361",
+          "type": "CFGGuider"
+        },
+        {
+          "id": "362",
+          "type": "KSamplerSelect"
+        },
+        {
+          "id": "363",
+          "type": "ManualSigmas"
+        },
+        {
+          "id": "364",
+          "type": "SamplerCustomAdvanced"
+        },
+        {
+          "id": "365",
+          "type": "LTXVCropGuides"
+        },
+        {
+          "id": "370",
+          "type": "VAEDecodeTiled"
+        },
+        {
+          "id": "371",
+          "type": "CreateVideo"
+        },
+        {
+          "id": "90",
+          "type": "SaveVideo"
+        }
+      ],
+      "reused": false,
+      "model_loaders": [
+        {
+          "id": "300",
+          "type": "UNETLoader",
+          "settings": {
+            "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        {
+          "id": "302",
+          "type": "VAELoader",
+          "settings": {
+            "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+          }
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader",
+          "settings": {
+            "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+            "type": "ltxv",
+            "device": "cpu"
+          }
+        },
+        {
+          "id": "330",
+          "type": "LatentUpscaleModelLoader",
+          "settings": {
+            "model_name": "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors"
+          }
+        }
+      ]
+    },
+    {
+      "id": "parent",
+      "x": 430,
+      "y": 100,
+      "title": "Parent flight",
+      "summary": "241 frames · seed +32",
+      "kind": "model",
+      "script": [
+        "scripts/touchdown/photographic_transfer.py: worker()",
+        "scripts/touchdown/photographic_recipe.py: worker()",
+        "[frozen] split_flight.py: parent()",
+        "[frozen] scripts/touchdown/relay_node.py",
+        "[pinned upstream] prompt_relay.py / patches.py"
+      ],
+      "detail": "Generate backward/upward with photographic guides and Prompt Relay. 1280×736 at 24 fps, 48 orbital handles; regional guide strength 0.5. Archived inference code is imported in an isolated worker.",
+      "models": [
+        "ltx"
+      ],
+      "comfy_nodes": [
+        {
+          "id": "50",
+          "type": "LoadVideo"
+        },
+        {
+          "id": "51",
+          "type": "GetVideoComponents"
+        },
+        {
+          "id": "45",
+          "type": "LoadImage"
+        },
+        {
+          "id": "46",
+          "type": "LoadImage"
+        },
+        {
+          "id": "300",
+          "type": "UNETLoader"
+        },
+        {
+          "id": "302",
+          "type": "VAELoader"
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader"
+        },
+        {
+          "id": "305",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "306",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "307",
+          "type": "LTXVConditioning"
+        },
+        {
+          "id": "308",
+          "type": "EmptyLTXVLatentVideo"
+        },
+        {
+          "id": "312",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "313",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "314",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "390",
+          "type": "RandomNoise"
+        },
+        {
+          "id": "391",
+          "type": "CFGGuider"
+        },
+        {
+          "id": "392",
+          "type": "KSamplerSelect"
+        },
+        {
+          "id": "393",
+          "type": "ManualSigmas"
+        },
+        {
+          "id": "394",
+          "type": "SamplerCustomAdvanced"
+        },
+        {
+          "id": "395",
+          "type": "LTXVCropGuides"
+        },
+        {
+          "id": "370",
+          "type": "VAEDecodeTiled"
+        },
+        {
+          "id": "371",
+          "type": "CreateVideo"
+        },
+        {
+          "id": "90",
+          "type": "SaveVideo"
+        },
+        {
+          "id": "380",
+          "type": "TouchdownPromptRelay"
+        }
+      ],
+      "reused": false,
+      "model_loaders": [
+        {
+          "id": "300",
+          "type": "UNETLoader",
+          "settings": {
+            "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        {
+          "id": "302",
+          "type": "VAELoader",
+          "settings": {
+            "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+          }
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader",
+          "settings": {
+            "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+            "type": "ltxv",
+            "device": "cpu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "anchor",
+      "x": 430,
+      "y": 285,
+      "title": "Repair approach anchor",
+      "summary": "FLUX composition repair · seed +502",
+      "kind": "model",
+      "script": [
+        "[frozen] split_flight.py: parent(), anchor_prompt()"
+      ],
+      "detail": "Repair the parent-derived approach composition while retaining its photographic setting. The anchor is a guide for the separate descent at strength 0.5.",
+      "models": [
+        "flux"
+      ],
+      "comfy_nodes": [
+        {
+          "id": "1",
+          "type": "UNETLoader"
+        },
+        {
+          "id": "2",
+          "type": "CLIPLoader"
+        },
+        {
+          "id": "3",
+          "type": "VAELoader"
+        },
+        {
+          "id": "4",
+          "type": "ModelSamplingFlux"
+        },
+        {
+          "id": "10",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "11",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "r0",
+          "type": "LoadImage"
+        },
+        {
+          "id": "r1",
+          "type": "LoadImage"
+        },
+        {
+          "id": "12",
+          "type": "ReferenceMultiLatent"
+        },
+        {
+          "id": "13",
+          "type": "EmptyFlux2LatentImage"
+        },
+        {
+          "id": "14",
+          "type": "KSampler"
+        },
+        {
+          "id": "15",
+          "type": "VAEDecode"
+        },
+        {
+          "id": "16",
+          "type": "SaveImage"
+        }
+      ],
+      "reused": false,
+      "model_loaders": [
+        {
+          "id": "1",
+          "type": "UNETLoader",
+          "settings": {
+            "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        {
+          "id": "2",
+          "type": "CLIPLoader",
+          "settings": {
+            "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+            "type": "flux3",
+            "device": "default"
+          }
+        },
+        {
+          "id": "3",
+          "type": "VAELoader",
+          "settings": {
+            "vae_name": "flux2-vae.safetensors"
+          }
+        }
+      ]
+    },
+    {
+      "id": "anchorgate",
+      "x": 430,
+      "y": 470,
+      "title": "Qwen approach gate",
+      "summary": "Actual aerial viewpoint review",
+      "kind": "gate",
+      "script": [
+        "[frozen] flight_regression.py: run()",
+        "[frozen] studio_brief.py: approach_view_review()"
+      ],
+      "detail": "A fresh local Qwen image review checks the repaired anchor’s viewpoint. The driver requires pass and matching image hash before descent. Advisory semantic evidence can be wrong; human review remains necessary.",
+      "models": [
+        "qwen"
+      ],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "descent",
+      "x": 430,
+      "y": 655,
+      "title": "Separate descent",
+      "summary": "121 frames · seed +33",
+      "kind": "model",
+      "script": [
+        "[frozen] split_flight.py: descent()",
+        "[frozen] scripts/touchdown/relay_node.py",
+        "[pinned upstream] prompt_relay.py / patches.py"
+      ],
+      "detail": "LTX connects the repaired approach anchor to the native portrait motion context. Prompt Relay supplies timed instructions. Layout/IC-LoRA and latent 2× refinement are disabled.",
+      "models": [
+        "ltx"
+      ],
+      "comfy_nodes": [
+        {
+          "id": "50",
+          "type": "LoadVideo"
+        },
+        {
+          "id": "51",
+          "type": "GetVideoComponents"
+        },
+        {
+          "id": "52",
+          "type": "LoadVideo"
+        },
+        {
+          "id": "53",
+          "type": "GetVideoComponents"
+        },
+        {
+          "id": "45",
+          "type": "LoadImage"
+        },
+        {
+          "id": "300",
+          "type": "UNETLoader"
+        },
+        {
+          "id": "302",
+          "type": "VAELoader"
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader"
+        },
+        {
+          "id": "305",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "306",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "307",
+          "type": "LTXVConditioning"
+        },
+        {
+          "id": "308",
+          "type": "EmptyLTXVLatentVideo"
+        },
+        {
+          "id": "312",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "313",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "314",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "390",
+          "type": "RandomNoise"
+        },
+        {
+          "id": "391",
+          "type": "CFGGuider"
+        },
+        {
+          "id": "392",
+          "type": "KSamplerSelect"
+        },
+        {
+          "id": "393",
+          "type": "ManualSigmas"
+        },
+        {
+          "id": "394",
+          "type": "SamplerCustomAdvanced"
+        },
+        {
+          "id": "395",
+          "type": "LTXVCropGuides"
+        },
+        {
+          "id": "370",
+          "type": "VAEDecodeTiled"
+        },
+        {
+          "id": "371",
+          "type": "CreateVideo"
+        },
+        {
+          "id": "90",
+          "type": "SaveVideo"
+        },
+        {
+          "id": "380",
+          "type": "TouchdownPromptRelay"
+        }
+      ],
+      "reused": false,
+      "model_loaders": [
+        {
+          "id": "300",
+          "type": "UNETLoader",
+          "settings": {
+            "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        {
+          "id": "302",
+          "type": "VAELoader",
+          "settings": {
+            "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+          }
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader",
+          "settings": {
+            "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+            "type": "ltxv",
+            "device": "cpu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "flight",
+      "x": 430,
+      "y": 840,
+      "title": "Fresh photographic film",
+      "summary": "Registered seams + native ending",
+      "kind": "python",
+      "script": [
+        "scripts/touchdown/canonical_stage.py"
+      ],
+      "detail": "Reverse and assemble the generated split flight with the original native ending, using archived registration, crop and hold trimming. Bamburgh yields 195 frames. Review the full flight before extracting a landscape frame. The app stage driver invokes the frozen split-flight code directly and checks its source hashes.",
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "opening",
+      "x": 1220,
+      "y": 1025,
+      "title": "Approach from orbit into cloud",
+      "summary": "49-frame reverse generation · Layout To Render 0.3 · seed +32",
+      "kind": "model",
+      "script": [
+        "scripts/touchdown/generic_opening.py: prepare(), worker()",
+        "[frozen] split_flight.py: _generate_layout()"
+      ],
+      "detail": "Guides: the camera proxy as the Layout To Render video (strength 0.3); flight frames J+8…J at generated frame 0, strength 1; the orbit photograph as look reference and end pin. LTX 1280×736/24 fps; Euler ancestral, CFG 1; fixed 8-step sigma schedule. Reverse generation for forward delivery.",
+      "models": [
+        "ltx"
+      ],
+      "comfy_nodes": [
+        {
+          "id": "50",
+          "type": "LoadVideo"
+        },
+        {
+          "id": "51",
+          "type": "GetVideoComponents"
+        },
+        {
+          "id": "47",
+          "type": "LoadImage"
+        },
+        {
+          "id": "46",
+          "type": "LoadImage"
+        },
+        {
+          "id": "300",
+          "type": "UNETLoader"
+        },
+        {
+          "id": "302",
+          "type": "VAELoader"
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader"
+        },
+        {
+          "id": "305",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "306",
+          "type": "CLIPTextEncode"
+        },
+        {
+          "id": "307",
+          "type": "LTXVConditioning"
+        },
+        {
+          "id": "308",
+          "type": "EmptyLTXVLatentVideo"
+        },
+        {
+          "id": "312",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "313",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "314",
+          "type": "LTXVAddGuide"
+        },
+        {
+          "id": "390",
+          "type": "RandomNoise"
+        },
+        {
+          "id": "391",
+          "type": "CFGGuider"
+        },
+        {
+          "id": "392",
+          "type": "KSamplerSelect"
+        },
+        {
+          "id": "393",
+          "type": "ManualSigmas"
+        },
+        {
+          "id": "394",
+          "type": "SamplerCustomAdvanced"
+        },
+        {
+          "id": "395",
+          "type": "LTXVCropGuides"
+        },
+        {
+          "id": "370",
+          "type": "VAEDecodeTiled"
+        },
+        {
+          "id": "371",
+          "type": "CreateVideo"
+        },
+        {
+          "id": "90",
+          "type": "SaveVideo"
+        },
+        {
+          "id": "380",
+          "type": "TouchdownPromptRelay"
+        }
+      ],
+      "reused": false,
+      "model_loaders": [
+        {
+          "id": "300",
+          "type": "UNETLoader",
+          "settings": {
+            "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        {
+          "id": "302",
+          "type": "VAELoader",
+          "settings": {
+            "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+          }
+        },
+        {
+          "id": "304",
+          "type": "CLIPLoader",
+          "settings": {
+            "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+            "type": "ltxv",
+            "device": "cpu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "x": 1220,
+      "y": 1210,
+      "title": "Join opening to arrival",
+      "summary": "FFmpeg · cut inside the cloud · no dissolve",
+      "kind": "python",
+      "script": [
+        "scripts/touchdown/generic_opening.py: assemble()"
+      ],
+      "detail": "Reverse generated frames 48…9 into delivery frames 0…39; append the flight from frame J. Scale opening to delivery size. H.264 CRF16, yuv420p, faststart; no added fade, interpolation or retiming.",
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "review",
+      "x": 1220,
+      "y": 1395,
+      "title": "Qwen checks + final MP4",
+      "summary": "Motion check + Qwen · 40 + (flight − J) frames",
+      "kind": "gate",
+      "script": [
+        "scripts/touchdown/canonical_build.py",
+        "scripts/touchdown/canonical_review.py",
+        "app/server/checkpoints.py"
+      ],
+      "detail": "Reject a stationary opening automatically, then check sampled opening motion, cloud join, landmark approach and portrait with Qwen. Verify assembly and output hash; completion requires the flight and final decisions bound to the uploaded film. Inspect the finished video before sharing.",
+      "models": [
+        "qwen"
+      ],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "id": "hold",
+      "x": 430,
+      "y": 1210,
+      "title": "Hold / preserve evidence",
+      "summary": "No silent pass or automatic reroll",
+      "kind": "hold",
+      "script": [
+        "photo_gate.py",
+        "flight_regression.py",
+        "scene_grounded_workflow.py"
+      ],
+      "detail": "A gate failure or review hold stops dependent work. Retain completed outputs, failed logs and decisions. Any recovery or changed settings belong in a documented variant, not a silent canonical replacement.",
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": []
+    },
+    {
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": [],
+      "id": "join",
+      "x": 825,
+      "y": 100,
+      "title": "Find the cloud join",
+      "summary": "Densest white cloud frame J · ECC zoom rate",
+      "kind": "python",
+      "script": [
+        "scripts/touchdown/generic_opening.py: detect_join(), zoom_rate()"
+      ],
+      "detail": "Among flight frames with no blue sky in the top quarter and cloud nearly everywhere (and the next eight frames cloud too), pick the brightest, least textured one near the start of the cloud passage, so the opening's cloud meets a thick white bank. Measure the flight's zoom per frame there (ECC) so the dive arrives at the same speed. No such frame holds the take."
+    },
+    {
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": [],
+      "id": "stills",
+      "x": 825,
+      "y": 285,
+      "title": "Cached orbit photograph",
+      "summary": "FLUX 3 Klein once · fixed seed · not per job",
+      "kind": "input",
+      "script": [
+        "assets/touchdown/opening/generic-orbit.png",
+        "assets/touchdown/opening/cumulus.png"
+      ],
+      "detail": "A generic low-orbit photograph of a mostly cloud-covered Earth, made once from text with a fixed seed (prompt and graph saved beside it). It is the same for every place. A cumulus photograph is also stored for the older layered mode."
+    },
+    {
+      "models": [],
+      "comfy_nodes": [],
+      "reused": false,
+      "model_loaders": [],
+      "id": "proxy",
+      "x": 825,
+      "y": 470,
+      "title": "Camera proxy",
+      "summary": "The globe only, approaching and accelerating",
+      "kind": "python",
+      "script": [
+        "scripts/touchdown/generic_opening.py: proxy_frames(), checks()"
+      ],
+      "detail": "A 49-frame camera-only guide: the orbit photograph projected on a sphere, approached at 2.5–3.5% per frame and then accelerating to the flight's own speed at J. No cloud is drawn; LTX grows the planet's own clouds into the flight's cloud. Checks: no flat white frames and the ground still visible through frame 20; a failure holds the take."
+    }
+  ],
+  "edges": [
+    {
+      "source": "inputs",
+      "target": "brief",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "brief",
+      "target": "photos",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "photos",
+      "target": "arrivalgate",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "arrivalgate",
+      "target": "portrait",
+      "label": "pass",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "parent",
+      "target": "anchor",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "anchor",
+      "target": "anchorgate",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "anchorgate",
+      "target": "descent",
+      "label": "pass",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "descent",
+      "target": "flight",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "opening",
+      "target": "assemble",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "assemble",
+      "target": "review",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "photos",
+      "target": "parent",
+      "label": "saved scene stills",
+      "kind": "data",
+      "via": 390
+    },
+    {
+      "source": "portrait",
+      "target": "parent",
+      "label": "25-frame reversed prefix",
+      "kind": "data",
+      "via": 410
+    },
+    {
+      "source": "portrait",
+      "target": "descent",
+      "label": "native motion context",
+      "kind": "data",
+      "via": 390
+    },
+    {
+      "source": "portrait",
+      "target": "flight",
+      "label": "native ending",
+      "kind": "data",
+      "via": 410
+    },
+    {
+      "source": "flight",
+      "target": "opening",
+      "label": "nine cloud frames J+8…J",
+      "kind": "data",
+      "via": 1200
+    },
+    {
+      "source": "flight",
+      "target": "assemble",
+      "label": "retain frames J…end",
+      "kind": "data",
+      "via": 1220
+    },
+    {
+      "source": "arrivalgate",
+      "target": "hold",
+      "label": "fail / changed evidence",
+      "kind": "hold",
+      "via": 380
+    },
+    {
+      "source": "anchorgate",
+      "target": "hold",
+      "label": "fail",
+      "kind": "hold",
+      "via": 785
+    },
+    {
+      "source": "flight",
+      "target": "join",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "join",
+      "target": "proxy",
+      "label": "J and zoom rate",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "stills",
+      "target": "proxy",
+      "label": "",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "proxy",
+      "target": "opening",
+      "label": "layout video",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "stills",
+      "target": "opening",
+      "label": "orbit look + end pin",
+      "kind": "data",
+      "via": null
+    },
+    {
+      "source": "proxy",
+      "target": "hold",
+      "label": "checks fail",
+      "kind": "hold",
+      "via": 795
+    }
+  ],
+  "models": {
+    "flux": {
+      "title": "FLUX 3 photographic edits",
+      "weights": [
+        "flux3-image-klein-int8-convrot.safetensors",
+        "qwen3vl_4b_int8_convrot.safetensors",
+        "flux2-vae.safetensors"
+      ],
+      "note": "Qwen3-VL here is FLUX’s text/image encoder; it is not the Qwen3.5 visual gate."
+    },
+    "ltx": {
+      "title": "LTX 2.5 distilled motion",
+      "weights": [
+        "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+        "ltx-2.5-video-vae-bf16.safetensors",
+        "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors"
+      ],
+      "note": "Gemma encoder on CPU. Prompt Relay is a custom conditioning node, not a separate model. Fresh flight and opening use no Layout/IC-LoRA or latent 2× refinement; the reused portrait has its own captured graph."
+    },
+    "fill": {
+      "title": "Native FLUX Fill",
+      "weights": [
+        "flux1-fill-dev.safetensors",
+        "clip_l.safetensors",
+        "t5xxl_fp16.safetensors",
+        "ae.safetensors"
+      ],
+      "note": "Official diffusion weights cast to fp8_e4m3fn on the captured 24GB GPU."
+    },
+    "qwen": {
+      "title": "Local visual checks / scene brief",
+      "weights": [
+        "qwen3.5:4b"
+      ],
+      "note": "Separate local vision service launched by start_touchdown_vision_checker.sh. Reports and evidence hashes are checked in Python; these calls are not ComfyUI nodes.",
+      "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04"
+    },
+    "portrait-ltx": {
+      "title": "Saved LTX portrait (including refinement)",
+      "weights": [
+        "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+        "ltx-2.5-video-vae-bf16.safetensors",
+        "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+        "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors"
+      ],
+      "note": "The saved portrait uses the spatial upscaler. Fresh parent, descent and opening use the distilled flight recipe without latent 2× refinement."
+    }
+  }
+}

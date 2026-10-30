@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "project_id": "worms-head-full",
+  "name": "Worm's Head and Rhossili headland",
+  "longitude": -4.3241,
+  "latitude": 51.5643,
+  "projected_crs": "EPSG:27700",
+  "vertical_crs": "EPSG:5701",
+  "radius_m": 2500.0,
+  "radius_interpretation": "half_width_of_projected_square",
+  "origin_easting_m": 239154.9012823891,
+  "origin_northing_m": 187680.64672494138,
+  "location_source": "OpenStreetMap Worm's Head landmark; wider context centred to include Outer Head and Rhossili",
+  "origin_source": "manual provisional centre WGS84 (-4.322, 51.565)"
+}

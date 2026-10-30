@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Canyon (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8dbbe0"/><stop offset="1" stop-color="#f4e2c4"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 96 L320 92 L320 200 L0 200Z" fill="#c9784a"/>
+  <path d="M0 112 L320 108 L320 118 L0 122Z" fill="#e1a173"/>
+  <path d="M90 200 L130 120 L190 120 L230 200Z" fill="#7b3d22"/>
+  <path d="M110 200 L140 136 L180 136 L210 200Z" fill="#5d2c18"/>
+  <path d="M0 170 C60 160 80 176 120 200 L0 200Z M320 168 C270 160 240 178 200 200 L320 200Z" fill="#5b6b3a"/>
+</svg>

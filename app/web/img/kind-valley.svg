@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Valley (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8bb9e0"/><stop offset="1" stop-color="#eef2f4"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 60 L60 70 L90 160 L0 170Z" fill="#a8a59c"/>
+  <path d="M320 70 L250 60 L220 160 L320 170Z" fill="#b2afa6"/>
+  <path d="M120 150 L160 96 L190 150Z" fill="#9c9990"/>
+  <path d="M0 170 C100 150 220 150 320 170 V200 H0Z" fill="#3f5f3c"/>
+</svg>

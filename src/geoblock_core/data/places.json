@@ -1,0 +1,3036 @@
+{
+ "schema_version": "1",
+ "about": "Fly-down landing places. Curated fields: id, name, region, country, kind, latitude/longitude (where the person stands), view_toward (what the camera looks at past them, named in prompts), palette, note. Everything under 'coverage' is measured by scripts/build_place_catalog.py from the open datasets; nothing is downloaded for a place until it is chosen.",
+ "places": [
+  {
+   "id": "grand-canyon-mather-point",
+   "name": "Mather Point, Grand Canyon",
+   "region": "Arizona",
+   "country": "US",
+   "kind": "canyon rim",
+   "latitude": 36.0617,
+   "longitude": -112.1078,
+   "palette": "grand-canyon",
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2164.0,
+    "relief_m": 1017.4,
+    "drop_below_m": 1000.8,
+    "rise_above_m": 16.5,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "AZ_GrandCanyonNP_2019_B19",
+      "zone": 12,
+      "year": 2019
+     }
+    ],
+    "lidar": [
+     {
+      "name": "AZ_GrandCanyonNP_1_2019",
+      "year": 2019,
+      "points": 22446573306,
+      "density_pts_m2": 14.8,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/AZ_GrandCanyonNP_1_2019/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.655,
+      "20": 0.182,
+      "30": 0.141,
+      "60": 0.011,
+      "80": 0.011
+     },
+     "view": {
+      "10": 0.413,
+      "20": 0.143,
+      "30": 0.23,
+      "50": 0.002,
+      "60": 0.198,
+      "80": 0.013
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the canyon rim ground underfoot at {name} is mostly forest, with shrubland and scrub and some grassland and meadow; across the view the land is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly forest, with shrubland and scrub and some grassland and meadow",
+     "low": "the land below and around {name} is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "grand-canyon-desert-view",
+   "name": "Desert View Watchtower, Grand Canyon",
+   "region": "Arizona",
+   "country": "US",
+   "kind": "canyon rim",
+   "latitude": 36.0441,
+   "longitude": -111.8262,
+   "palette": "grand-canyon",
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2270.6,
+    "relief_m": 823.4,
+    "drop_below_m": 807.8,
+    "rise_above_m": 15.6,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "AZ_NorthCentral_B23",
+      "zone": 12,
+      "year": 2023
+     },
+     {
+      "project": "AZ_NorthEast_D23",
+      "zone": 12,
+      "year": 2023
+     },
+     {
+      "project": "AZ_GrandCanyonNP_2019_B19",
+      "zone": 12,
+      "year": 2019
+     }
+    ],
+    "lidar": [
+     {
+      "name": "AZ_GrandCanyonNP_1_2019",
+      "year": 2019,
+      "points": 22446573306,
+      "density_pts_m2": 14.8,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/AZ_GrandCanyonNP_1_2019/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.221,
+      "20": 0.426,
+      "30": 0.182,
+      "60": 0.172
+     },
+     "view": {
+      "10": 0.356,
+      "20": 0.127,
+      "30": 0.304,
+      "50": 0.0,
+      "60": 0.198,
+      "80": 0.015
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the canyon rim ground underfoot at {name} is shrubland and scrub, with forest and some grassland and meadow; across the view the land is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is shrubland and scrub, with forest and some grassland and meadow",
+     "low": "the land below and around {name} is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "horseshoe-bend",
+   "name": "Horseshoe Bend",
+   "region": "Arizona",
+   "country": "US",
+   "kind": "canyon rim",
+   "latitude": 36.8791,
+   "longitude": -111.5104,
+   "view_toward": {
+    "name": "the horseshoe loop of the Colorado River",
+    "latitude": 36.8808,
+    "longitude": -111.5211
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1286.7,
+    "relief_m": 380.2,
+    "drop_below_m": 334.1,
+    "rise_above_m": 46.1,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "AZ_NorthEast_D23",
+      "zone": 12,
+      "year": 2023
+     },
+     {
+      "project": "AZ_CentralCoconino_B22",
+      "zone": 12,
+      "year": 2022
+     }
+    ],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "20": 0.094,
+      "30": 0.306,
+      "60": 0.462,
+      "80": 0.138
+     },
+     "view": {
+      "10": 0.0,
+      "20": 0.015,
+      "30": 0.024,
+      "40": 0.0,
+      "50": 0.019,
+      "60": 0.919,
+      "80": 0.022
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the canyon rim ground underfoot at {name} is bare rock, scree and sand with sparse plants, with grassland and meadow and some open water; across the view the land is mostly bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is bare rock, scree and sand with sparse plants, with grassland and meadow and some open water",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "monument-valley",
+   "name": "Monument Valley overlook",
+   "region": "Arizona / Utah",
+   "country": "US",
+   "kind": "desert mesa overlook",
+   "latitude": 36.9831,
+   "longitude": -110.1113,
+   "view_toward": {
+    "name": "the Mittens",
+    "latitude": 36.9894,
+    "longitude": -110.0987
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1694.6,
+    "relief_m": 378.4,
+    "drop_below_m": 99.7,
+    "rise_above_m": 278.8,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 12.48,
+    "dem1m": [
+     {
+      "project": "UT_WestEast_B22",
+      "zone": 12,
+      "year": 2022
+     },
+     {
+      "project": "UT_StatewideSouth_2020_A20",
+      "zone": 12,
+      "year": 2020
+     }
+    ],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "60": 1.0
+     },
+     "view": {
+      "20": 0.043,
+      "30": 0.003,
+      "40": 0.0,
+      "50": 0.0,
+      "60": 0.953,
+      "80": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the desert mesa overlook ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants; across the view the land is mostly bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 58.0
+   }
+  },
+  {
+   "id": "bryce-inspiration-point",
+   "name": "Inspiration Point, Bryce Canyon",
+   "region": "Utah",
+   "country": "US",
+   "kind": "canyon rim",
+   "latitude": 37.61359,
+   "longitude": -112.16897,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2531.1,
+    "relief_m": 298.0,
+    "drop_below_m": 275.8,
+    "rise_above_m": 22.1,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "UT_StatewideKane_2020_A20",
+      "zone": 12,
+      "year": 2020
+     }
+    ],
+    "lidar": [
+     {
+      "name": "USGS_LPC_UT_Southern_QL1_2018_LAS_2019",
+      "year": 2018,
+      "points": 65086089670,
+      "density_pts_m2": 19.9,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_UT_Southern_QL1_2018_LAS_2019/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.601,
+      "20": 0.036,
+      "30": 0.362,
+      "60": 0.001
+     },
+     "view": {
+      "10": 0.482,
+      "20": 0.172,
+      "30": 0.246,
+      "40": 0.004,
+      "50": 0.003,
+      "60": 0.091,
+      "80": 0.002
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the canyon rim ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is forest, with grassland and meadow and some shrubland and scrub",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is forest, with grassland and meadow and some shrubland and scrub",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "zion-angels-landing",
+   "name": "Angels Landing, Zion",
+   "region": "Utah",
+   "country": "US",
+   "kind": "summit ridge",
+   "latitude": 37.2694,
+   "longitude": -112.9473,
+   "snap_m": 120,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "landing": {
+     "latitude": 37.269306,
+     "longitude": -112.947824,
+     "moved_m": 47.6,
+     "reason": "highest ground within 120 m of the curated point"
+    },
+    "elevation_m": 1765.3,
+    "relief_m": 800.4,
+    "drop_below_m": 458.3,
+    "rise_above_m": 342.1,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.075,
+      "20": 0.035,
+      "30": 0.448,
+      "60": 0.441
+     },
+     "view": {
+      "10": 0.358,
+      "20": 0.293,
+      "30": 0.186,
+      "50": 0.001,
+      "60": 0.162,
+      "80": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ridge ground underfoot at {name} is grassland and meadow, with bare rock, scree and sand with sparse plants and some forest; across the view the land is forest, with shrubland and scrub and some grassland and meadow",
+     "high": "the ground near the camera at {name} is grassland and meadow, with bare rock, scree and sand with sparse plants and some forest",
+     "low": "the land below and around {name} is forest, with shrubland and scrub and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "canyonlands-grand-view",
+   "name": "Grand View Point, Canyonlands",
+   "region": "Utah",
+   "country": "US",
+   "kind": "canyon rim",
+   "latitude": 38.3108,
+   "longitude": -109.8572,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1912.6,
+    "relief_m": 426.8,
+    "drop_below_m": 411.1,
+    "rise_above_m": 15.7,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "UT_WestEast_B22",
+      "zone": 12,
+      "year": 2022
+     }
+    ],
+    "lidar": [
+     {
+      "name": "UT_WestEast_4_B22",
+      "year": 2022,
+      "points": 72810065657,
+      "density_pts_m2": 6.4,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/UT_WestEast_4_B22/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "20": 0.05,
+      "30": 0.01,
+      "60": 0.94
+     },
+     "view": {
+      "10": 0.004,
+      "20": 0.189,
+      "30": 0.045,
+      "40": 0.0,
+      "50": 0.0,
+      "60": 0.737,
+      "80": 0.024
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the canyon rim ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants; across the view the land is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "dead-horse-point",
+   "name": "Dead Horse Point",
+   "region": "Utah",
+   "country": "US",
+   "kind": "canyon rim",
+   "latitude": 38.4709,
+   "longitude": -109.7405,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1813.3,
+    "relief_m": 551.5,
+    "drop_below_m": 533.5,
+    "rise_above_m": 18.0,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "UT_WestEast_B22",
+      "zone": 12,
+      "year": 2022
+     }
+    ],
+    "lidar": [
+     {
+      "name": "UT_WestEast_4_B22",
+      "year": 2022,
+      "points": 72810065657,
+      "density_pts_m2": 6.4,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/UT_WestEast_4_B22/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "20": 0.228,
+      "30": 0.011,
+      "60": 0.761
+     },
+     "view": {
+      "10": 0.008,
+      "20": 0.323,
+      "30": 0.099,
+      "40": 0.0,
+      "50": 0.0,
+      "60": 0.539,
+      "80": 0.03
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the canyon rim ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub; across the view the land is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "arches-delicate-arch",
+   "name": "Delicate Arch viewpoint, Arches",
+   "region": "Utah",
+   "country": "US",
+   "kind": "slickrock bowl",
+   "latitude": 38.7433,
+   "longitude": -109.5003,
+   "view_toward": {
+    "name": "Delicate Arch",
+    "latitude": 38.7436,
+    "longitude": -109.4993
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1445.1,
+    "relief_m": 180.9,
+    "drop_below_m": 131.2,
+    "rise_above_m": 49.7,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 90.0,
+    "dem1m": [
+     {
+      "project": "UT_FEMA_FS_FlamingGorge_2020_B20",
+      "zone": 12,
+      "year": 2020
+     }
+    ],
+    "near_view_deg": 15.9,
+    "lidar": [
+     {
+      "name": "UT_FlamingGorge_5_2020",
+      "year": 2020,
+      "points": 216692369122,
+      "density_pts_m2": 9.3,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/UT_FlamingGorge_5_2020/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "20": 0.196,
+      "30": 0.036,
+      "60": 0.768
+     },
+     "view": {
+      "10": 0.002,
+      "20": 0.45,
+      "30": 0.077,
+      "40": 0.0,
+      "50": 0.0,
+      "60": 0.467,
+      "80": 0.005
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the slickrock bowl ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub; across the view the land is bare rock, scree and sand with sparse plants, with shrubland and scrub and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub",
+     "low": "the land below and around {name} is bare rock, scree and sand with sparse plants, with shrubland and scrub and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 69.0
+   }
+  },
+  {
+   "id": "yosemite-tunnel-view",
+   "name": "Tunnel View, Yosemite",
+   "region": "California",
+   "country": "US",
+   "kind": "valley overlook",
+   "latitude": 37.7156,
+   "longitude": -119.6772,
+   "view_toward": {
+    "name": "Half Dome",
+    "latitude": 37.7459,
+    "longitude": -119.5332
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1343.1,
+    "relief_m": 785.2,
+    "drop_below_m": 219.0,
+    "rise_above_m": 566.2,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [
+     "Half Dome clears the foreground by only 2.8° at eye level",
+     "the person sees only 6° below level toward the view, and no brink within 40 m; nearer ground hides the drop"
+    ],
+    "view_clearance_deg": 2.81,
+    "dem1m": [
+     {
+      "project": "CA_SouthernSierra_2020_B20",
+      "zone": 11,
+      "year": 2020
+     },
+     {
+      "project": "CA_YosemiteNP_2019_D19",
+      "zone": 11,
+      "year": 2019
+     }
+    ],
+    "near_view_deg": -6.2,
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.947,
+      "30": 0.052,
+      "80": 0.001
+     },
+     "view": {
+      "10": 0.779,
+      "20": 0.001,
+      "30": 0.203,
+      "50": 0.0,
+      "60": 0.017,
+      "80": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the valley overlook ground underfoot at {name} is mostly forest; across the view the land is mostly forest, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly forest",
+     "low": "the land below and around {name} is mostly forest, with grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 75.1
+   }
+  },
+  {
+   "id": "yosemite-glacier-point",
+   "name": "Glacier Point, Yosemite",
+   "region": "California",
+   "country": "US",
+   "kind": "cliff-top overlook",
+   "latitude": 37.7306,
+   "longitude": -119.5738,
+   "view_toward": {
+    "name": "Half Dome",
+    "latitude": 37.7459,
+    "longitude": -119.5332
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2200.7,
+    "relief_m": 1216.3,
+    "drop_below_m": 993.0,
+    "rise_above_m": 223.3,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 6.26,
+    "dem1m": [
+     {
+      "project": "CA_YosemiteNP_2019_D19",
+      "zone": 11,
+      "year": 2019
+     }
+    ],
+    "near_view_deg": -8.6,
+    "lidar_landing": {
+     "latitude": 37.730658,
+     "longitude": -119.573646,
+     "moved_m": 15,
+     "near_view_deg": -25.3,
+     "project": "CA_YosemiteNP_2019_D19",
+     "reason": "on 1 m lidar the edge hides the drop (9° down); the brink 15 m toward the view sees 25° down"
+    },
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.743,
+      "30": 0.242,
+      "60": 0.015
+     },
+     "view": {
+      "10": 0.719,
+      "20": 0.0,
+      "30": 0.215,
+      "50": 0.0,
+      "60": 0.066,
+      "80": 0.001
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the cliff-top overlook ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is mostly forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is mostly forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 64.5
+   }
+  },
+  {
+   "id": "half-dome-summit",
+   "name": "Half Dome summit, Yosemite",
+   "region": "California",
+   "country": "US",
+   "kind": "summit",
+   "latitude": 37.7459,
+   "longitude": -119.5332,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2692.5,
+    "relief_m": 1385.0,
+    "drop_below_m": 1384.3,
+    "rise_above_m": 0.7,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "CA_YosemiteNP_2019_D19",
+      "zone": 11,
+      "year": 2019
+     }
+    ],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.835,
+      "30": 0.138,
+      "60": 0.027
+     },
+     "view": {
+      "10": 0.657,
+      "20": 0.0,
+      "30": 0.239,
+      "50": 0.0,
+      "60": 0.102,
+      "70": 0.0,
+      "80": 0.001,
+      "100": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is mostly forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is mostly forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "mount-whitney",
+   "name": "Mount Whitney summit",
+   "region": "California",
+   "country": "US",
+   "kind": "summit",
+   "latitude": 36.5786,
+   "longitude": -118.292,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 4417.0,
+    "relief_m": 720.8,
+    "drop_below_m": 719.7,
+    "rise_above_m": 1.2,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "CA_SierraNevada_B22",
+      "zone": 11,
+      "year": 2022
+     }
+    ],
+    "lidar": [
+     {
+      "name": "CA_SierraNevada_14_B22",
+      "year": 2022,
+      "points": 317779980390,
+      "density_pts_m2": 30.6,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/CA_SierraNevada_14_B22/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "30": 0.08,
+      "60": 0.883,
+      "80": 0.038
+     },
+     "view": {
+      "10": 0.164,
+      "20": 0.03,
+      "30": 0.14,
+      "60": 0.65,
+      "70": 0.0,
+      "80": 0.016,
+      "100": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants, with grassland and meadow; across the view the land is mostly bare rock, scree and sand with sparse plants, with forest and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants, with grassland and meadow",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants, with forest and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "death-valley-dantes-view",
+   "name": "Dantes View, Death Valley",
+   "region": "California",
+   "country": "US",
+   "kind": "desert ridge overlook",
+   "latitude": 36.2205,
+   "longitude": -116.7266,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1670.0,
+    "relief_m": 658.2,
+    "drop_below_m": 590.1,
+    "rise_above_m": 68.1,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "CA_FEMAR9Southeast_D24",
+      "zone": 11,
+      "year": 2024
+     }
+    ],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "20": 0.077,
+      "30": 0.038,
+      "60": 0.884,
+      "80": 0.001
+     },
+     "view": {
+      "10": 0.0,
+      "20": 0.049,
+      "30": 0.114,
+      "50": 0.0,
+      "60": 0.837,
+      "80": 0.001
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the desert ridge overlook ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub; across the view the land is mostly bare rock, scree and sand with sparse plants, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants, with shrubland and scrub",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants, with grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "death-valley-zabriskie",
+   "name": "Zabriskie Point, Death Valley",
+   "region": "California",
+   "country": "US",
+   "kind": "badlands overlook",
+   "latitude": 36.4204,
+   "longitude": -116.8102,
+   "view_toward": {
+    "name": "Manly Beacon",
+    "latitude": 36.42,
+    "longitude": -116.8121
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 201.2,
+    "relief_m": 163.2,
+    "drop_below_m": 89.9,
+    "rise_above_m": 73.4,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "CA_FEMAR9Southeast_D24",
+      "zone": 11,
+      "year": 2024
+     }
+    ],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "60": 1.0
+     },
+     "view": {
+      "10": 0.001,
+      "20": 0.011,
+      "30": 0.006,
+      "40": 0.0,
+      "50": 0.001,
+      "60": 0.981,
+      "80": 0.001
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the badlands overlook ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants; across the view the land is mostly bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "big-sur-bixby-bridge",
+   "name": "Bixby Creek Bridge, Big Sur",
+   "region": "California",
+   "country": "US",
+   "kind": "sea cliff",
+   "latitude": 36.3735,
+   "longitude": -121.9015,
+   "view_toward": {
+    "name": "the Bixby Creek Bridge",
+    "latitude": 36.3716,
+    "longitude": -121.902,
+    "structure_m": 0
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 123.1,
+    "relief_m": 253.7,
+    "drop_below_m": 123.1,
+    "rise_above_m": 130.6,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 90.0,
+    "dem1m": [
+     {
+      "project": "CA_AZ_FEMA_R9_Lidar_2017_D18",
+      "zone": 10,
+      "year": 2017
+     }
+    ],
+    "near_view_deg": -12.4,
+    "lidar": [
+     {
+      "name": "CA_FEMA_Z4_B1_2018",
+      "year": 2018,
+      "points": 46246018795,
+      "density_pts_m2": 5.7,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/CA_FEMA_Z4_B1_2018/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017",
+      "year": 2016,
+      "points": 34390196929,
+      "density_pts_m2": 5.8,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "ARRA-CA_CentralCoast-Z4_2010",
+      "year": 2010,
+      "points": 5161164938,
+      "density_pts_m2": 1.8,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/ARRA-CA_CentralCoast-Z4_2010/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "80": 1.0
+     },
+     "view": {
+      "10": 0.389,
+      "20": 0.014,
+      "30": 0.118,
+      "40": 0.0,
+      "50": 0.0,
+      "60": 0.002,
+      "80": 0.478
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the sea cliff ground underfoot at {name} is mostly open water; across the view the land is open water, with forest and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly open water",
+     "low": "the land below and around {name} is open water, with forest and some grassland and meadow",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": 192.0
+   }
+  },
+  {
+   "id": "golden-gate-battery-spencer",
+   "name": "Battery Spencer, Golden Gate",
+   "region": "California",
+   "country": "US",
+   "kind": "headland",
+   "latitude": 37.82781,
+   "longitude": -122.48164,
+   "view_toward": {
+    "name": "the Golden Gate Bridge",
+    "latitude": 37.8108,
+    "longitude": -122.477,
+    "structure_m": 227
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 143.6,
+    "relief_m": 262.7,
+    "drop_below_m": 145.2,
+    "rise_above_m": 117.5,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 5.22,
+    "landing": {
+     "latitude": 37.82772,
+     "longitude": -122.48164,
+     "moved_m": 10.0,
+     "reason": "nearer ground hid the Golden Gate Bridge at eye level (0.9° clear); moved 10 m to where it clears by 5.2°"
+    },
+    "dem1m": [
+     {
+      "project": "CA_SanFrancisco_B23",
+      "zone": 10,
+      "year": 2023
+     }
+    ],
+    "lidar": [
+     {
+      "name": "CA_SanFrancisco_1_B23",
+      "year": 2023,
+      "points": 13088433078,
+      "density_pts_m2": 62.1,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/CA_SanFrancisco_1_B23/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "USGS_LPC_CA_NoCal_Wildfires_B5b_QL1_2018",
+      "year": 2018,
+      "points": 29456021431,
+      "density_pts_m2": 16.8,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CA_NoCal_Wildfires_B5b_QL1_2018/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017",
+      "year": 2016,
+      "points": 34390196929,
+      "density_pts_m2": 5.8,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "ARRA-CA_GoldenGate_2010",
+      "year": 2010,
+      "points": 8777987577,
+      "density_pts_m2": 3.1,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/ARRA-CA_GoldenGate_2010/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.725,
+      "20": 0.053,
+      "30": 0.222
+     },
+     "view": {
+      "10": 0.218,
+      "20": 0.002,
+      "30": 0.053,
+      "40": 0.0,
+      "50": 0.192,
+      "60": 0.003,
+      "80": 0.531,
+      "90": 0.002
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the headland ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is mostly open water, with forest and some buildings, roads and town",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is mostly open water, with forest and some buildings, roads and town",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": 167.8
+   }
+  },
+  {
+   "id": "san-francisco-twin-peaks",
+   "name": "Twin Peaks, San Francisco",
+   "region": "California",
+   "country": "US",
+   "kind": "city hilltop overlook",
+   "latitude": 37.75265,
+   "longitude": -122.44745,
+   "view_toward": {
+    "name": "the downtown San Francisco skyline",
+    "latitude": 37.7898,
+    "longitude": -122.3969,
+    "structure_m": 326
+   },
+   "note": "Christmas Tree Point lookout, looking down Market Street to the Financial District towers (Salesforce Tower 326 m). Overture building heights cover ~96% of footprints here.",
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 254.9,
+    "relief_m": 214.0,
+    "drop_below_m": 189.1,
+    "rise_above_m": 24.9,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [
+     "the person sees only 8° below level toward the view, and no brink within 40 m; nearer ground hides the drop"
+    ],
+    "view_clearance_deg": 4.6,
+    "landing": {
+     "latitude": 37.752469,
+     "longitude": -122.447336,
+     "moved_m": 22.4,
+     "reason": "nearer ground hid the downtown San Francisco skyline at eye level (-2.4° clear); moved 22 m to where it clears by 4.6°"
+    },
+    "dem1m": [
+     {
+      "project": "CA_CaliforniaGaps_B23",
+      "zone": 10,
+      "year": 2023
+     },
+     {
+      "project": "CA_SanFrancisco_B23",
+      "zone": 10,
+      "year": 2023
+     }
+    ],
+    "near_view_deg": -8.0,
+    "lidar": [
+     {
+      "name": "CA_SanFrancisco_1_B23",
+      "year": 2023,
+      "points": 13088433078,
+      "density_pts_m2": 62.1,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/CA_SanFrancisco_1_B23/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "USGS_LPC_CA_NoCAL_Wildfires_B5b_2018",
+      "year": 2018,
+      "points": 28725854623,
+      "density_pts_m2": 5.6,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CA_NoCAL_Wildfires_B5b_2018/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "ARRA-CA_GoldenGate_2010",
+      "year": 2010,
+      "points": 8777987577,
+      "density_pts_m2": 3.1,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/ARRA-CA_GoldenGate_2010/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.26,
+      "50": 0.729,
+      "80": 0.011
+     },
+     "view": {
+      "10": 0.1,
+      "20": 0.001,
+      "30": 0.053,
+      "40": 0.0,
+      "50": 0.414,
+      "60": 0.011,
+      "80": 0.42,
+      "90": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the city hilltop overlook ground underfoot at {name} is mostly buildings, roads and town, with forest; across the view the land is open water, with buildings, roads and town and some forest",
+     "high": "the ground near the camera at {name} is mostly buildings, roads and town, with forest",
+     "low": "the land below and around {name} is open water, with buildings, roads and town and some forest",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "city": {
+     "count": 175371,
+     "height_p50_m": 7.0,
+     "height_p95_m": 13.0,
+     "height_max_m": 326.0,
+     "towers_over_100m": 192,
+     "footprint_p50_m2": 130,
+     "small_share": 0.674,
+     "measured_height_share": 0.934,
+     "release": "2026-09-23.1",
+     "source": "Overture Maps buildings",
+     "license": "ODbL 1.0 (OpenStreetMap-derived rows); CDLA Permissive 2.0 (other rows)"
+    },
+    "view_heading_deg": 46.9
+   }
+  },
+  {
+   "id": "crater-lake-rim-village",
+   "name": "Rim Village, Crater Lake",
+   "region": "Oregon",
+   "country": "US",
+   "kind": "caldera rim",
+   "latitude": 42.9112,
+   "longitude": -122.1468,
+   "view_toward": {
+    "name": "Wizard Island",
+    "latitude": 42.9373,
+    "longitude": -122.1503
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2170.6,
+    "relief_m": 307.0,
+    "drop_below_m": 290.1,
+    "rise_above_m": 16.9,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 4.34,
+    "landing": {
+     "latitude": 42.911923,
+     "longitude": -122.147045,
+     "moved_m": 82.5,
+     "reason": "nearer ground hid Wizard Island at eye level (-0.3° clear); moved 82 m to where it clears by 4.3°"
+    },
+    "dem1m": [
+     {
+      "project": "OR_SouthEast_D22",
+      "zone": 10,
+      "year": 2022
+     }
+    ],
+    "near_view_deg": -7.5,
+    "lidar_landing": {
+     "latitude": 42.912085,
+     "longitude": -122.147066,
+     "moved_m": 18,
+     "near_view_deg": -27.8,
+     "project": "OR_SouthEast_D22",
+     "reason": "on 1 m lidar the edge hides the drop (8° down); the brink 18 m toward the view sees 28° down"
+    },
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.897,
+      "30": 0.036,
+      "60": 0.067
+     },
+     "view": {
+      "10": 0.678,
+      "30": 0.065,
+      "50": 0.0,
+      "60": 0.046,
+      "80": 0.211,
+      "100": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the caldera rim ground underfoot at {name} is mostly forest, with bare rock, scree and sand with sparse plants; across the view the land is mostly forest, with open water and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly forest, with bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is mostly forest, with open water and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 354.6
+   }
+  },
+  {
+   "id": "mount-rainier-paradise",
+   "name": "Paradise, Mount Rainier",
+   "region": "Washington",
+   "country": "US",
+   "kind": "alpine meadow",
+   "latitude": 46.7865,
+   "longitude": -121.7355,
+   "view_toward": {
+    "name": "Mount Rainier",
+    "latitude": 46.8529,
+    "longitude": -121.7604
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1655.5,
+    "relief_m": 416.9,
+    "drop_below_m": 250.2,
+    "rise_above_m": 166.7,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "view_clearance_deg": 5.96,
+    "dem1m": [],
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.975,
+      "30": 0.006,
+      "60": 0.02
+     },
+     "view": {
+      "10": 0.506,
+      "20": 0.001,
+      "30": 0.141,
+      "50": 0.0,
+      "60": 0.117,
+      "70": 0.221,
+      "80": 0.003,
+      "100": 0.012
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the alpine meadow ground underfoot at {name} is mostly forest; across the view the land is mostly forest, with glacier ice and snowfields and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly forest",
+     "low": "the land below and around {name} is mostly forest, with glacier ice and snowfields and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 345.6
+   }
+  },
+  {
+   "id": "mount-st-helens-johnston-ridge",
+   "name": "Johnston Ridge, Mount St Helens",
+   "region": "Washington",
+   "country": "US",
+   "kind": "volcano overlook",
+   "latitude": 46.2766,
+   "longitude": -122.2166,
+   "view_toward": {
+    "name": "the Mount St Helens crater",
+    "latitude": 46.1912,
+    "longitude": -122.1944
+   },
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1290.8,
+    "relief_m": 360.4,
+    "drop_below_m": 336.4,
+    "rise_above_m": 24.0,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [
+     "the person sees only 1° below level toward the view, and no brink within 40 m; nearer ground hides the drop"
+    ],
+    "view_clearance_deg": 5.45,
+    "landing": {
+     "latitude": 46.2766,
+     "longitude": -122.21738,
+     "moved_m": 60.0,
+     "reason": "nearer ground hid the Mount St Helens crater at eye level (-8.8° clear); moved 60 m to where it clears by 5.5°"
+    },
+    "dem1m": [
+     {
+      "project": "WA_FEMAHQ_2018_D18",
+      "zone": 10,
+      "year": 2018
+     }
+    ],
+    "near_view_deg": 1.0,
+    "lidar": [],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.38,
+      "30": 0.606,
+      "60": 0.014
+     },
+     "view": {
+      "10": 0.444,
+      "20": 0.0,
+      "30": 0.398,
+      "50": 0.0,
+      "60": 0.094,
+      "70": 0.001,
+      "80": 0.059,
+      "100": 0.004
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the volcano overlook ground underfoot at {name} is mostly grassland and meadow, with forest; across the view the land is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly grassland and meadow, with forest",
+     "low": "the land below and around {name} is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 169.4
+   }
+  },
+  {
+   "id": "glacier-logan-pass",
+   "name": "Logan Pass, Glacier",
+   "region": "Montana",
+   "country": "US",
+   "kind": "mountain pass",
+   "latitude": 48.696,
+   "longitude": -113.718,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2028.3,
+    "relief_m": 799.5,
+    "drop_below_m": 340.6,
+    "rise_above_m": 459.0,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "MT_Statewide_Phase3_2021_B21",
+      "zone": 12,
+      "year": 2021
+     },
+     {
+      "project": "MT_Statewide_Phase2_2020_B20",
+      "zone": 12,
+      "year": 2020
+     }
+    ],
+    "lidar": [
+     {
+      "name": "MT_Statewide_P2_5_2020",
+      "year": 2020,
+      "points": 219418665456,
+      "density_pts_m2": 20.2,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/MT_Statewide_P2_5_2020/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.179,
+      "30": 0.302,
+      "60": 0.367,
+      "70": 0.032,
+      "100": 0.12
+     },
+     "view": {
+      "10": 0.462,
+      "20": 0.0,
+      "30": 0.164,
+      "50": 0.0,
+      "60": 0.221,
+      "70": 0.019,
+      "80": 0.013,
+      "100": 0.121
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the mountain pass ground underfoot at {name} is bare rock, scree and sand with sparse plants, with grassland and meadow and some forest; across the view the land is forest, with bare rock, scree and sand with sparse plants and some grassland and meadow",
+     "high": "the ground near the camera at {name} is bare rock, scree and sand with sparse plants, with grassland and meadow and some forest",
+     "low": "the land below and around {name} is forest, with bare rock, scree and sand with sparse plants and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "smokies-clingmans-dome",
+   "name": "Clingmans Dome, Great Smoky Mountains",
+   "region": "Tennessee",
+   "country": "US",
+   "kind": "summit",
+   "latitude": 35.5628,
+   "longitude": -83.4985,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 2024.9,
+    "relief_m": 500.8,
+    "drop_below_m": 500.7,
+    "rise_above_m": 0.1,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "NC_Phase5_2018_A18",
+      "zone": 17,
+      "year": 2018
+     }
+    ],
+    "lidar": [
+     {
+      "name": "NC_Phase5_Swain_2017",
+      "year": 2017,
+      "points": 95445983866,
+      "density_pts_m2": 58.4,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/NC_Phase5_Swain_2017/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "USGS_LPC_TN_Eastern_2_16_B16_Del2_2016_LAS_2017",
+      "year": 2016,
+      "points": 44743753290,
+      "density_pts_m2": 8.3,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_TN_Eastern_2_16_B16_Del2_2016_LAS_2017/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "ARRA-TN_SmokyMtns_2011",
+      "year": 2011,
+      "points": 3750300767,
+      "density_pts_m2": 2.1,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/ARRA-TN_SmokyMtns_2011/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 1.0
+     },
+     "view": {
+      "10": 1.0,
+      "30": 0.0,
+      "50": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ground underfoot at {name} is mostly forest; across the view the land is mostly forest",
+     "high": "the ground near the camera at {name} is mostly forest",
+     "low": "the land below and around {name} is mostly forest",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "acadia-cadillac-mountain",
+   "name": "Cadillac Mountain, Acadia",
+   "region": "Maine",
+   "country": "US",
+   "kind": "summit",
+   "latitude": 44.3526,
+   "longitude": -68.2249,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 458.4,
+    "relief_m": 327.1,
+    "drop_below_m": 319.8,
+    "rise_above_m": 7.3,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "ME_MidCoast_2021_B21",
+      "zone": 19,
+      "year": 2021
+     }
+    ],
+    "lidar": [
+     {
+      "name": "ME_MidCoast_1_2021",
+      "year": 2021,
+      "points": 22666682727,
+      "density_pts_m2": 5.6,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/ME_MidCoast_1_2021/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.591,
+      "30": 0.001,
+      "80": 0.408
+     },
+     "view": {
+      "10": 0.51,
+      "30": 0.027,
+      "40": 0.0,
+      "50": 0.006,
+      "60": 0.0,
+      "80": 0.45,
+      "90": 0.007
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ground underfoot at {name} is mostly forest, with open water; across the view the land is mostly forest, with open water",
+     "high": "the ground near the camera at {name} is mostly forest, with open water",
+     "low": "the land below and around {name} is mostly forest, with open water",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "mount-washington",
+   "name": "Mount Washington summit",
+   "region": "New Hampshire",
+   "country": "US",
+   "kind": "summit",
+   "latitude": 44.2705,
+   "longitude": -71.3033,
+   "coverage": {
+    "terrain": "usgs3dep",
+    "elevation_m": 1914.5,
+    "relief_m": 514.6,
+    "drop_below_m": 514.3,
+    "rise_above_m": 0.3,
+    "terrain_dataset": "USGS 3DEP 1/3 arc-second DEM (seamless, current)",
+    "warnings": [],
+    "dem1m": [
+     {
+      "project": "NH_Umbagog_LiDAR_2016_D16",
+      "zone": 19,
+      "year": 2016
+     }
+    ],
+    "lidar": [
+     {
+      "name": "NH_Umbagog_2016",
+      "year": 2016,
+      "points": 60565448080,
+      "density_pts_m2": 7.4,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/NH_Umbagog_2016/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     },
+     {
+      "name": "USGS_LPC_CT_River_Lot6_Winnipesaulee_2015_LAS_2017",
+      "year": 2015,
+      "points": 97194025751,
+      "density_pts_m2": 6.2,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CT_River_Lot6_Winnipesaulee_2015_LAS_2017/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls",
+     "naip"
+    ],
+    "landcover": {
+     "near": {
+      "10": 1.0
+     },
+     "view": {
+      "10": 0.944,
+      "30": 0.052,
+      "50": 0.002,
+      "60": 0.002,
+      "80": 0.0,
+      "90": 0.0,
+      "100": 0.001
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ground underfoot at {name} is mostly forest; across the view the land is mostly forest",
+     "high": "the ground near the camera at {name} is mostly forest",
+     "low": "the land below and around {name} is mostly forest",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "haleakala-summit",
+   "name": "Haleakalā summit",
+   "region": "Hawaii",
+   "country": "US",
+   "kind": "volcano summit",
+   "latitude": 20.7097,
+   "longitude": -156.2533,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 3050.8,
+    "relief_m": 333.6,
+    "drop_below_m": 331.2,
+    "rise_above_m": 2.4,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [
+     {
+      "name": "HI_NOAAMauiOahu_2_B20",
+      "year": 2020,
+      "points": 88768378069,
+      "density_pts_m2": 26.6,
+      "ept": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/HI_NOAAMauiOahu_2_B20/ept.json",
+      "license": "Public domain (U.S. Geological Survey 3DEP)"
+     }
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "30": 0.057,
+      "50": 0.032,
+      "60": 0.911
+     },
+     "view": {
+      "10": 0.179,
+      "20": 0.005,
+      "30": 0.685,
+      "50": 0.001,
+      "60": 0.13
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the volcano summit ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants; across the view the land is mostly grassland and meadow, with forest and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is mostly grassland and meadow, with forest and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "gornergrat-matterhorn",
+   "name": "Gornergrat",
+   "region": "Valais",
+   "country": "CH",
+   "kind": "alpine ridge",
+   "latitude": 45.9836,
+   "longitude": 7.7853,
+   "view_toward": {
+    "name": "the Matterhorn",
+    "latitude": 45.9763,
+    "longitude": 7.6586
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 3116.1,
+    "relief_m": 689.5,
+    "drop_below_m": 659.4,
+    "rise_above_m": 30.0,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 7.7,
+    "landing": {
+     "latitude": 45.98369,
+     "longitude": 7.7853,
+     "moved_m": 10.0,
+     "reason": "nearer ground hid the Matterhorn at eye level (1.9° clear); moved 10 m to where it clears by 7.7°"
+    },
+    "lidar": [],
+    "national_lidar": [
+     "swisstopo swissALTI3D, 0.5 m",
+     "Open (swisstopo OGD, free use with attribution)",
+     "https://www.swisstopo.admin.ch/en/height-model-swissalti3d"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "30": 0.376,
+      "60": 0.464,
+      "70": 0.004,
+      "80": 0.001,
+      "100": 0.155
+     },
+     "view": {
+      "10": 0.06,
+      "20": 0.0,
+      "30": 0.12,
+      "50": 0.004,
+      "60": 0.232,
+      "70": 0.513,
+      "80": 0.004,
+      "100": 0.067
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the alpine ridge ground underfoot at {name} is bare rock, scree and sand with sparse plants, with grassland and meadow and some moss and lichen tundra; across the view the land is mostly glacier ice and snowfields, with bare rock, scree and sand with sparse plants and some grassland and meadow",
+     "high": "the ground near the camera at {name} is bare rock, scree and sand with sparse plants, with grassland and meadow and some moss and lichen tundra",
+     "low": "the land below and around {name} is mostly glacier ice and snowfields, with bare rock, scree and sand with sparse plants and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 265.2
+   }
+  },
+  {
+   "id": "jungfraujoch-sphinx",
+   "name": "Jungfraujoch Sphinx",
+   "region": "Bernese Oberland",
+   "country": "CH",
+   "kind": "glacier saddle",
+   "latitude": 46.5475,
+   "longitude": 7.9853,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 3489.5,
+    "relief_m": 969.8,
+    "drop_below_m": 704.2,
+    "rise_above_m": 265.6,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "national_lidar": [
+     "swisstopo swissALTI3D, 0.5 m",
+     "Open (swisstopo OGD, free use with attribution)",
+     "https://www.swisstopo.admin.ch/en/height-model-swissalti3d"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "60": 0.011,
+      "70": 0.989
+     },
+     "view": {
+      "10": 0.161,
+      "30": 0.208,
+      "50": 0.002,
+      "60": 0.135,
+      "70": 0.479,
+      "80": 0.005,
+      "100": 0.01
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the glacier saddle ground underfoot at {name} is mostly glacier ice and snowfields; across the view the land is glacier ice and snowfields, with grassland and meadow and some forest",
+     "high": "the ground near the camera at {name} is mostly glacier ice and snowfields",
+     "low": "the land below and around {name} is glacier ice and snowfields, with grassland and meadow and some forest",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "aiguille-du-midi",
+   "name": "Aiguille du Midi",
+   "region": "Haute-Savoie",
+   "country": "FR",
+   "kind": "alpine summit",
+   "latitude": 45.8786,
+   "longitude": 6.8873,
+   "view_toward": {
+    "name": "Mont Blanc",
+    "latitude": 45.8326,
+    "longitude": 6.8652
+   },
+   "snap_m": 80,
+   "coverage": {
+    "terrain": "copernicus",
+    "landing": {
+     "latitude": 45.878889,
+     "longitude": 6.887222,
+     "moved_m": 32.7,
+     "reason": "highest ground within 80 m of the curated point"
+    },
+    "elevation_m": 3689.2,
+    "relief_m": 1112.4,
+    "drop_below_m": 1104.1,
+    "rise_above_m": 8.4,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [
+     "Mont Blanc clears the foreground by only 3.4° at eye level"
+    ],
+    "view_clearance_deg": 3.35,
+    "lidar": [],
+    "national_lidar": [
+     "IGN LiDAR HD",
+     "Etalab Open Licence 2.0",
+     "https://geoservices.ign.fr/lidarhd"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.088,
+      "30": 0.385,
+      "60": 0.088,
+      "70": 0.374,
+      "100": 0.064
+     },
+     "view": {
+      "10": 0.231,
+      "30": 0.131,
+      "40": 0.0,
+      "50": 0.015,
+      "60": 0.182,
+      "70": 0.403,
+      "80": 0.004,
+      "100": 0.033
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the alpine summit ground underfoot at {name} is grassland and meadow, with glacier ice and snowfields and some forest; across the view the land is glacier ice and snowfields, with forest and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is grassland and meadow, with glacier ice and snowfields and some forest",
+     "low": "the land below and around {name} is glacier ice and snowfields, with forest and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 198.3
+   }
+  },
+  {
+   "id": "tre-cime-di-lavaredo",
+   "name": "Rifugio Locatelli, Tre Cime di Lavaredo",
+   "region": "Dolomites",
+   "country": "IT",
+   "kind": "alpine plateau",
+   "latitude": 46.63686,
+   "longitude": 12.31058,
+   "view_toward": {
+    "name": "the Tre Cime",
+    "latitude": 46.6186,
+    "longitude": 12.3027
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 2408.8,
+    "relief_m": 654.7,
+    "drop_below_m": 420.2,
+    "rise_above_m": 234.5,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 10.07,
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.559,
+      "30": 0.277,
+      "60": 0.162,
+      "100": 0.003
+     },
+     "view": {
+      "10": 0.473,
+      "30": 0.227,
+      "40": 0.0,
+      "50": 0.004,
+      "60": 0.212,
+      "70": 0.026,
+      "80": 0.003,
+      "100": 0.054
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the alpine plateau ground underfoot at {name} is mostly forest, with grassland and meadow and some bare rock, scree and sand with sparse plants; across the view the land is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is forest, with grassland and meadow and some bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 196.5
+   }
+  },
+  {
+   "id": "preikestolen",
+   "name": "Preikestolen (Pulpit Rock)",
+   "region": "Rogaland",
+   "country": "NO",
+   "kind": "fjord cliff",
+   "latitude": 58.9863,
+   "longitude": 6.1903,
+   "snap_m": 100,
+   "coverage": {
+    "terrain": "copernicus",
+    "landing": {
+     "latitude": 58.986667,
+     "longitude": 6.188819,
+     "moved_m": 94.2,
+     "reason": "highest ground within 100 m of the curated point"
+    },
+    "elevation_m": 572.2,
+    "relief_m": 702.8,
+    "drop_below_m": 572.2,
+    "rise_above_m": 130.6,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "national_lidar": [
+     "Kartverket høydedata, 1 m",
+     "CC BY 4.0",
+     "https://hoydedata.no/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.939,
+      "30": 0.022,
+      "80": 0.039
+     },
+     "view": {
+      "10": 0.483,
+      "30": 0.324,
+      "40": 0.0,
+      "50": 0.001,
+      "60": 0.001,
+      "80": 0.177,
+      "100": 0.014
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the fjord cliff ground underfoot at {name} is mostly forest; across the view the land is forest, with grassland and meadow and some open water",
+     "high": "the ground near the camera at {name} is mostly forest",
+     "low": "the land below and around {name} is forest, with grassland and meadow and some open water",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "old-man-of-storr",
+   "name": "The Storr, Isle of Skye",
+   "region": "Scotland",
+   "country": "GB",
+   "kind": "pinnacle ridge",
+   "latitude": 57.508,
+   "longitude": -6.183,
+   "view_toward": {
+    "name": "the Old Man of Storr",
+    "latitude": 57.5067,
+    "longitude": -6.1833
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 704.3,
+    "relief_m": 437.8,
+    "drop_below_m": 426.2,
+    "rise_above_m": 11.5,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 90.0,
+    "lidar": [],
+    "national_lidar": [
+     "Scottish Public Sector LiDAR (partial coverage)",
+     "Open Government Licence v3",
+     "https://remotesensingdata.gov.scot/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "30": 1.0
+     },
+     "view": {
+      "10": 0.032,
+      "30": 0.624,
+      "40": 0.0,
+      "50": 0.0,
+      "60": 0.0,
+      "80": 0.343,
+      "90": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the pinnacle ridge ground underfoot at {name} is mostly grassland and meadow; across the view the land is mostly grassland and meadow, with open water",
+     "high": "the ground near the camera at {name} is mostly grassland and meadow",
+     "low": "the land below and around {name} is mostly grassland and meadow, with open water",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": 187.1
+   }
+  },
+  {
+   "id": "ben-nevis",
+   "name": "Ben Nevis summit",
+   "region": "Scotland",
+   "country": "GB",
+   "kind": "summit",
+   "latitude": 56.7969,
+   "longitude": -5.0036,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 1342.0,
+    "relief_m": 683.3,
+    "drop_below_m": 682.7,
+    "rise_above_m": 0.6,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "national_lidar": [
+     "Scottish Public Sector LiDAR (partial coverage)",
+     "Open Government Licence v3",
+     "https://remotesensingdata.gov.scot/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.458,
+      "30": 0.536,
+      "50": 0.006
+     },
+     "view": {
+      "10": 0.203,
+      "30": 0.741,
+      "40": 0.0,
+      "50": 0.01,
+      "60": 0.018,
+      "80": 0.027,
+      "100": 0.001
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the summit ground underfoot at {name} is mostly grassland and meadow, with forest; across the view the land is mostly grassland and meadow, with forest",
+     "high": "the ground near the camera at {name} is mostly grassland and meadow, with forest",
+     "low": "the land below and around {name} is mostly grassland and meadow, with forest",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "rhossili-worms-head",
+   "name": "Rhossili cliff top",
+   "region": "Wales",
+   "country": "GB",
+   "kind": "sea cliff",
+   "latitude": 51.5652,
+   "longitude": -4.2975,
+   "view_toward": {
+    "name": "Worm's Head",
+    "latitude": 51.5636,
+    "longitude": -4.3285
+   },
+   "snap_m": 800,
+   "coverage": {
+    "terrain": "copernicus",
+    "landing": {
+     "latitude": 51.568889,
+     "longitude": -4.288403,
+     "moved_m": 751.6,
+     "reason": "highest ground within 800 m of the curated point"
+    },
+    "elevation_m": 77.6,
+    "relief_m": 190.1,
+    "drop_below_m": 77.6,
+    "rise_above_m": 112.5,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [
+     "Worm's Head clears the foreground by only 0.8° at eye level"
+    ],
+    "view_clearance_deg": 0.79,
+    "lidar": [],
+    "national_lidar": [
+     "Welsh Government LiDAR 2020-23, 1 m",
+     "Open Government Licence v3",
+     "https://datamap.gov.wales/maps/lidar-data-download/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "30": 0.031,
+      "80": 0.969
+     },
+     "view": {
+      "10": 0.037,
+      "30": 0.202,
+      "40": 0.028,
+      "50": 0.002,
+      "60": 0.011,
+      "80": 0.692,
+      "90": 0.029
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the sea cliff ground underfoot at {name} is mostly open water; across the view the land is mostly open water, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly open water",
+     "low": "the land below and around {name} is mostly open water, with grassland and meadow",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": 258.0
+   }
+  },
+  {
+   "id": "cliffs-of-moher",
+   "name": "Cliffs of Moher",
+   "region": "Clare",
+   "country": "IE",
+   "kind": "sea cliff",
+   "latitude": 52.972,
+   "longitude": -9.4262,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 156.2,
+    "relief_m": 187.8,
+    "drop_below_m": 160.3,
+    "rise_above_m": 27.6,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "national_lidar": [
+     "Geological Survey Ireland lidar (partial coverage)",
+     "CC BY 4.0",
+     "https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "80": 1.0
+     },
+     "view": {
+      "10": 0.03,
+      "30": 0.38,
+      "40": 0.0,
+      "50": 0.003,
+      "60": 0.001,
+      "80": 0.582,
+      "90": 0.004
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the sea cliff ground underfoot at {name} is mostly open water; across the view the land is mostly open water, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly open water",
+     "low": "the land below and around {name} is mostly open water, with grassland and meadow",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "santorini-oia",
+   "name": "Oia, Santorini",
+   "region": "Cyclades",
+   "country": "GR",
+   "kind": "caldera rim",
+   "latitude": 36.4614,
+   "longitude": 25.3756,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 129.3,
+    "relief_m": 138.7,
+    "drop_below_m": 129.3,
+    "rise_above_m": 9.4,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "80": 1.0
+     },
+     "view": {
+      "10": 0.002,
+      "20": 0.0,
+      "30": 0.128,
+      "40": 0.003,
+      "50": 0.022,
+      "60": 0.023,
+      "80": 0.822
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the caldera rim ground underfoot at {name} is mostly open water; across the view the land is mostly open water, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly open water",
+     "low": "the land below and around {name} is mostly open water, with grassland and meadow",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "table-mountain",
+   "name": "Table Mountain upper cableway",
+   "region": "Cape Town",
+   "country": "ZA",
+   "kind": "flat-topped summit",
+   "latitude": -33.9576,
+   "longitude": 18.4037,
+   "snap_m": 150,
+   "coverage": {
+    "terrain": "copernicus",
+    "landing": {
+     "latitude": -33.958333,
+     "longitude": 18.403611,
+     "moved_m": 82.0,
+     "reason": "highest ground within 150 m of the curated point"
+    },
+    "elevation_m": 1055.3,
+    "relief_m": 816.5,
+    "drop_below_m": 795.9,
+    "rise_above_m": 20.7,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.152,
+      "20": 0.485,
+      "30": 0.102,
+      "50": 0.261
+     },
+     "view": {
+      "10": 0.22,
+      "20": 0.099,
+      "30": 0.115,
+      "40": 0.001,
+      "50": 0.197,
+      "60": 0.003,
+      "80": 0.364,
+      "90": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the flat-topped summit ground underfoot at {name} is shrubland and scrub, with buildings, roads and town and some forest; across the view the land is open water, with forest and some buildings, roads and town",
+     "high": "the ground near the camera at {name} is shrubland and scrub, with buildings, roads and town and some forest",
+     "low": "the land below and around {name} is open water, with forest and some buildings, roads and town",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "kilimanjaro-uhuru",
+   "name": "Uhuru Peak, Kilimanjaro",
+   "region": "Kilimanjaro",
+   "country": "TZ",
+   "kind": "volcano summit",
+   "latitude": -3.0758,
+   "longitude": 37.3533,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 5866.1,
+    "relief_m": 623.1,
+    "drop_below_m": 602.4,
+    "rise_above_m": 20.7,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "30": 0.001,
+      "60": 0.709,
+      "70": 0.289
+     },
+     "view": {
+      "10": 0.069,
+      "20": 0.008,
+      "30": 0.394,
+      "60": 0.522,
+      "70": 0.007,
+      "80": 0.001,
+      "90": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the volcano summit ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants, with glacier ice and snowfields; across the view the land is mostly bare rock, scree and sand with sparse plants, with grassland and meadow and some forest",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants, with glacier ice and snowfields",
+     "low": "the land below and around {name} is mostly bare rock, scree and sand with sparse plants, with grassland and meadow and some forest",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "kala-patthar-everest",
+   "name": "Kala Patthar",
+   "region": "Khumbu",
+   "country": "NP",
+   "kind": "high summit",
+   "latitude": 27.9958,
+   "longitude": 86.8286,
+   "view_toward": {
+    "name": "Mount Everest",
+    "latitude": 27.9881,
+    "longitude": 86.925
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 5605.9,
+    "relief_m": 634.9,
+    "drop_below_m": 330.6,
+    "rise_above_m": 304.3,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 5.97,
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "60": 0.376,
+      "70": 0.566,
+      "80": 0.014,
+      "100": 0.045
+     },
+     "view": {
+      "30": 0.021,
+      "60": 0.207,
+      "70": 0.711,
+      "80": 0.004,
+      "100": 0.057
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the high summit ground underfoot at {name} is mostly glacier ice and snowfields, with bare rock, scree and sand with sparse plants; across the view the land is mostly glacier ice and snowfields, with bare rock, scree and sand with sparse plants",
+     "high": "the ground near the camera at {name} is mostly glacier ice and snowfields, with bare rock, scree and sand with sparse plants",
+     "low": "the land below and around {name} is mostly glacier ice and snowfields, with bare rock, scree and sand with sparse plants",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 95.1
+   }
+  },
+  {
+   "id": "mount-fuji",
+   "name": "Mount Fuji summit",
+   "region": "Shizuoka / Yamanashi",
+   "country": "JP",
+   "kind": "volcano summit",
+   "latitude": 35.3606,
+   "longitude": 138.7274,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 3766.7,
+    "relief_m": 766.8,
+    "drop_below_m": 765.1,
+    "rise_above_m": 1.7,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "national_lidar": [
+     "GSI 5 m DEM (partly lidar)",
+     "GSI terms (attribution)",
+     "https://fgd.gsi.go.jp/download/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.089,
+      "30": 0.345,
+      "60": 0.566
+     },
+     "view": {
+      "10": 0.797,
+      "30": 0.093,
+      "40": 0.002,
+      "50": 0.001,
+      "60": 0.106
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the volcano summit ground underfoot at {name} is mostly bare rock, scree and sand with sparse plants, with grassland and meadow and some forest; across the view the land is mostly forest, with bare rock, scree and sand with sparse plants and some grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly bare rock, scree and sand with sparse plants, with grassland and meadow and some forest",
+     "low": "the land below and around {name} is mostly forest, with bare rock, scree and sand with sparse plants and some grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "victoria-peak",
+   "name": "Victoria Peak, Hong Kong",
+   "region": "Hong Kong",
+   "country": "HK",
+   "kind": "city summit",
+   "latitude": 22.2711,
+   "longitude": 114.1497,
+   "view_toward": {
+    "name": "the towers of Central",
+    "latitude": 22.281,
+    "longitude": 114.158
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 390.2,
+    "relief_m": 489.0,
+    "drop_below_m": 332.0,
+    "rise_above_m": 157.0,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 4.92,
+    "landing": {
+     "latitude": 22.271281,
+     "longitude": 114.1497,
+     "moved_m": 20.0,
+     "reason": "nearer ground hid the towers of Central at eye level (-11.1° clear); moved 20 m to where it clears by 4.9°"
+    },
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.979,
+      "50": 0.021
+     },
+     "view": {
+      "10": 0.239,
+      "30": 0.004,
+      "40": 0.0,
+      "50": 0.2,
+      "60": 0.005,
+      "80": 0.552
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the city summit ground underfoot at {name} is mostly forest; across the view the land is mostly open water, with forest and some buildings, roads and town",
+     "high": "the ground near the camera at {name} is mostly forest",
+     "low": "the land below and around {name} is mostly open water, with forest and some buildings, roads and town",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": 38.3
+   }
+  },
+  {
+   "id": "guilin-xianggong-hill",
+   "name": "Xianggong Hill, Li River karst",
+   "region": "Guangxi",
+   "country": "CN",
+   "kind": "karst peak",
+   "latitude": 24.92581,
+   "longitude": 110.479,
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 284.8,
+    "relief_m": 283.6,
+    "drop_below_m": 169.3,
+    "rise_above_m": 114.3,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.873,
+      "30": 0.085,
+      "40": 0.007,
+      "50": 0.035
+     },
+     "view": {
+      "10": 0.809,
+      "30": 0.111,
+      "40": 0.044,
+      "50": 0.02,
+      "60": 0.001,
+      "80": 0.015
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the karst peak ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is mostly forest, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is mostly forest, with grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": -1.0
+   }
+  },
+  {
+   "id": "uluru-sunset-view",
+   "name": "Uluru sunset viewing area",
+   "region": "Northern Territory",
+   "country": "AU",
+   "kind": "desert monolith",
+   "latitude": -25.33537,
+   "longitude": 131.00452,
+   "view_toward": {
+    "name": "Uluru",
+    "latitude": -25.3444,
+    "longitude": 131.0369
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 527.1,
+    "relief_m": 36.7,
+    "drop_below_m": 9.4,
+    "rise_above_m": 27.2,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [
+     "only 37 m of relief within 1 km; the blocking will look flat"
+    ],
+    "view_clearance_deg": 6.15,
+    "lidar": [],
+    "national_lidar": [
+     "Geoscience Australia ELVIS lidar (partial coverage)",
+     "CC BY 4.0",
+     "https://elevation.fsdf.org.au/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "20": 0.63,
+      "30": 0.37
+     },
+     "view": {
+      "10": 0.012,
+      "20": 0.331,
+      "30": 0.646,
+      "50": 0.0,
+      "60": 0.011
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the desert monolith ground underfoot at {name} is mostly shrubland and scrub, with grassland and meadow; across the view the land is mostly grassland and meadow, with shrubland and scrub",
+     "high": "the ground near the camera at {name} is mostly shrubland and scrub, with grassland and meadow",
+     "low": "the land below and around {name} is mostly grassland and meadow, with shrubland and scrub",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 107.2
+   }
+  },
+  {
+   "id": "milford-sound",
+   "name": "Milford Sound foreshore",
+   "region": "Fiordland",
+   "country": "NZ",
+   "kind": "fjord shore",
+   "latitude": -44.6716,
+   "longitude": 167.9254,
+   "view_toward": {
+    "name": "Mitre Peak",
+    "latitude": -44.6346,
+    "longitude": 167.8577
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 5.7,
+    "relief_m": 771.8,
+    "drop_below_m": 31.4,
+    "rise_above_m": 740.4,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 4.47,
+    "lidar": [],
+    "national_lidar": [
+     "LINZ national 1 m DEM (lidar), public AWS bucket nz-elevation",
+     "CC BY 4.0",
+     "https://registry.opendata.aws/nz-elevation/"
+    ],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.844,
+      "30": 0.156
+     },
+     "view": {
+      "10": 0.596,
+      "20": 0.0,
+      "30": 0.233,
+      "50": 0.0,
+      "60": 0.054,
+      "70": 0.028,
+      "80": 0.088,
+      "90": 0.0,
+      "100": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the fjord shore ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is mostly forest, with grassland and meadow and some open water",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is mostly forest, with grassland and meadow and some open water",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 307.5
+   }
+  },
+  {
+   "id": "sugarloaf-rio",
+   "name": "Sugarloaf Mountain, Rio de Janeiro",
+   "region": "Rio de Janeiro",
+   "country": "BR",
+   "kind": "city summit",
+   "latitude": -22.949,
+   "longitude": -43.1546,
+   "view_toward": {
+    "name": "Christ the Redeemer",
+    "latitude": -22.9519,
+    "longitude": -43.2105,
+    "structure_m": 38
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 302.7,
+    "relief_m": 329.3,
+    "drop_below_m": 302.7,
+    "rise_above_m": 26.5,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 6.71,
+    "landing": {
+     "latitude": -22.949,
+     "longitude": -43.15538,
+     "moved_m": 80.0,
+     "reason": "nearer ground hid Christ the Redeemer at eye level (-31.3° clear); moved 80 m to where it clears by 6.7°"
+    },
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.63,
+      "30": 0.021,
+      "50": 0.165,
+      "60": 0.001,
+      "80": 0.183
+     },
+     "view": {
+      "10": 0.162,
+      "30": 0.012,
+      "40": 0.0,
+      "50": 0.223,
+      "60": 0.006,
+      "80": 0.597,
+      "90": 0.0
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the city summit ground underfoot at {name} is mostly forest, with open water and some buildings, roads and town; across the view the land is mostly open water, with buildings, roads and town and some forest",
+     "high": "the ground near the camera at {name} is mostly forest, with open water and some buildings, roads and town",
+     "low": "the land below and around {name} is mostly open water, with buildings, roads and town and some forest",
+     "far": "the land runs out to open water toward the horizon"
+    },
+    "view_heading_deg": 266.7
+   }
+  },
+  {
+   "id": "machu-picchu",
+   "name": "Machu Picchu guardhouse",
+   "region": "Cusco",
+   "country": "PE",
+   "kind": "mountain ridge ruins",
+   "latitude": -13.1645,
+   "longitude": -72.5449,
+   "view_toward": {
+    "name": "Huayna Picchu",
+    "latitude": -13.1572,
+    "longitude": -72.5467
+   },
+   "coverage": {
+    "terrain": "copernicus",
+    "elevation_m": 2454.7,
+    "relief_m": 1006.6,
+    "drop_below_m": 597.8,
+    "rise_above_m": 408.7,
+    "terrain_dataset": "Copernicus DEM GLO-30 (2021 release, surface model)",
+    "warnings": [],
+    "view_clearance_deg": 6.92,
+    "lidar": [],
+    "imagery": [
+     "hls"
+    ],
+    "landcover": {
+     "near": {
+      "10": 0.796,
+      "20": 0.013,
+      "30": 0.172,
+      "60": 0.003,
+      "80": 0.017
+     },
+     "view": {
+      "10": 0.698,
+      "20": 0.059,
+      "30": 0.235,
+      "40": 0.0,
+      "50": 0.001,
+      "60": 0.004,
+      "80": 0.003
+     },
+     "near_m": 600,
+     "view_m": 8000,
+     "source": "ESA WorldCover 10 m v200 (2021)",
+     "license": "CC BY 4.0"
+    },
+    "look": {
+     "all": "the mountain ridge ruins ground underfoot at {name} is mostly forest, with grassland and meadow; across the view the land is mostly forest, with grassland and meadow",
+     "high": "the ground near the camera at {name} is mostly forest, with grassland and meadow",
+     "low": "the land below and around {name} is mostly forest, with grassland and meadow",
+     "far": "the distant land fades naturally toward the horizon"
+    },
+    "view_heading_deg": 346.5
+   }
+  },
+  {
+   "id": "bryant-park",
+   "name": "Bryant Park, Midtown Manhattan",
+   "region": "New York",
+   "country": "US",
+   "kind": "city park",
+   "latitude": 40.7533,
+   "longitude": -73.9837,
+   "measured": false,
+   "note": "Listed for the Bryant Park retreat experiment. Its terrain evidence has not been measured into the catalogue, so it is not offered for a build yet.",
+   "coverage": {
+    "terrain": "usgs3dep",
+    "imagery": [
+     "naip"
+    ],
+    "dem1m": [
+     {
+      "project": "NJ_NE6County_B23",
+      "zone": 18,
+      "year": 2023
+     }
+    ]
+   }
+  }
+ ]
+}

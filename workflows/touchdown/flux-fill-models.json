@@ -1,0 +1,38 @@
+[
+  {
+    "repo": "black-forest-labs/FLUX.1-Fill-dev",
+    "filename": "flux1-fill-dev.safetensors",
+    "revision": "358293da0354175698b67ec8299acf928313a78a",
+    "size": 23804922408,
+    "sha256": "03e289f530df51d014f48e675a9ffa2141bc003259bf5f25d75b957e920a41ca",
+    "role": "diffusion_models",
+    "path": "models/FLUX-Fill/diffusion_models/flux1-fill-dev.safetensors"
+  },
+  {
+    "repo": "comfyanonymous/flux_text_encoders",
+    "filename": "clip_l.safetensors",
+    "revision": "6af2a98e3f615bdfa612fbd85da93d1ed5f69ef5",
+    "size": 246144152,
+    "sha256": "660c6f5b1abae9dc498ac2d21e1347d2abdb0cf6c0c0c8576cd796491d9a6cdd",
+    "role": "text_encoders",
+    "path": "models/FLUX-Fill/text_encoders/clip_l.safetensors"
+  },
+  {
+    "repo": "comfyanonymous/flux_text_encoders",
+    "filename": "t5xxl_fp16.safetensors",
+    "revision": "6af2a98e3f615bdfa612fbd85da93d1ed5f69ef5",
+    "size": 9787841024,
+    "sha256": "6e480b09fae049a72d2a8c5fbccb8d3e92febeb233bbe9dfe7256958a9167635",
+    "role": "text_encoders",
+    "path": "models/FLUX-Fill/text_encoders/t5xxl_fp16.safetensors"
+  },
+  {
+    "repo": "Comfy-Org/Lumina-Image-2",
+    "filename": "split_files/vae/ae.safetensors",
+    "revision": "5b072540ef86570fecb8249c505f23d5bdeb88cd",
+    "size": 335304388,
+    "sha256": "afc8e28272cd15db3919bacdb6918ce9c1ed22e96cb12c4d5ed0fba823529e38",
+    "role": "vae",
+    "path": "models/FLUX-Fill/vae/ae.safetensors"
+  }
+]

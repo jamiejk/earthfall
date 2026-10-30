@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Yosemite Tunnel View (illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fa6d6"/><stop offset="1" stop-color="#dfe9f1"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 150 L0 70 C20 60 50 58 70 66 L92 150Z" fill="#b9b6ad"/>
+  <path d="M0 150 L0 92 C30 86 60 90 80 100 L100 150Z" fill="#9c998f"/>
+  <path d="M180 150 C200 120 214 96 236 92 C250 90 258 104 262 118 L270 150Z" fill="#c4c1b8"/>
+  <path d="M236 92 C246 84 254 84 258 96 L250 100Z" fill="#a8a59c"/>
+  <path d="M250 150 L270 80 C290 70 310 74 320 82 L320 150Z" fill="#aeaba2"/>
+  <path d="M286 92 L289 150" stroke="#f4f7fa" stroke-width="3" opacity=".9"/>
+  <path d="M0 140 C80 130 200 138 320 132 L320 200 L0 200Z" fill="#3f6142"/>
+  <path d="M0 160 C100 152 220 164 320 156 L320 200 L0 200Z" fill="#2f4d33"/>
+  <path d="M0 184 L320 178 L320 200 L0 200Z" fill="#6b6e72"/>
+</svg>

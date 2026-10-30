@@ -1,0 +1,110 @@
+# Twin Peaks with the cloud plunge tipping to straight down (Jamie, 10 Oct 15:43Z), so the straight-down dive
+# that follows is explained; the alternative to twin-peaks-oblique.toml. Same shot name: stills and opener come
+# from the cache. Was: the current Twin Peaks cut (a7wb_cloud2_s4_long, 10 Oct 2026), as one build.
+# Build: cd scripts && uv run python -m touchdown.build ../shots/twin-peaks.toml
+# Values are the desktop's as-used ones (fakeout/build-sources/SOURCES.md: tiltdive2, tswoop5, build2, dive_fx,
+# live_end3, cloud_i2v2, build_cloud). Prompts are generalised with {approach}/{person}/{scene} where the originals
+# named Twin Peaks; with this shot block they expand to the original wording or very close to it.
+
+output = "outputs/touchdown"
+
+[shot]
+name = "twin-peaks"
+place = "san-francisco-twin-peaks"          # place catalog id: landing point for the dive's imagery
+person = "a young woman with short curly dark hair, wearing a bright red raincoat over a grey hoodie, black jeans and a small backpack"
+scene = "on the grassy summit of Twin Peaks in San Francisco, by a large oak tree, with the downtown skyline and the bay behind"
+region = "the coast of northern California and San Francisco Bay"
+approach = "the grassy summit of Twin Peaks in San Francisco, looking forward and down at the winding two-lane road with a yellow centre line that crosses a rounded hilltop of dry grass and low green scrub"
+# The end still the swoop lands on. Omit it to have FLUX klein paint one from person + scene
+# (or from end_reference, a real view of the place, and subject, a photo of the person).
+end_still = "twin-peaks/ground_end.png"
+
+[stills]
+seed = 20261009          # orbit still = seed + 1, whiteout still = seed + 140 (as in r3-cloud)
+
+[opener]                 # LTX 2.5 first/last, orbit -> whiteout -> end still; only `keep` frames are used
+frames = 241
+cloud_at = 0.15
+keep = 26
+seeds = [20261009]
+pick = 20261009          # r3-cloud's seed (its opener pinned a klein end still, not ground_end: not pixel-identical)
+picked_by = "human"
+
+[cloud]                  # LTX 2.5 image-to-video from the opener's frame `keep`
+start_at = "auto"        # start from the last opener frame before it fogs (opener keep is the upper bound)
+frames = 97
+speed = 7.0              # target flow (px/frame at 480 wide) for the integer-step retime ("T=7")
+cap = 5                  # build_cloud CAP
+prompt = "One continuous shot with no cuts. The camera plunges into a towering bank of billowing white cumulus cloud and, as it dives, pitches steadily downward until it is looking straight down, the horizon sliding up and out of the top of the frame. Dense cloud walls and torn wisps stream past the lens at high speed, sunlit edges and deep blue-grey shadow inside the cloud, turbulent churning vapour rushing up toward the camera, the cloud growing denser until everything is bright glowing white haze. Real aerial footage, natural light, photorealistic."   # tips to straight down inside the cloud
+seeds = [4, 5, 6]
+
+[dive]                   # no model: NAIP squares 24.3 / 8.1 / 2.7 / 0.9 / 0.3 km around the landing
+from_m = 8100            # footprint at the cloud exit
+to_m = 800               # footprint where the pitch-up starts (tiltdive2 v5: ends 173.5 m up)
+nadir_frames = 52
+pitch_frames = 41
+pitch_deg = 32
+# spin: degrees the view turns while looking down, to face the end shot; default = the place's view
+# heading (46.9 at Twin Peaks, matching v3's ~47)
+clear = 16               # frames thinning out of the cloud mist
+aim = 15                 # metres past the landing the last pitched frame looks at
+
+[swoop]                  # LTX 2.5 first/last: the dive's last frame -> the end still
+frames = 161
+prompt = "One continuous shot with no cuts. The camera is already swooping forward and down over the grassy summit of Twin Peaks in San Francisco, about a hundred and seventy metres up, looking forward and down at the road junction on the summit, the winding two-lane road with a yellow centre line, and the hillside of dry grass and low green scrub around it. It flies straight ahead toward downtown without turning, tilting up toward the horizon in one smooth, quick, steady move as it descends along the road, levels out at eye level beside the road, and glides toward a young woman with short curly dark hair in a bright red raincoat over a grey hoodie standing by a large oak tree with the downtown skyline and the bay behind, who stays still and looks at the camera. Steady camera, smooth continuous motion, real aerial photography, natural colour, sharp photographic detail, photorealistic."   # tswoop5.py, verbatim; other places use the templated form (shots/TEMPLATE.toml)
+seeds = [7, 13, 21, 42]
+pick = 42
+picked_by = "human"
+
+[body]
+max_step = 3             # build2: integer step = round(dive exit flow / swoop native flow), at most this
+low = 7.0                # step down (never back up) once step x native flow falls below this (px/frame at 480 wide)
+seam_span = 14           # build2 SOFT: frames of blur + Lab pull toward the dive's last frame
+[body.fx]                # dive_fx over the dive: shake, radial blur, drawn speed lines (Jamie keeps the lines)
+shake_px = 12.0
+roll = 0.4
+blur = 0.035
+streaks = 14
+
+[end]                    # LTX 2.5 image-to-video from where the swoop settles: the living end
+frames = 73
+settle = 3.5             # used only without `start`: mean grey difference (240 px wide) below which the swoop counts as settled (uncalibrated)
+ramp = 24
+start = 64               # frames after the swoop's first: as used (v5_fx f190, J = 126), picked by eye; delete to use `settle`
+prompt = "One continuous shot with no cuts, a real photograph come to life. The camera drifts in slowly to a waist-up shot of a young woman with short curly dark hair, wearing a bright red raincoat over a grey hoodie and black jeans, standing on the grassy summit of Twin Peaks in San Francisco beside a large oak tree, with the city and the bay behind her. She stands on the same spot, looking at the camera, breathing and blinking. A strong gusty breeze blows across the summit: the long grass and scrub ripple in waves across the hillside, the oak's leaves and branches sway, her curly hair and her raincoat flap in the wind, low white clouds slide visibly across the blue sky, and a pair of gulls glide past in the distance. Natural colour, sharp photographic detail, photorealistic."   # live_end3.py, verbatim; other places use the templated form (shots/TEMPLATE.toml)
+seeds = [4, 5]
+pick = 5
+picked_by = "human"
+
+[sound]                  # LTX 2.3 Foley V2A, wind only (Jamie 10 Oct); windows placed by segment
+enabled = true
+workflow = "ltx-2.3-foley-v2a.json"   # from the gated HF repo, not committed: put it next to this manifest or give a path
+lora = "ltx-2.3-22b-lora-foley-v2a-1.0.safetensors"
+checkpoint = "ltx-2.3-22b-dev-fp8.safetensors"            # as on the desktop's 8190 ComfyUI
+text_encoder = "gemma_3_12B_it_fp8_scaled.safetensors"   # loaded with LTXAVTextEncoderLoader
+decomb = true
+seeds = [7]
+pick = 7
+picked_by = "human"
+fade = ["end-14", "end+56", -28]   # v4: 180:250 with the living end at f194
+[[sound.windows]]
+name = "dive"
+from = "opener"
+to = "swoop"
+prompt = "Pure wind noise only. Violent high-altitude wind roaring past at extreme speed, heavy buffeting turbulence and shuddering air pressure as the camera punches down through thick cloud, deep rumbling gusts, a sustained roaring rush of air through the dive."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, fabric, clicks, beeps, low quality, distorted, clipping, silence"
+gain_db = -8
+lowpass = 1500
+highpass = 80
+[[sound.windows]]
+name = "swoop"
+from = "swoop-9"
+to = "swoop+72"
+prompt = "Pure wind noise only. A fast rushing whoosh of wind as the camera sweeps down low over a hillside, the roar easing and softening as it slows."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, grass, fabric, clicks, beeps, low quality, distorted, clipping"
+[[sound.windows]]
+name = "hilltop"
+from = "end-36"
+to = "total"
+prompt = "Pure wind noise only. A soft, light, steady breeze on an open hilltop, gentle and quiet."
+negative = "music, singing, melody, instruments, speech, talking, voice, narration, birds, seagull, animals, engine, traffic, cars, city, footsteps, rustling, fabric, flapping, clicks, beeps, low quality, distorted, clipping"

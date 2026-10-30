@@ -1,0 +1,11 @@
+[
+ {"name": "dive", "start": 0, "frames": 129,
+  "prompt": "Pure wind noise only. Violent high-altitude wind roaring past at extreme speed, heavy buffeting turbulence and shuddering air pressure as the camera punches down through thick cloud, deep rumbling gusts, a sustained roaring rush of air through the dive.",
+  "negative": "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, fabric, clicks, beeps, low quality, distorted, clipping, silence"},
+ {"name": "swoop", "start": 120, "frames": 81,
+  "prompt": "Pure wind noise only. A fast rushing whoosh of wind as the camera sweeps down low over a hillside, the roar easing and softening as it slows.",
+  "negative": "music, singing, melody, instruments, speech, talking, voice, narration, birds, animals, engine, aircraft, traffic, cars, city, footsteps, rustling, grass, fabric, clicks, beeps, low quality, distorted, clipping"},
+ {"name": "hilltop", "start": 158, "frames": 105,
+  "prompt": "Pure wind noise only. A soft, light, steady breeze on an open hilltop, gentle and quiet.",
+  "negative": "music, singing, melody, instruments, speech, talking, voice, narration, birds, seagull, animals, engine, traffic, cars, city, footsteps, rustling, fabric, flapping, clicks, beeps, low quality, distorted, clipping"}
+]

@@ -1,0 +1,73 @@
+output = "outputs/touchdown"
+
+[shot]
+name = "bryant-park-retreat"
+place = "bryant-park"
+latitude = 40.7536
+longitude = -73.9832
+heading = 337.5
+person = "the woman with black hair, a mustard yellow jacket, green trousers and brown boots"
+subject = "../outputs/touchdown/topographic-still/subject.png"
+end_reference = "../outputs/touchdown/reference_photos/bryant-park/commons_4362002.jpg"
+scene = "on the pedestrian walkway along the south side of Bryant Park in Midtown Manhattan, with the green lawn, trees, park chairs and real glass office towers behind her"
+region = "Manhattan in New York City"
+approach = "the dense Manhattan street grid and tall Midtown buildings around Bryant Park"
+descent = "90"
+
+[stills]
+seed = 20261009
+orbit_region = "the northeastern coast of the United States and New York City seen from low Earth orbit, about 400 kilometres up, with a curved blue horizon and a broad white cumulus cloud deck below"
+end_prompt = "Image 1 documents Bryant Park in Manhattan. Make a realistic ground-level photograph using its actual glass office buildings, tree-lined lawn, park chairs, and pedestrian walkway as the scene structure and materials. Show more walking surface in the foreground, with a clear straight approach to the woman. Remove the foreground seated couple. Image 2 identifies the woman; preserve her exact face, hair and yellow jacket, green trousers and boots. Place this one woman centrally on the existing pedestrian walking surface alongside the lawn, facing the camera, full length, about ten metres away, boots planted and natural contact shadow. Retain the building arrangement and real park character. Do not add a canyon, cliff, plaza, monument or Statue of Liberty. Natural soft daylight, wide photographic scene, no text."
+
+[opener]
+frames = 121
+cloud_at = 0.15
+keep = 22
+seeds = [20261009]
+prompt = "One continuous photographic dive from low Earth orbit toward New York City. The curved blue Earth horizon is visible, the camera plunges forward and down toward a dense white cumulus cloud deck, gathering speed. Cloud vapour fills the frame before any ground-level scene appears. No second globe, no cut."
+
+[cloud]
+start_at = "auto"
+fog_contrast = 0.6
+frames = 97
+speed = 8.0
+cap = 5
+ramp = 6
+max_kept = 32
+seeds = [4]
+prompt = "One continuous high-speed plunge into billowing white cumulus cloud. The camera pitches smoothly downward until looking straight down. Dense cloud walls and torn wisps stream past, sunlit white and blue-grey vapour growing denser until the entire frame is opaque bright white cloud. No ground visible at the end, natural aerial photography, no cut."
+
+[dive]
+from_m = 12000
+to_m = 1500
+nadir_frames = 64
+pitch_frames = 20
+pitch_deg = 25
+clear = 16
+aim = 0
+
+[retreat]
+frames = 145
+seed = 7
+prompt = "One continuous accelerating drone pullback from this exact photograph of Bryant Park in Midtown Manhattan. The woman remains on the same spot with feet planted. The camera immediately flies backwards and upwards in a straight line, accelerating high above the trees and surrounding office towers. Reveal the rectangular green lawn of Bryant Park, its tree-lined pedestrian paths, and the dense Manhattan grid around it. Keep the same existing buildings and their positions. Rise hundreds of metres until the woman and park furniture are indistinct. Pitch smoothly downward to a steep aerial view. Real rigid buildings and paths, strong natural motion blur at high speed. No sideways turn, no orbit, no walking, no dissolve, no cut."
+
+[closeup]
+seed = 20261009
+frames = 73
+video_seed = 7
+prompt = "One continuous smooth camera push straight toward the same stationary woman on the Bryant Park walkway. Move from full length to a close portrait without turning or sideways travel. Same face, hair and yellow jacket throughout. Same rigid park paths, lawn, chairs, trees and office buildings. Natural parallax. Her feet stay planted; subtle breathing, a natural blink, hair stirred by the breeze. Slow gently near the portrait. No dissolve, no crossfade, no jump, no morph, no digital zoom."
+
+# Required by the shared opener/cloud builder's one-seed validation; replaced
+# by the reversed retreat and close-up stages in scene_retreat_build.
+[swoop]
+seeds = [7]
+[end]
+seeds = [7]
+[sound]
+enabled = true
+engine = "procedural"
+wind_seed = 7
+
+[join]
+blur_sigma_px = 36
+blur_frames = 12

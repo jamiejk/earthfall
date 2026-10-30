@@ -1,0 +1,641 @@
+{
+  "50": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "guide.mp4"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · load video"
+    }
+  },
+  "60": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "50",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · video"
+    }
+  },
+  "40": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "guide_frame_0001.png"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · load image"
+    }
+  },
+  "41": {
+    "class_type": "LTXVPreprocess",
+    "inputs": {
+      "image": [
+        "40",
+        0
+      ],
+      "img_compression": 18
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · preprocess"
+    }
+  },
+  "42": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "end.png"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · load image"
+    }
+  },
+  "43": {
+    "class_type": "LTXVPreprocess",
+    "inputs": {
+      "image": [
+        "42",
+        0
+      ],
+      "img_compression": 18
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · preprocess"
+    }
+  },
+  "300": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · model"
+    }
+  },
+  "301": {
+    "class_type": "LTXICLoRALoaderModelOnly",
+    "inputs": {
+      "model": [
+        "300",
+        0
+      ],
+      "lora_name": "ltx-2.5-22b-ic-lora-layout-to-render-1.0.safetensors",
+      "strength_model": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · IC-LoRA"
+    }
+  },
+  "302": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · VAE"
+    }
+  },
+  "304": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "type": "ltxv",
+      "device": "cpu"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · text encoder"
+    }
+  },
+  "305": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "304",
+        0
+      ],
+      "text": "One continuous shot with no cuts. The camera is already swooping forward and down over the rim of the Grand Canyon, looking forward and down across scrub and rock toward the canyon, about a hundred and seventy metres up, looking forward and down. It flies straight ahead, tilting up toward the horizon in one smooth, quick, steady move as it descends, levels out at eye level, and glides toward a young woman with short curly dark hair, wearing a long red raincoat over a grey hoodie, black jeans and white trainers standing on the South Rim of the Grand Canyon at Mather Point, with the canyon and its distant buttes behind her, who stays still and looks at the camera. Steady camera, smooth continuous motion, real aerial photography, natural colour, sharp photographic detail, photorealistic."
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · prompt"
+    }
+  },
+  "306": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "304",
+        0
+      ],
+      "text": "blurry, low quality, flicker, morphing, cuts, watermark, text, cartoon, CGI, clay, plastic, untextured"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · prompt"
+    }
+  },
+  "307": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "305",
+        0
+      ],
+      "negative": [
+        "306",
+        0
+      ],
+      "frame_rate": 24
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · conditioning"
+    }
+  },
+  "308": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 960,
+      "height": 544,
+      "length": 81,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · latent"
+    }
+  },
+  "310": {
+    "class_type": "LTXAddVideoICLoRAGuide",
+    "inputs": {
+      "positive": [
+        "307",
+        0
+      ],
+      "negative": [
+        "307",
+        1
+      ],
+      "latent": [
+        "308",
+        0
+      ],
+      "image": [
+        "60",
+        0
+      ],
+      "frame_idx": 0,
+      "crop": "disabled",
+      "vae": [
+        "302",
+        0
+      ],
+      "strength": 1.0,
+      "latent_downscale_factor": [
+        "301",
+        1
+      ],
+      "use_tiled_encode": false,
+      "tile_size": 256,
+      "tile_overlap": 64
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "311": {
+    "class_type": "LTXAddVideoICLoRAGuide",
+    "inputs": {
+      "positive": [
+        "310",
+        0
+      ],
+      "negative": [
+        "310",
+        1
+      ],
+      "latent": [
+        "310",
+        2
+      ],
+      "image": [
+        "41",
+        0
+      ],
+      "frame_idx": -1,
+      "crop": "center",
+      "vae": [
+        "302",
+        0
+      ],
+      "strength": 1.0,
+      "latent_downscale_factor": [
+        "301",
+        1
+      ],
+      "use_tiled_encode": false,
+      "tile_size": 256,
+      "tile_overlap": 64
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "312": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "311",
+        0
+      ],
+      "negative": [
+        "311",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "311",
+        2
+      ],
+      "image": [
+        "43",
+        0
+      ],
+      "frame_idx": -1,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "390": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261009
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · RandomNoise"
+    }
+  },
+  "391": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "301",
+        0
+      ],
+      "positive": [
+        "312",
+        0
+      ],
+      "negative": [
+        "312",
+        1
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "392": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler_ancestral"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · KSamplerSelect"
+    }
+  },
+  "393": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · ManualSigmas"
+    }
+  },
+  "394": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "390",
+        0
+      ],
+      "guider": [
+        "391",
+        0
+      ],
+      "sampler": [
+        "392",
+        0
+      ],
+      "sigmas": [
+        "393",
+        0
+      ],
+      "latent_image": [
+        "312",
+        2
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · sample"
+    }
+  },
+  "395": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "312",
+        0
+      ],
+      "negative": [
+        "312",
+        1
+      ],
+      "latent": [
+        "394",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · LTXVCropGuides"
+    }
+  },
+  "330": {
+    "class_type": "LatentUpscaleModelLoader",
+    "inputs": {
+      "model_name": "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · upscale model"
+    }
+  },
+  "331": {
+    "class_type": "LTXVLatentUpsampler",
+    "inputs": {
+      "samples": [
+        "395",
+        2
+      ],
+      "upscale_model": [
+        "330",
+        0
+      ],
+      "vae": [
+        "302",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · upscale"
+    }
+  },
+  "340": {
+    "class_type": "LTXAddVideoICLoRAGuide",
+    "inputs": {
+      "positive": [
+        "307",
+        0
+      ],
+      "negative": [
+        "307",
+        1
+      ],
+      "latent": [
+        "331",
+        0
+      ],
+      "image": [
+        "60",
+        0
+      ],
+      "frame_idx": 0,
+      "crop": "disabled",
+      "vae": [
+        "302",
+        0
+      ],
+      "strength": 1.0,
+      "latent_downscale_factor": 1.0,
+      "use_tiled_encode": false,
+      "tile_size": 256,
+      "tile_overlap": 64
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "341": {
+    "class_type": "LTXAddVideoICLoRAGuide",
+    "inputs": {
+      "positive": [
+        "340",
+        0
+      ],
+      "negative": [
+        "340",
+        1
+      ],
+      "latent": [
+        "340",
+        2
+      ],
+      "image": [
+        "41",
+        0
+      ],
+      "frame_idx": -1,
+      "crop": "center",
+      "vae": [
+        "302",
+        0
+      ],
+      "strength": 1.0,
+      "latent_downscale_factor": 1.0,
+      "use_tiled_encode": false,
+      "tile_size": 256,
+      "tile_overlap": 64
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "342": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "341",
+        0
+      ],
+      "negative": [
+        "341",
+        1
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "latent": [
+        "341",
+        2
+      ],
+      "image": [
+        "43",
+        0
+      ],
+      "frame_idx": -1,
+      "strength": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "360": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261010
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · RandomNoise"
+    }
+  },
+  "361": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "301",
+        0
+      ],
+      "positive": [
+        "342",
+        0
+      ],
+      "negative": [
+        "342",
+        1
+      ],
+      "cfg": 1.0
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · guide"
+    }
+  },
+  "362": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler_ancestral"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · KSamplerSelect"
+    }
+  },
+  "363": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "0.909375, 0.725, 0.421875, 0.0"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · ManualSigmas"
+    }
+  },
+  "364": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "360",
+        0
+      ],
+      "guider": [
+        "361",
+        0
+      ],
+      "sampler": [
+        "362",
+        0
+      ],
+      "sigmas": [
+        "363",
+        0
+      ],
+      "latent_image": [
+        "342",
+        2
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · sample"
+    }
+  },
+  "365": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "342",
+        0
+      ],
+      "negative": [
+        "342",
+        1
+      ],
+      "latent": [
+        "364",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · LTXVCropGuides"
+    }
+  },
+  "370": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "365",
+        2
+      ],
+      "vae": [
+        "302",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 128,
+      "temporal_overlap": 32
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · decode"
+    }
+  },
+  "371": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "370",
+        0
+      ],
+      "fps": 24
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · CreateVideo"
+    }
+  },
+  "90": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "371",
+        0
+      ],
+      "filename_prefix": "geoblock/touchdown_terrain_v2v_ltx25",
+      "format": "auto",
+      "codec": "auto"
+    },
+    "_meta": {
+      "title": "Touchdown terrain guide to LTX 2.5 · save video"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "additionalProperties": true,
+  "description": "Canonical XY area shared by every terrain variant.",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "longitude": {
+      "maximum": 180,
+      "minimum": -180,
+      "title": "Longitude",
+      "type": "number"
+    },
+    "latitude": {
+      "maximum": 90,
+      "minimum": -90,
+      "title": "Latitude",
+      "type": "number"
+    },
+    "projected_crs": {
+      "default": "EPSG:27700",
+      "title": "Projected Crs",
+      "type": "string"
+    },
+    "vertical_crs": {
+      "default": "EPSG:5701",
+      "title": "Vertical Crs",
+      "type": "string"
+    },
+    "radius_m": {
+      "default": 1500,
+      "exclusiveMinimum": 0,
+      "title": "Radius M",
+      "type": "number"
+    },
+    "radius_interpretation": {
+      "default": "half_width_of_projected_square",
+      "title": "Radius Interpretation",
+      "type": "string"
+    },
+    "origin_easting_m": {
+      "title": "Origin Easting M",
+      "type": "number"
+    },
+    "origin_northing_m": {
+      "title": "Origin Northing M",
+      "type": "number"
+    },
+    "location_source": {
+      "title": "Location Source",
+      "type": "string"
+    },
+    "origin_source": {
+      "default": "projected location coordinate",
+      "title": "Origin Source",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "name",
+    "longitude",
+    "latitude",
+    "origin_easting_m",
+    "origin_northing_m",
+    "location_source"
+  ],
+  "title": "GeoSceneSpec",
+  "type": "object"
+}

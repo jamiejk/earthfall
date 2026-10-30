@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "project_id": "worms-head",
+  "name": "Worm's Head",
+  "longitude": -4.3241,
+  "latitude": 51.5643,
+  "projected_crs": "EPSG:27700",
+  "vertical_crs": "EPSG:5701",
+  "radius_m": 1500.0,
+  "radius_interpretation": "half_width_of_projected_square",
+  "origin_easting_m": 239986.539180593,
+  "origin_northing_m": 187654.29737948196,
+  "location_source": "OpenStreetMap way 1493808602; landmark reference",
+  "origin_source": "manual provisional centre WGS84 (-4.31, 51.565)"
+}

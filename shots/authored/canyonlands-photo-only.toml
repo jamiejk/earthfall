@@ -1,0 +1,11 @@
+place = "Grand View Point, Canyonlands, Utah"
+subject = "../subjects/test-subject-red-coat.jpg"
+reference_manifest = "../../outputs/touchdown/canyonlands-grand-view/reference_photos/canyonlands-grand-view/manifest.json"
+reference_ids = [54231383, 29106150, 52412515]
+seed = 2026102240
+look = "Natural travel photography after a passing storm: pale cream sandstone, muted copper cliff bands, sparse grey-green scrub, blue-grey distance, soft warm sunlight from the left."
+
+[models]
+unet = "flux3-image-klein-int8-convrot.safetensors"
+clip = "qwen3vl_4b_int8_convrot.safetensors"
+vae = "flux2-vae.safetensors"

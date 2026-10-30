@@ -1,0 +1,142 @@
+[
+  {
+    "id": "chichen-itza",
+    "title": "Chichén Itzá",
+    "region": "El Castillo, Yucatán",
+    "country": "Mexico",
+    "latitude": 20.682889,
+    "longitude": -88.568611,
+    "thumb": "/static/img/landmarks/chichen-itza.jpg",
+    "poster": "/static/img/examples/chichen-itza.jpg",
+    "duration": "7.6 sec",
+    "example": "outputs/touchdown/photo-only-chichen-itza/portrait-controlled/earth_zoom.mp4",
+    "references": [
+      {
+        "page_id": 2869110,
+        "source": "Wikimedia Commons",
+        "title": "Chichen-Itza-Castillo-Seen-From-East.JPG",
+        "artist": "Bjørn Christian Tørrissen",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Chichen-Itza-Castillo-Seen-From-East.JPG",
+        "path": "outputs/touchdown/photo-only-chichen-itza/reference_photos/commons_2869110.jpg"
+      },
+      {
+        "page_id": 8324207,
+        "source": "Wikimedia Commons",
+        "title": "Templo el Castillo - Chichen Itza-Yucatan-Mexico0222.jpg",
+        "artist": "Diego Delso",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Templo_el_Castillo_-_Chichen_Itza-Yucatan-Mexico0222.jpg",
+        "path": "outputs/touchdown/photo-only-chichen-itza/reference_photos/commons_8324207.jpg"
+      }
+    ],
+    "credit": {
+      "artist": "Bjørn Christian Tørrissen",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Chichen-Itza-Castillo-Seen-From-East.JPG"
+    }
+  },
+  {
+    "id": "eiffel-tower",
+    "title": "Eiffel Tower",
+    "region": "Paris",
+    "country": "France",
+    "latitude": 48.8617,
+    "longitude": 2.2893,
+    "thumb": "/static/img/landmarks/eiffel-tower.jpg",
+    "poster": "/static/img/examples/eiffel-tower.jpg",
+    "duration": "8.6 sec",
+    "example": "outputs/touchdown/photo-only-paris/portrait-ground-route/earth_zoom.mp4",
+    "references": [
+      {
+        "page_id": 33258012,
+        "source": "Wikimedia Commons",
+        "title": "Eiffel Tower from another side of the river Seine, Paris April 2013.jpg",
+        "artist": "Alexander Kachkaev",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Eiffel_Tower_from_another_side_of_the_river_Seine,_Paris_April_2013.jpg",
+        "path": "outputs/touchdown/photo-only-paris/reference_photos/commons_33258012.jpg"
+      },
+      {
+        "page_id": 53481689,
+        "source": "Wikimedia Commons",
+        "title": "Eiffel Tower from the Trocadero (1).jpg",
+        "artist": "Nelson Pérez",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Eiffel_Tower_from_the_Trocadero_(1).jpg",
+        "path": "outputs/touchdown/photo-only-paris/reference_photos/commons_53481689.jpg"
+      },
+      {
+        "page_id": 40287629,
+        "source": "Wikimedia Commons",
+        "title": "Paris View from the Eiffel Tower third floor Seine upstream 00b Jardins du Trocadéro.jpg",
+        "artist": "Maxime Homme",
+        "license": "CC0",
+        "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "url": "https://commons.wikimedia.org/wiki/File:Paris_View_from_the_Eiffel_Tower_third_floor_Seine_upstream_00b_Jardins_du_Trocad%C3%A9ro.jpg",
+        "path": "outputs/touchdown/photo-only-paris/reference_photos/commons_40287629.jpg"
+      }
+    ],
+    "credit": {
+      "artist": "Nelson Pérez",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Eiffel_Tower_from_the_Trocadero_(1).jpg"
+    }
+  },
+  {
+    "id": "canyonlands",
+    "title": "Canyonlands",
+    "region": "Grand View Point, Utah",
+    "country": "United States",
+    "latitude": 38.3108,
+    "longitude": -109.8572,
+    "thumb": "/static/img/landmarks/canyonlands.jpg",
+    "poster": "/static/img/examples/canyonlands.jpg",
+    "duration": "8.8 sec",
+    "example": "outputs/touchdown/photo-only-canyonlands/polish-v2/earth_zoom.mp4",
+    "references": [
+      {
+        "page_id": 54231383,
+        "source": "Wikimedia Commons",
+        "title": "Grand View Point - panoramio.jpg",
+        "artist": "runt35",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Grand_View_Point_-_panoramio.jpg",
+        "path": "outputs/touchdown/canyonlands-grand-view/reference_photos/canyonlands-grand-view/commons_54231383.jpg"
+      },
+      {
+        "page_id": 29106150,
+        "source": "Wikimedia Commons",
+        "title": "2013-09-22 18 26 52 View southwest from Grand View Point Overlook.JPG",
+        "artist": "Famartin",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:2013-09-22_18_26_52_View_southwest_from_Grand_View_Point_Overlook.JPG",
+        "path": "outputs/touchdown/canyonlands-grand-view/reference_photos/canyonlands-grand-view/commons_29106150.jpg"
+      },
+      {
+        "page_id": 52412515,
+        "source": "Wikimedia Commons",
+        "title": "Grand View Point Trail, Canyonlands, Utah - panoramio - Brendan Harmon.jpg",
+        "artist": "Brendan Harmon",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Grand_View_Point_Trail,_Canyonlands,_Utah_-_panoramio_-_Brendan_Harmon.jpg",
+        "path": "outputs/touchdown/canyonlands-grand-view/reference_photos/canyonlands-grand-view/commons_52412515.jpg"
+      }
+    ],
+    "credit": {
+      "artist": "runt35",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Grand_View_Point_-_panoramio.jpg"
+    }
+  }
+]

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Monument Valley (illustration)">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb2d9"/><stop offset="1" stop-color="#f3d6b0"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2643a"/><stop offset="1" stop-color="#9c4422"/></linearGradient>
+  </defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 150 L320 146 L320 200 L0 200Z" fill="#d98a55"/>
+  <path d="M40 150 V92 h10 v-10 h28 v10 h8 V150Z" fill="#a9522c"/>
+  <path d="M104 150 V108 h6 v-36 h12 v36 h22 V150Z" fill="#b65c33"/>
+  <path d="M196 150 V86 h46 v64Z" fill="#a14b27"/>
+  <path d="M262 150 V100 h8 v-22 h10 v22 h20 V150Z" fill="#b25a31"/>
+  <path d="M0 165 C80 158 160 172 320 160 L320 200 L0 200Z" fill="url(#g)"/>
+  <path d="M0 182 C90 176 200 190 320 180 L320 200 L0 200Z" fill="#8a3b1c"/>
+</svg>

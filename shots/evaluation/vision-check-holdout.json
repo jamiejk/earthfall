@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "root": "../..",
+  "limitations": "One held-out known soft arrival frame, added after checker development and not used to tune the prompts or rules. Tests a negative clarity example absent from the development set; not a general accuracy estimate.",
+  "cases": [
+    {
+      "id": "soft-arrival-held-out",
+      "source": "outputs/touchdown/photo-only-paris/portrait-controlled/earth_zoom.mp4",
+      "times": [
+        5.25
+      ],
+      "description": "The near arrival at a woman in a red coat in front of the Eiffel Tower. At this close approach her face should be sharply resolved, with readable eyes, nose and mouth and stable facial structure.",
+      "expected": {
+        "figure_clarity": "fail"
+      },
+      "annotation": "Known soft transition documented in the accepted Paris clip: at 5.25 seconds the large approaching head is visibly smeared, unlike the later sharp portrait. Label concerns facial clarity at near arrival.",
+      "group": "held_out_clarity",
+      "subject": "shots/subjects/test-subject-red-coat.jpg"
+    }
+  ]
+}

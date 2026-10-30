@@ -1,0 +1,40 @@
+{
+  "id": "photographic-grounded-v1-overhead-guidance-v2",
+  "date": "2026-10-28",
+  "base": "photographic-grounded-v1",
+  "changes": [
+    "fix missing os import in Fill wrapper",
+    "typed material normalization",
+    "map-only texture image reference",
+    "exclude free-form scene composition",
+    "candidate-only camera gate"
+  ],
+  "unchanged": [
+    "completed source flight and native portrait",
+    "Fill graph and sampling",
+    "globe projection",
+    "opening prompts/strengths/timing",
+    "source frame clock"
+  ],
+  "validation": {
+    "tests": "101 passing app/studio/canonical/texture/enhancement tests",
+    "local_vision": "rejects failed Giza texture, accepts Bamburgh control and corrected Giza overhead texture",
+    "recovery_complete": true,
+    "accepted": false,
+    "app_review_job": "snPZcm3Qr2zA",
+    "remaining_limitations": [
+      "Rectangular orbital terrain/texture patches",
+      "Brief near-static initial stretch; sustained forward motion not established"
+    ]
+  },
+  "recovery": "outputs/touchdown/studio/studio-giza-overhead-recovery-v2-20261028",
+  "files": {
+    "canonical_build.py": "db8c2076fb367264af351011a624d6d66d5356b0bd75379a356ef57671613c09",
+    "canonical_stage.py": "71aaca8827fed54fac057ef76944fb0627f0bdbd564d68d8c52a15804c8fbd56",
+    "canonical_texture.py": "52f838d928e244bb3b8543c3d5c54f91815b5595048a18981d465c0a4659a464",
+    "texture_gate.py": "2d601f47bf8d16218cd9d1a93f49a7078af2fc5d74624b4d9011e1127952324a",
+    "canonical_review.py": "bd09e91179d90531dab9bc65d79b3378289b3b5eac4861d89d75973659c9cdf2",
+    "canonical_fill.py": "16a94db61c7eeed0cbb91e7138deeb176f0beb81b123e1a8101a7fe911eb8fbf",
+    "giza_recovery.py": "badfbf16c81357ac59487362d517ee69dbaf8a5098ce42f4d6bbc403db1e2c4f"
+  }
+}

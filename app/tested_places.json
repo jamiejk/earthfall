@@ -1,0 +1,8 @@
+{
+  "about": "Catalogue places that have had a real Touchdown build (the app marks the rest untested). The desktop adds its own with `touchdown-app mark-tested <place id>`, which writes <data>/tested_places.json.",
+  "tested": {
+    "monument-valley": "hand-written shots/flux3/monument-valley.toml",
+    "grand-canyon-mather-point": "hand-written shots/flux3/grand-canyon-mather.toml",
+    "yosemite-tunnel-view": "hand-written shots/flux3/yosemite-tunnel-view.toml"
+  }
+}

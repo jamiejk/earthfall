@@ -1,0 +1,92 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+          enable-cache: true
+      # the tests import OpenCV (the touchdown extra) and FastAPI (the app extra), not just pytest
+      - run: uv sync --locked --extra test --extra touchdown --extra app
+      - run: uv run --locked pytest -q
+
+  app-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+          enable-cache: true
+      - run: uv sync --locked --extra app
+      # one job through the real server and the mock build: no GPU, no network
+      - name: app smoke test
+        env:
+          SMOKE_DATA: ${{ runner.temp }}/touchdown-smoke
+        run: |
+          uv run --locked --extra app python - <<'PY'
+          import io
+          import os
+          import subprocess
+          import sys
+          import time
+
+          import httpx
+          from PIL import Image
+
+          port = 8011
+          base = f"http://127.0.0.1:{port}"
+          data = os.environ["SMOKE_DATA"]
+          env = {**os.environ,
+                 "TOUCHDOWN_BUILD_CMD": "{python} {app}/worker/fake_build.py {manifest}",
+                 "TOUCHDOWN_DATA": data,
+                 "TOUCHDOWN_OUTPUT": os.path.join(data, "outputs"),
+                 "TOUCHDOWN_SHARE_TERRAIN": "0",
+                 "FAKE_STAGE_SECONDS": "0.05"}
+          os.makedirs(env["TOUCHDOWN_OUTPUT"], exist_ok=True)
+          server = subprocess.Popen([sys.executable, "-m", "server", "--no-browser", "--port", str(port)], env=env)
+          try:
+              deadline = time.time() + 60
+              while True:
+                  if server.poll() is not None:
+                      raise SystemExit(f"the server exited early ({server.returncode})")
+                  try:
+                      if httpx.get(f"{base}/api/config", timeout=5).status_code == 200:
+                          break
+                  except httpx.HTTPError:
+                      pass
+                  if time.time() > deadline:
+                      raise SystemExit("the server did not come up in 60 s")
+                  time.sleep(0.5)
+              buf = io.BytesIO()
+              Image.new("RGB", (64, 96), (180, 40, 40)).save(buf, "JPEG")
+              r = httpx.post(f"{base}/api/jobs", data={"preset": "monument-valley"},
+                             files={"photo": ("me.jpg", buf.getvalue(), "image/jpeg")}, timeout=60)
+              r.raise_for_status()
+              job_id = r.json()["id"]
+              deadline = time.time() + 300
+              while time.time() < deadline:
+                  job = httpx.get(f"{base}/api/jobs/{job_id}", timeout=10).json()
+                  if job["status"] in ("done", "failed", "cancelled"):
+                      break
+                  time.sleep(0.5)
+              if job["status"] != "done":
+                  raise SystemExit(f"the job did not finish: {job}")
+              video = httpx.get(f"{base}/api/jobs/{job_id}/video", timeout=60)
+              if video.status_code != 200 or not video.content:
+                  raise SystemExit(f"no video came back: {video.status_code}")
+              print(f"smoke ok: job {job_id} finished, {len(video.content)} bytes of video")
+          finally:
+              server.terminate()
+              try:
+                  server.wait(timeout=30)
+              except subprocess.TimeoutExpired:
+                  server.kill()
+          PY

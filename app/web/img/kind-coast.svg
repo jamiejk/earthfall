@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Coast (generic illustration)">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86bde6"/><stop offset="1" stop-color="#e8f3fa"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#s)"/>
+  <path d="M0 130 L320 128 L320 200 L0 200Z" fill="#3f7fae"/>
+  <path d="M0 128 L320 126 L320 132 L0 134Z" fill="#9fc8e3"/>
+  <path d="M0 110 C40 104 90 118 120 150 L130 200 L0 200Z" fill="#6f8f4c"/>
+  <path d="M120 150 L130 200 L100 200Z" fill="#8a6e52"/>
+</svg>

@@ -1,0 +1,55 @@
+{
+  "id": "photographic-grounded-v1-app-integration-v1",
+  "date": "2026-10-27",
+  "queue_workflow": "photographic-grounded-v1",
+  "entrypoint": "touchdown.canonical_build",
+  "worker_capability": "canonical",
+  "control_manifest": "workflows/touchdown/canonical/photographic-grounded-v1/recipe.json",
+  "control_manifest_sha256": "fa19e7ed5010b56a3eb2fd6b7487c3c738b3cb5a471c2c351259feeb292ccfb4",
+  "control_evidence_unchanged": true,
+  "layout_author": "local Qwen3.5 4B",
+  "reviewer": "local Qwen3.5 4B",
+  "routine_user_approvals": false,
+  "automatic_checkpoints": [
+    "flight",
+    "layout",
+    "texture",
+    "expand-1",
+    "expand-2",
+    "expand-3",
+    "project",
+    "orbit",
+    "final"
+  ],
+  "failure_policy": "Hold on failed or uncertain visual evidence; no silent legacy fallback",
+  "inference_policy": "Frozen flight preset and archived code; original grounded projection, Fill graph/settings and exact canonical opening timing",
+  "runtime_change": "Release owned ComfyUI after each Fill pass before loading Qwen",
+  "upstream_scope": "Fresh saved-setup photographs and native portrait; accepted control reused these inputs",
+  "validation": {
+    "app_tests": "96 passing API/worker/driver tests with synthetic inference fixtures; isolated real archive imports and clone hashes verified",
+    "ui_states": "Canonical and enhancement state harnesses; JavaScript syntax",
+    "local_qwen_replay": "All nine checkpoints passed on saved Bamburgh control artifacts; initial failed prompt variants retained",
+    "replay_root": "outputs/touchdown/studio/studio-canonical-review-replay-v3-20261027",
+    "fresh_full_create_film_validated": false
+  },
+  "limitations": [
+    "Vision checks use sampled frames and can misidentify landmarks, timings or fine artifacts",
+    "Automatic layout is approximate creative geometry, not map reconstruction",
+    "Local frozen archives, Fill verification records and installed models remain deployment dependencies",
+    "Cross-location end-to-end reliability is not established by saved-artifact replay"
+  ],
+  "files": {
+    "scripts/touchdown/canonical_build.py": "1efef39e91f55f527082ef1d0b4ffe48904a3570c6560a386335248c8e765b85",
+    "scripts/touchdown/canonical_stage.py": "f66072d2ecffc781fe27a9adc662a43bc800529e87025098b87a084c05ec49b2",
+    "scripts/touchdown/canonical_scene.py": "dcc0f73a36ce6855ee432b0fabd7c62f544add5a0bd8d59627bc4a22dae93e6d",
+    "scripts/touchdown/canonical_fill.py": "16a94db61c7eeed0cbb91e7138deeb176f0beb81b123e1a8101a7fe911eb8fbf",
+    "scripts/touchdown/canonical_review.py": "e7f0965157c4cbbbe40d360666d355bac549af1a1cede3507e4ec0ec0db542f0",
+    "app/server/checkpoints.py": "d29a1cc265a85b41c4be886d47e35947859a71ccf8d9d485ee5adefb54c6ef33",
+    "app/server/main.py": "e27520de1b53d98f50e1dfdec73fabcac9076e1444b2980398b21762af91e4a7",
+    "app/server/db.py": "2c6ebcd94050d63b38d667d50e4435ad3895e85c8331720e312c3f1ab63e3a30",
+    "app/server/studio.py": "cd5e7ab699ed7927e299628e17af7e073f5f63b3da6c2783e80d05bc9f44b8aa",
+    "app/worker/photographic.py": "4263caba8d50d9b59cd9ad2dfc54aec8ab0061605ce94db8b7a45ec0bec3dde9",
+    "app/worker/client.py": "da55270cab32331baa20a5b6af156aff30ad487b9bb4760f6237820f2f192e7d",
+    "app/worker/runner.py": "688a8a3c1e9ba6576b385118aef6a1f0219ae18b20afabcf2a5602b037a61a7f"
+  }
+}

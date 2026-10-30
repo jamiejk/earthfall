@@ -1,0 +1,11 @@
+*
+!app/server
+!app/web
+!shots/flux3/*.toml
+!app/tested_places.json
+!src/geoblock_core/__init__.py
+!src/geoblock_core/lidar.py
+!src/geoblock_core/place_photos.py
+!src/geoblock_core/data/places.json
+!src/geoblock_core/data/place_data_support.json
+**/__pycache__

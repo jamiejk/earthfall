@@ -1,0 +1,240 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 1399629552,
+      "steps": 20,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1.0,
+      "model": [
+        "39",
+        0
+      ],
+      "positive": [
+        "38",
+        0
+      ],
+      "negative": [
+        "38",
+        1
+      ],
+      "latent_image": [
+        "38",
+        2
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "7": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "touchdown/flux-fill/raw-outpaint",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage"
+  },
+  "17": {
+    "inputs": {
+      "image": "chillon-outpaint-source.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage"
+  },
+  "23": {
+    "inputs": {
+      "text": "Continue the existing photograph naturally beyond all four edges. The same overcast autumn daylight, camera position and perspective. Continue the grass, gravel path, lakeshore, water, distant landscape and natural mature trees. Complete the existing woman\u2019s lower legs and feet naturally on the ground, with realistic adult proportions. A single coherent photograph of the existing scene.",
+      "clip": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "26": {
+    "inputs": {
+      "guidance": 30.0,
+      "conditioning": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance"
+  },
+  "31": {
+    "inputs": {
+      "unet_name": "flux1-fill-dev.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader"
+  },
+  "32": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader"
+  },
+  "34": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp16.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoader"
+  },
+  "38": {
+    "inputs": {
+      "noise_mask": true,
+      "positive": [
+        "26",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "vae": [
+        "32",
+        0
+      ],
+      "pixels": [
+        "44",
+        0
+      ],
+      "mask": [
+        "44",
+        1
+      ]
+    },
+    "class_type": "InpaintModelConditioning"
+  },
+  "39": {
+    "inputs": {
+      "model": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion"
+  },
+  "44": {
+    "inputs": {
+      "left": 480,
+      "top": 272,
+      "right": 480,
+      "bottom": 272,
+      "feathering": 0,
+      "image": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "ImagePadForOutpaint"
+  },
+  "45": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "17",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 960,
+      "height": 544,
+      "crop": "disabled"
+    }
+  },
+  "46": {
+    "class_type": "MaskToImage",
+    "inputs": {
+      "mask": [
+        "44",
+        1
+      ]
+    }
+  },
+  "47": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "46",
+        0
+      ],
+      "filename_prefix": "touchdown/flux-fill/padding-mask"
+    }
+  },
+  "48": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "44",
+        0
+      ],
+      "filename_prefix": "touchdown/flux-fill/padded-input"
+    }
+  },
+  "49": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "8",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 3840,
+      "height": 2176,
+      "crop": "disabled"
+    }
+  },
+  "50": {
+    "class_type": "ImageCompositeMasked",
+    "inputs": {
+      "destination": [
+        "49",
+        0
+      ],
+      "source": [
+        "17",
+        0
+      ],
+      "x": 960,
+      "y": 544,
+      "resize_source": false
+    }
+  },
+  "51": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "50",
+        0
+      ],
+      "filename_prefix": "touchdown/flux-fill/native-centre-preserved"
+    }
+  }
+}

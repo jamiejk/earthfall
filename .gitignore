@@ -1,0 +1,23 @@
+.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+data/
+!src/geoblock_core/data/
+!workflows/touchdown/canonical/photographic-grounded-v1/frozen-code/src/geoblock_core/data/
+outputs/
+models/
+*.egg-info/
+.firecrawl/
+.env
+.env.*
+!.env.example
+*.log
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# the web app's data directory: jobs, uploads, the seeded gallery, the database
+touchdown-data/
+/models

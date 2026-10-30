@@ -1,0 +1,86 @@
+{
+  "2": {
+    "class_type": "GeoBlockPlaceFromCoordinates",
+    "inputs": {
+      "name": "Mather Point, Grand Canyon",
+      "latitude": 36.0617,
+      "longitude": -112.1078,
+      "coverage_radius_km": 12
+    }
+  },
+  "3": {
+    "class_type": "GeoBlockBuildLandformScene",
+    "inputs": {
+      "place": [
+        "2",
+        0
+      ],
+      "radius_km_override": 0
+    }
+  },
+  "4": {
+    "class_type": "GeoBlockCameraPreset",
+    "inputs": {
+      "terrain_scene": [
+        "3",
+        0
+      ],
+      "preset": "Rim reveal",
+      "duration_seconds": 10,
+      "heading_degrees": -1,
+      "shot_scale_m": 0,
+      "lens_mm": 24,
+      "min_clearance_m": 25,
+      "orbit_degrees": 120
+    }
+  },
+  "5": {
+    "class_type": "GeoBlockRenderBlockingVideo",
+    "inputs": {
+      "terrain_scene": [
+        "3",
+        0
+      ],
+      "shot": [
+        "4",
+        0
+      ],
+      "engine": "eevee",
+      "width": 1280,
+      "height": 720,
+      "samples": 16
+    }
+  },
+  "20": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "5",
+        0
+      ],
+      "filename_prefix": "geoblock/shot_control",
+      "format": "auto",
+      "codec": "auto"
+    }
+  },
+  "21": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "4",
+        1
+      ],
+      "filename_prefix": "geoblock/shot_route"
+    }
+  },
+  "22": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "5",
+        1
+      ],
+      "filename_prefix": "geoblock/shot_opening"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "photographic-flight-v1",
+  "approved_reference": "/run/media/jamie/Data/Projects_Live/ComfyUI_Node/outputs/touchdown/studio/studio-pena-control-20261026/motion/earth_zoom.mp4",
+  "approved_reference_sha256": "d97ac1e02298501ecd157d394667a216832210e7969197efb2f66ea13ae2e86e",
+  "approval_date": "2026-10-26",
+  "approval_source": "Jamie accepted the Pe\u00f1a control as the new baseline and requested a transfer test",
+  "split": {
+    "parent_handles": 48,
+    "high_join": "parent",
+    "opening_frames": 72,
+    "anchor_delivery_frame": 120,
+    "anchor_strength": 0.5,
+    "high_delivery_frame": 64,
+    "high_strength": 0.5,
+    "high_motion_frames": 0,
+    "high_zoom": 1.25,
+    "parent_layout": false,
+    "layout_strength": 0.4,
+    "layout_nest": 0.012,
+    "layout_rungs": 6,
+    "ladder_drift": 0.01,
+    "seam_carry_frames": 0,
+    "seam_carry_strength": 0.7,
+    "seam_carry_accel": 4.0,
+    "seam_bridge_frames": 0,
+    "seam_carry_source": "parent",
+    "descent_frames": 121,
+    "prefix_frames": 25,
+    "width": 1280,
+    "height": 736
+  }
+}

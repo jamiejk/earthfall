@@ -1,0 +1,262 @@
+{
+  "2": {
+    "class_type": "GeoBlockPlaceFromCoordinates",
+    "inputs": {
+      "name": "Mather Point, Grand Canyon",
+      "latitude": 36.0617,
+      "longitude": -112.1078,
+      "coverage_radius_km": 12
+    }
+  },
+  "3": {
+    "class_type": "GeoBlockBuildLandformScene",
+    "inputs": {
+      "place": [
+        "2",
+        0
+      ],
+      "radius_km_override": 0
+    }
+  },
+  "4": {
+    "class_type": "GeoBlockCameraPreset",
+    "inputs": {
+      "terrain_scene": [
+        "3",
+        0
+      ],
+      "preset": "Rim reveal",
+      "duration_seconds": 10,
+      "heading_degrees": -1,
+      "shot_scale_m": 0,
+      "lens_mm": 24,
+      "min_clearance_m": 25,
+      "orbit_degrees": 120
+    }
+  },
+  "5": {
+    "class_type": "GeoBlockRenderBlockingVideo",
+    "inputs": {
+      "terrain_scene": [
+        "3",
+        0
+      ],
+      "shot": [
+        "4",
+        0
+      ],
+      "engine": "eevee",
+      "width": 1280,
+      "height": 720,
+      "samples": 16
+    }
+  },
+  "20": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "5",
+        0
+      ],
+      "filename_prefix": "geoblock/shot_control",
+      "format": "auto",
+      "codec": "auto"
+    }
+  },
+  "21": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "4",
+        1
+      ],
+      "filename_prefix": "geoblock/shot_route"
+    }
+  },
+  "22": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "5",
+        1
+      ],
+      "filename_prefix": "geoblock/shot_opening"
+    }
+  },
+  "31": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "place_photo_1.jpg"
+    }
+  },
+  "32": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "place_photo_2.jpg"
+    }
+  },
+  "41": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "5",
+        0
+      ]
+    }
+  },
+  "42": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "43": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "44": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+    }
+  },
+  "45": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "43",
+        0
+      ],
+      "vae": [
+        "44",
+        0
+      ],
+      "prompt": "<Picture 1> is the opening frame of the camera move. <Video 1> fixes the continuous camera route, timing and the measured shape of the terrain at Mather Point, Grand Canyon. Any further pictures show what the real place looks like. A single uninterrupted aerial drone shot in natural daylight: keep every ridge, cliff and valley where the reference video puts them, with realistic rock, vegetation and atmosphere. No cuts, no morphing, no people, no text.",
+      "width": 864,
+      "height": 480,
+      "length": [
+        "5",
+        2
+      ],
+      "ref_image_size": "match",
+      "ref_images.ref_image_0": [
+        "5",
+        1
+      ],
+      "ref_videos.ref_video_0": [
+        "41",
+        0
+      ],
+      "ref_images.ref_image_1": [
+        "31",
+        0
+      ],
+      "ref_images.ref_image_2": [
+        "32",
+        0
+      ]
+    }
+  },
+  "47": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 20261005
+    }
+  },
+  "48": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "42",
+        0
+      ],
+      "conditioning": [
+        "45",
+        0
+      ]
+    }
+  },
+  "49": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "50": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "42",
+        0
+      ],
+      "scheduler": "beta",
+      "steps": 12,
+      "denoise": 1.0
+    }
+  },
+  "51": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "47",
+        0
+      ],
+      "guider": [
+        "48",
+        0
+      ],
+      "sampler": [
+        "49",
+        0
+      ],
+      "sigmas": [
+        "50",
+        0
+      ],
+      "latent_image": [
+        "45",
+        1
+      ]
+    }
+  },
+  "52": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "51",
+        0
+      ],
+      "vae": [
+        "44",
+        0
+      ]
+    }
+  },
+  "53": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "52",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "46": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "53",
+        0
+      ],
+      "filename_prefix": "geoblock/shot_h3",
+      "format": "auto",
+      "codec": "auto"
+    }
+  }
+}

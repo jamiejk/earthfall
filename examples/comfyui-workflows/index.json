@@ -1,0 +1,189 @@
+{
+  "format": "ComfyUI API format (the shape of the frontend's \"Save (API Format)\")",
+  "generated_by": "scripts/export_workflows.py",
+  "comfyui": {
+    "blocking": "v0.4+ with the GeoBlock nodes and Blender 4.2+",
+    "ltx25": "v0.32+ with ComfyUI-LTXVideo",
+    "flux3": "v0.41.3+ (FLUX 3 Image Klein)"
+  },
+  "graphs": [
+    {
+      "file": "geoblock-blocking-earth-zoom.json",
+      "title": "GeoBlock blocking (Earth zoom)",
+      "stage": "terrain",
+      "description": "The measured part of the shot: the place becomes a landform scene from survey data, the camera preset plans the route over it, and Blender renders the blocking video the generative stages follow.",
+      "built_by": "geoblock_core.workflow.blocking_graph",
+      "nodes": 7,
+      "comfyui": "v0.4+ with the GeoBlock nodes (comfy_geoblock_prototype/) and Blender 4.2+ on PATH",
+      "custom_nodes": [
+        "GeoBlock nodes (comfy_geoblock_prototype/ in this repository)"
+      ],
+      "models": [],
+      "assets": [],
+      "notes": "The blocking graph needs no models: it renders terrain, not pictures."
+    },
+    {
+      "file": "geoblock-ltx25-earth-zoom.json",
+      "title": "GeoBlock render-to-real (LTX 2.5)",
+      "stage": "whole shot",
+      "description": "The library's single-graph version of the shot: the blocking video, the photoreal keyframes painted from it, and LTX 2.5 with Lightricks' Layout To Render IC-LoRA following the blocking. One graph, one submit.",
+      "built_by": "geoblock_core.workflow.ltx_graph",
+      "nodes": 272,
+      "comfyui": "v0.32+ with ComfyUI-LTXVideo, and the GeoBlock nodes for the blocking half",
+      "custom_nodes": [
+        "GeoBlock nodes (comfy_geoblock_prototype/ in this repository)",
+        "ComfyUI-LTXVideo"
+      ],
+      "models": [
+        "flux-2-klein-9b-fp8.safetensors",
+        "flux2-vae.safetensors",
+        "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+        "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+        "ltx-2.5-22b-ic-lora-layout-to-render-1.0.safetensors",
+        "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+        "ltx-2.5-video-vae-bf16.safetensors",
+        "qwen_3_8b_fp8mixed.safetensors"
+      ],
+      "assets": [],
+      "notes": "The Touchdown build does not submit this graph: it splits the work into stages so each one can be cached, checked and picked. It is here to show the same models wired as one graph."
+    },
+    {
+      "file": "touchdown-stills-flux3.json",
+      "title": "Touchdown stills (FLUX 3)",
+      "stage": "stills",
+      "description": "The stills stage with FLUX 3 Image Klein at 2K for all four stills: the end still painted from the guide's last frame and the person's photo, the orbit still, the whiteout still and the separate opener end pin.",
+      "built_by": "touchdown.comfy_job.stills",
+      "nodes": 37,
+      "comfyui": "v0.41.3+ for the FLUX 3 stills; v0.32+ for the FLUX.2 ones",
+      "custom_nodes": [
+        "ComfyUI core (FLUX.2 / FLUX 3 nodes)"
+      ],
+      "models": [
+        "flux2-vae.safetensors",
+        "flux3-image-klein-bf16.safetensors",
+        "qwen3vl_4b_bf16.safetensors"
+      ],
+      "assets": [
+        "guide_frame_0081.png",
+        "subject.jpg",
+        "scene.jpg"
+      ],
+      "notes": "One submit paints all the stills; the four SaveImage nodes are the end, the orbit, the cloud and the opener end."
+    },
+    {
+      "file": "touchdown-stills-klein.json",
+      "title": "Touchdown stills (FLUX.2 klein)",
+      "stage": "stills",
+      "description": "The same stills stage with FLUX.2 [klein] 9B distilled (4 steps, CFG 1) for all four stills. This is the default: FLUX 3 needs ComfyUI v0.41.3+, and klein kept the flat whiteout better.",
+      "built_by": "touchdown.comfy_job.stills",
+      "nodes": 58,
+      "comfyui": "v0.41.3+ for the FLUX 3 stills; v0.32+ for the FLUX.2 ones",
+      "custom_nodes": [
+        "ComfyUI core (FLUX.2 / FLUX 3 nodes)"
+      ],
+      "models": [
+        "flux-2-klein-9b-fp8.safetensors",
+        "flux2-vae.safetensors",
+        "qwen_3_8b_fp8mixed.safetensors"
+      ],
+      "assets": [
+        "guide_frame_0081.png",
+        "subject.jpg",
+        "scene.jpg"
+      ],
+      "notes": "One submit paints all the stills; the four SaveImage nodes are the end, the orbit, the cloud and the opener end."
+    },
+    {
+      "file": "touchdown-flux3-still.json",
+      "title": "FLUX 3 Image Klein still",
+      "stage": "stills",
+      "description": "One FLUX 3 Image Klein still at 1344x768 with two reference images, the same graph scripts/touchdown/flux3.py submits to a plain ComfyUI HTTP API (no SDK proxy).",
+      "built_by": "touchdown.flux3.graph",
+      "nodes": 13,
+      "comfyui": "v0.41.3+ (FLUX 3 Image Klein)",
+      "custom_nodes": [
+        "ComfyUI core (FLUX 3 nodes)"
+      ],
+      "models": [
+        "flux2-vae.safetensors",
+        "flux3-image-klein-bf16.safetensors",
+        "qwen3vl_4b_bf16.safetensors"
+      ],
+      "assets": [
+        "guide_frame_0081.png",
+        "subject.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "file": "touchdown-ltx25-clip.json",
+      "title": "Touchdown LTX 2.5 clip",
+      "stage": "opener, cloud, swoop, end",
+      "description": "Plain LTX 2.5 keyframe image-to-video with the stills pinned as guides: the orbit still at frame 0, the cloud still in the whiteout, the end still at the last frame. The opener, the cloud passage, the swoop and the living end are this graph with different pins.",
+      "built_by": "touchdown.comfy_job.ltx",
+      "nodes": 36,
+      "comfyui": "v0.32+ with ComfyUI-LTXVideo",
+      "custom_nodes": [
+        "ComfyUI-LTXVideo"
+      ],
+      "models": [
+        "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+        "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+        "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+        "ltx-2.5-video-vae-bf16.safetensors"
+      ],
+      "assets": [
+        "orbit.png",
+        "cloud.png",
+        "opener_end.png"
+      ],
+      "notes": ""
+    },
+    {
+      "file": "touchdown-terrain-v2v.json",
+      "title": "Touchdown terrain guide to LTX 2.5",
+      "stage": "swoop",
+      "description": "The measured route as a guide: the Blender guide video goes in as the Layout To Render IC-LoRA guide, the first frame as a one-frame reference, the end still is pinned, and LTX 2.5 renders the approach over the real terrain.",
+      "built_by": "touchdown.comfy_job.terrain_v2v (touchdown.terrain_v2v.render)",
+      "nodes": 37,
+      "comfyui": "v0.32+ with ComfyUI-LTXVideo",
+      "custom_nodes": [
+        "ComfyUI-LTXVideo"
+      ],
+      "models": [
+        "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+        "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+        "ltx-2.5-22b-ic-lora-layout-to-render-1.0.safetensors",
+        "ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+        "ltx-2.5-video-vae-bf16.safetensors"
+      ],
+      "assets": [
+        "guide.mp4",
+        "guide_frame_0001.png",
+        "end.png"
+      ],
+      "notes": ""
+    },
+    {
+      "file": "touchdown-face-plate.json",
+      "title": "Touchdown face plate",
+      "stage": "face",
+      "description": "The optional face stage: the blurry face in the late approach is edited into a detailed, square face reference, which is then tracked onto the living end.",
+      "built_by": "touchdown.comfy_job.face_plate",
+      "nodes": 18,
+      "comfyui": "v0.32+ (FLUX.2 klein nodes are core)",
+      "custom_nodes": [
+        "ComfyUI core (FLUX.2 nodes)"
+      ],
+      "models": [
+        "flux-2-klein-9b-fp8.safetensors",
+        "flux2-vae.safetensors",
+        "qwen_3_8b_fp8mixed.safetensors"
+      ],
+      "assets": [
+        "approach_frame.png"
+      ],
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+[
+  {
+    "id": "longleat-generic-orbit-v1",
+    "title": "Longleat House",
+    "region": "Wiltshire",
+    "country": "England",
+    "method": "Made with Create as it ships: generic orbit opening, Qwen checks, no manual steps.",
+    "credits": [
+      {
+        "title": "Longleat House Fountains.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Longleat_House_Fountains.jpg",
+        "artist": "Tim Firkins",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+      },
+      {
+        "title": "Longleat House - geograph.org.uk - 5754361.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Longleat_House_-_geograph.org.uk_-_5754361.jpg",
+        "artist": "Jonathan Hutchins",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+      }
+    ],
+    "example_url": "/api/gallery/reviewed-longleat-generic-orbit-v1.mp4",
+    "poster": "/api/gallery/reviewed-longleat-generic-orbit-v1.jpg",
+    "duration": "10.00 sec"
+  },
+  {
+    "id": "bamburgh-grounded-v1",
+    "title": "Bamburgh Castle",
+    "region": "Northumberland",
+    "country": "England",
+    "method": "Full workflow. The regional layout for this film was drawn by hand during development; Create has Qwen draw it.",
+    "credits": [
+      {
+        "title": "Bamburgh Castle from the village.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bamburgh_Castle_from_the_village.jpg",
+        "artist": "Hadrianus1959",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      {
+        "title": "Bamburgh Castle Folly.JPG",
+        "url": "https://commons.wikimedia.org/wiki/File:Bamburgh_Castle_Folly.JPG",
+        "artist": "JD554",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    ],
+    "example_url": "/api/gallery/reviewed-bamburgh-grounded-v1.mp4",
+    "poster": "/api/gallery/reviewed-bamburgh-grounded-v1.jpg",
+    "duration": "8.12 sec"
+  },
+  {
+    "id": "eilean-donan-grounded-v2",
+    "title": "Eilean Donan Castle",
+    "region": "Scottish Highlands",
+    "country": "Scotland",
+    "method": "Full workflow, earlier version of the orbit opening.",
+    "credits": [
+      {
+        "title": "Eilean Donan.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Eilean_Donan.jpg",
+        "artist": "Bigar",
+        "license": "Public domain",
+        "license_url": ""
+      },
+      {
+        "title": "Eilean Donan Castle - geograph.org.uk - 2130893.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Eilean_Donan_Castle_-_geograph.org.uk_-_2130893.jpg",
+        "artist": "John Lord",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+      }
+    ],
+    "example_url": "/api/gallery/reviewed-eilean-donan-grounded-v2.mp4",
+    "poster": "/api/gallery/reviewed-eilean-donan-grounded-v2.jpg",
+    "duration": "8.17 sec"
+  },
+  {
+    "id": "chambord-recipe-v1",
+    "title": "Ch\u00e2teau de Chambord",
+    "region": "Loire Valley",
+    "country": "France",
+    "method": "Flight only: made before the painted orbit view was added.",
+    "credits": [
+      {
+        "title": "Chambord Frontansicht.JPG",
+        "url": "https://commons.wikimedia.org/wiki/File:Chambord_Frontansicht.JPG",
+        "artist": "Bj\u00f6rnT (Original text: BT)",
+        "license": "Public domain",
+        "license_url": ""
+      },
+      {
+        "title": "Aerial image of Ch\u00e2teau de Chambord (view from the southeast).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Ch%C3%A2teau_de_Chambord_(view_from_the_southeast).jpg",
+        "artist": "Carsten Steger",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    ],
+    "example_url": "/api/gallery/reviewed-chambord-recipe-v1.mp4",
+    "poster": "/api/gallery/reviewed-chambord-recipe-v1.jpg",
+    "duration": "8.08 sec"
+  },
+  {
+    "id": "pena-photographic-v1",
+    "title": "Pal\u00e1cio da Pena",
+    "region": "Sintra",
+    "country": "Portugal",
+    "method": "Flight only: made before the painted orbit view was added.",
+    "credits": [
+      {
+        "title": "Pal\u00e1cio Nacional da Pena, Sintra, Portugal, 20250606 1159 0132.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Pal%C3%A1cio_Nacional_da_Pena,_Sintra,_Portugal,_20250606_1159_0132.jpg",
+        "artist": "Jakub Ha\u0142un",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0"
+      },
+      {
+        "title": "Palace of Pena (14522374601).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Palace_of_Pena_(14522374601).jpg",
+        "artist": "Mark Fischer",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+      }
+    ],
+    "example_url": "/api/gallery/reviewed-pena-photographic-v1.mp4",
+    "poster": "/api/gallery/reviewed-pena-photographic-v1.jpg",
+    "duration": "8.33 sec"
+  }
+]
