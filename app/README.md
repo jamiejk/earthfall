@@ -703,8 +703,10 @@ The canonical worker no longer reads anything under `outputs/`. The frozen fligh
 node are vendored in `workflows/touchdown/canonical/photographic-grounded-v1/` (`frozen-code/`,
 `relay-runtime/`) and every job's copy is still checked file by file against `recipe.json`. ComfyUI model
 locations come from `TOUCHDOWN_MODEL_PATHS` (an `extra_model_paths` file); without it the development
-machine's recorded pin is used if present, otherwise ComfyUI's own model folders. FLUX.1 Fill models are
-hashed against `workflows/touchdown/flux-fill-models.json` once and cached in `models/FLUX-Fill/.verified.json`.
+machine's recorded pin is used if present, otherwise ComfyUI's own model folders. Gemma4 remains the LTX 2.5 text encoder. FLUX.1 Fill is needed only for the legacy
+`photographic-grounded-v1` opening; default generic-orbit startup skips its model check. Legacy builds and
+`--check-control` still verify Fill against `workflows/touchdown/flux-fill-models.json`, caching the hashes
+in `models/FLUX-Fill/.verified.json`.
 `python -m touchdown.canonical_build --check` checks a fresh install; `--check-control` additionally hashes the
 accepted Bamburgh run under `outputs/`, which exists only on the development machine.
 

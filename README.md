@@ -34,14 +34,16 @@ The app's **Workflow** page shows every stage as a graph, with the models, scrip
 - Python 3.12 and [uv](https://docs.astral.sh/uv/).
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI) (developed on 0.41.3) and [Ollama](https://ollama.com) for the checker.
 
-Model files. FLUX 3 Klein and LTX 2.5 go in ComfyUI's own model folders, or set `TOUCHDOWN_MODEL_PATHS` to an `extra_model_paths` file that points at them. FLUX.1 Fill goes in this repository under `models/FLUX-Fill/diffusion_models`, `text_encoders` and `vae`; its files are checked against `workflows/touchdown/flux-fill-models.json` on first use.
+Model files. FLUX 3 Klein and LTX 2.5 go in ComfyUI's own model folders, or set `TOUCHDOWN_MODEL_PATHS` to an `extra_model_paths` file that points at them. Gemma4 is LTX 2.5’s text encoder: it encodes the video prompts, while Qwen3.5 performs the separate checks.
 
 | Model | Files |
 | --- | --- |
 | FLUX 3 Klein | `flux3-image-klein-int8-convrot.safetensors`, `qwen3vl_4b_int8_convrot.safetensors`, `flux2-vae.safetensors` |
-| FLUX.1 Fill | `flux1-fill-dev.safetensors`, `clip_l.safetensors`, `t5xxl_fp16.safetensors`, `ae.safetensors` |
-| LTX 2.5 | `ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors`, `gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors`, `ltx-2.5-video-vae-bf16.safetensors`, `ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors` |
+| LTX 2.5 | `ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors`, `ltx-2.5-video-vae-bf16.safetensors`, `ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors` |
+| LTX 2.5 text encoder (Gemma4) | `gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors` |
 | Checker | `qwen3.5:4b` in Ollama (started by `scripts/start_touchdown_vision_checker.sh`) |
+
+**Optional legacy opening:** FLUX.1 Fill expands the overhead landscape for `photographic-grounded-v1`. The default `photographic-generic-orbit-v1` workflow does not use or require it. To run the legacy workflow, install `flux1-fill-dev.safetensors`, `clip_l.safetensors`, `t5xxl_fp16.safetensors` and `ae.safetensors` under `models/FLUX-Fill/diffusion_models`, `text_encoders` and `vae`. These files are verified against `workflows/touchdown/flux-fill-models.json`.
 
 Install the checker model into the project's own Ollama store:
 

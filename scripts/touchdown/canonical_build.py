@@ -39,7 +39,6 @@ def model_paths():
 
 def check(control=False):
     from touchdown.studio_build import preflight
-    from touchdown.scene_grounded_workflow import FILL_CHECKS,model_checks
     preflight()
     for path in [ARCHIVE/'scripts/touchdown/split_flight.py',CANON/'flight-preset.json',CANON/'opening-timing.json',REPO/'assets/models/face_detection_yunet_2023mar.onnx',*(RELAY/n for n in ('patches.py','prompt_relay.py','upstream.json'))]:
         if not path.is_file():raise ValueError('Missing canonical dependency: '+str(path))
@@ -54,9 +53,11 @@ def check(control=False):
     import tempfile
     with tempfile.TemporaryDirectory() as temporary:
         Build(Path(temporary)).initialise()  # the frozen code a job would get, checked against the accepted control
-        model_checks(Path(temporary))
+        if RECIPE==GROUNDED or control:
+            from touchdown.scene_grounded_workflow import model_checks
+            model_checks(Path(temporary))
     if read(ARCHIVE/'scripts/touchdown/presets/photographic-flight-v1.json')['split']!=read(CANON/'flight-preset.json')['split']:raise ValueError('Archived flight preset differs')
-    print('Canonical grounded workflow preflight passed; automatic Qwen checkpoints required.',flush=True)
+    print(f'Canonical workflow preflight passed ({RECIPE}); automatic Qwen checkpoints required.',flush=True)
 
 
 class Held(Exception):pass

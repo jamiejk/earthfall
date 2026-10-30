@@ -9,6 +9,23 @@ from touchdown.canonical_build import Build,Held,GENERIC,GROUNDED
 from server.checkpoints import IDS,validate_layout
 
 
+@pytest.mark.parametrize('recipe,requires_fill', [(GENERIC,False),(GROUNDED,True)])
+def test_preflight_only_requires_fill_for_the_grounded_recipe(monkeypatch,recipe,requires_fill):
+    from touchdown import canonical_build,studio_build,scene_grounded_workflow
+    monkeypatch.setattr(canonical_build,'RECIPE',recipe)
+    monkeypatch.setattr(studio_build,'preflight',lambda:None)
+    monkeypatch.setattr(canonical_build,'model_paths',lambda:None)
+    monkeypatch.setattr(Build,'initialise',lambda self:None)
+    def missing_fill(folder):
+        raise FileNotFoundError('FLUX.1 Fill is not installed')
+    monkeypatch.setattr(scene_grounded_workflow,'model_checks',missing_fill)
+    if requires_fill:
+        with pytest.raises(FileNotFoundError,match='FLUX.1 Fill'):
+            canonical_build.check()
+    else:
+        canonical_build.check()
+
+
 def approve_checkpoints(worker,job_id,root,video=b'synthetic'):
     root.mkdir(parents=True,exist_ok=True);(root/'fixture.mp4').write_bytes(video)
     for name in IDS:
