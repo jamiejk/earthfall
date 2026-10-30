@@ -12,6 +12,8 @@ Example films (8–10 s each): Longleat House, Bamburgh Castle, Eilean Donan Cas
 
 **Live app:** [earthfall.jamiek.ing](https://earthfall.jamiek.ing)
 
+**Demo video (1:58):** [watch on X](https://x.com/jamie_jk/status/2116104753834803415). An entry for the Open Source Higgsfield challenge (#OpenSourceHiggsfield), category Open Weights Only.
+
 An entry for the Open Source Higgsfield challenge (#OpenSourceHiggsfield), category Open Weights Only.
 
 ## How it works
