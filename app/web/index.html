@@ -99,33 +99,31 @@
     
     <section id="about" class="workflow" aria-labelledby="about-heading">
       <div class="workflow-heading"><div><h2 id="about-heading">How it works</h2></div></div>
-      <p class="workflow-intro">The flight is made backwards: Earthfall flies away from the person and up through the clouds, then plays it in reverse. The view from orbit is painted afterwards from the landscape that flight reveals, so the two match. <a href="/static/workflow.html">Full technical graph →</a></p>
+      <p class="workflow-intro">The flight is made backwards: Earthfall flies away from the person and up through the clouds, then plays it in reverse. The opening is a generic Earth from orbit, the same for every place, that dives into the flight’s own cloud. <a href="/static/workflow.html">Full technical graph →</a></p>
       <figure class="workflow-diagram" aria-labelledby="workflow-caption">
         <div class="workflow-lane">
           <h3><span class="workflow-number">01</span> Fly away from the person</h3>
           <ol class="workflow-steps workflow-three">
-            <li><span class="workflow-tool">Photographic inputs</span><h4>Person + place</h4><p>Your portrait sets the person. Photos of the landmark, from Wikimedia Commons or your own, set the place.</p></li>
-            <li><span class="workflow-tool">FLUX 3 → LTX 2.5</span><h4>Landing + living portrait</h4><p>FLUX 3 places the person at the landmark. LTX 2.5 animates the ending pose.</p></li>
+            <li><span class="workflow-tool">Photographic inputs · OpenStreetMap</span><h4>Person + place</h4><p>Your portrait sets the person. Photos of the landmark, from Wikimedia Commons or your own, set the place. OpenStreetMap lists the woods, lakes and rivers around it.</p></li>
+            <li><span class="workflow-tool">FLUX 3 → LTX 2.5</span><h4>Landing + living portrait</h4><p>FLUX 3 places the person at the landmark. LTX 2.5 animates the ending: the camera settles and the person moves.</p></li>
             <li><span class="workflow-tool">LTX 2.5 · Prompt Relay</span><h4>Generate the flight</h4><p>LTX flies the camera away from the person, over the landscape and up into cloud. Played backwards, it becomes the dive.</p></li>
           </ol>
         </div>
-        <div class="workflow-handoff"><span aria-hidden="true">↓</span> Qwen picks a clear frame below the clouds</div>
+        <div class="workflow-handoff"><span aria-hidden="true">↓</span> Qwen checks the flight’s view of the landmark</div>
         <div class="workflow-lane workflow-grounding">
-          <h3><span class="workflow-number">02</span> Paint the view from orbit</h3>
-          <ol class="workflow-steps workflow-four">
-            <li><span class="workflow-tool">Qwen layout + FLUX 3</span><h4>Overhead texture</h4><p>Qwen sketches the broad land and water shapes in that frame. FLUX 3 turns the sketch into a straight-down photograph.</p></li>
-            <li><span class="workflow-tool">Native FLUX Fill</span><h4>Expand the region</h4><p>FLUX Fill widens the overhead view three times, to 8× the width. Qwen checks each pass.</p></li>
-            <li><span class="workflow-tool">Curved Earth projection</span><h4>Wrap onto the globe</h4><p>The wide texture is wrapped onto a curved Earth, with the landmark in the middle.</p></li>
-            <li><span class="workflow-tool">FLUX 3</span><h4>Finish the orbital view</h4><p>FLUX 3 adds atmosphere, detail and cloud, keeping the land shapes.</p></li>
-            <li class="workflow-opening"><span class="workflow-tool">LTX 2.5 · Prompt Relay</span><h4>Rush toward Earth</h4><p>LTX generates a new opening from orbit into the same moving clouds.</p></li>
+          <h3><span class="workflow-number">02</span> Dive from orbit</h3>
+          <ol class="workflow-steps workflow-three">
+            <li><span class="workflow-tool">Stored FLUX 3 photograph</span><h4>Earth from orbit</h4><p>A generic photograph of Earth mostly under cloud, made once. It is the same for every place: the ground stays hidden until the flight’s own clouds open.</p></li>
+            <li><span class="workflow-tool">Camera proxy</span><h4>Plan the dive</h4><p>The globe alone, approached faster and faster until it matches the flight’s own speed in the cloud. No cloud is drawn into the guide.</p></li>
+            <li><span class="workflow-tool">LTX 2.5 · Layout To Render</span><h4>Rush toward Earth</h4><p>LTX follows the proxy and grows the planet’s clouds until they fill the frame, ending on the flight’s own cloud frames.</p></li>
           </ol>
         </div>
-        <div class="workflow-handoff"><span aria-hidden="true">↓</span> The new opening meets the flight inside the cloud</div>
+        <div class="workflow-handoff"><span aria-hidden="true">↓</span> The opening meets the flight inside its thickest cloud</div>
         <div class="workflow-lane">
           <h3><span class="workflow-number">03</span> Join and check</h3>
           <ol class="workflow-steps workflow-two">
-            <li><span class="workflow-tool">Frame-matched assembly</span><h4>Join inside the cloud</h4><p>The new opening replaces the first 40 frames. The rest of the flight keeps its frames and timing.</p></li>
-            <li><span class="workflow-tool">Qwen3.5 checks</span><h4>Check the finished film</h4><p>Qwen checks the cloud join, the landmark and the person. Every check, setting and seed is saved with the film.</p></li>
+            <li><span class="workflow-tool">Frame-matched assembly</span><h4>Join inside the cloud</h4><p>The opening cuts to the flight at its densest white cloud frame. The rest of the flight keeps its frames and timing.</p></li>
+            <li><span class="workflow-tool">Qwen3.5 checks</span><h4>Check the finished film</h4><p>Qwen checks the cloud join, the landmark and the person, and an automatic check rejects an opening that does not move. Every check, setting and seed is saved with the film.</p></li>
           </ol>
         </div>
         <div class="workflow-result"><span class="workflow-result-label">The film you see</span><ol aria-label="Final film sequence"><li>Orbit</li><li>Through clouds</li><li>Landmark approach</li><li>Living portrait</li></ol></div>
@@ -145,7 +143,7 @@
           <li><span class="workflow-tool">Frame-exact joins</span><h4>No crossfades</h4><p>Clips meet on whole frames: the opening inside the cloud, the flight into the portrait. Nothing is blended or interpolated.</p></li>
         </ol>
       </section>
-      <details class="workflow-notes"><summary>Limits</summary><div class="workflow-note-grid"><div><h3>What is generated</h3><p>Everything except your portrait and the landmark photos is generated: the landing photo, the flight, the land around the landmark and the view from orbit. Beyond the landmark itself the geography is invented. It is not a map.</p></div><div><h3>What the checks do</h3><p>A local Qwen3.5 model sketches the regional layout and checks each stage. When a check fails or is unsure, the build stops and keeps the take. Small models miss things, so watch the film before sharing it. Endings marked “trial” fail more often.</p></div></div></details>
+      <details class="workflow-notes"><summary>Limits</summary><div class="workflow-note-grid"><div><h3>What is generated</h3><p>Everything except your portrait and the landmark photos is generated: the landing photo, the flight, the land around the landmark and the opening from orbit. Beyond the landmark itself the geography is invented. It is not a map.</p></div><div><h3>What the checks do</h3><p>A local Qwen3.5 model checks the reference photos, the flight’s view of the landmark and the finished film. When a check fails or is unsure, the build stops and keeps the take. Small models miss things, so watch the film before sharing it. Endings marked “trial” fail more often.</p></div></div></details>
     </section>
     <details id="credits" class="credits"><summary>Photo credits</summary><div id="photo-credits"></div><p>The example posters are frames from the generated films.</p></details>
   </main>
