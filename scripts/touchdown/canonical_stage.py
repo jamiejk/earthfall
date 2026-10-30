@@ -7,8 +7,16 @@ def read(p):return json.loads(p.read_text())
 def write(p,data):
     p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(data,indent=2)+'\n')
 
+def remote(*modules):
+    """TOUCHDOWN_REMOTE_COMFY=1: generation on a remote ComfyUI (see remote_comfy.py). Loaded by path, since the flight
+    stage's `touchdown` package is the frozen copy."""
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('remote_comfy',REPO/'scripts/touchdown/remote_comfy.py')
+    r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r);return r.install(*modules)
+
 def prepare(root):
     from touchdown import studio_build as s
+    remote(s)
     from touchdown.canonical_scene import scene_config
     s.REPO=REPO
     import shlex
@@ -78,7 +86,7 @@ def flight(root):
     code=root/'flight/frozen-code';sys.path[:0]=[str(code/'scripts'),str(code/'src')]
     os.environ['PYTHONPATH']=os.pathsep.join(sys.path[:2])
     from touchdown import split_flight as f,studio_build as s
-    protect_person(f)
+    protect_person(f);remote(s)
     from touchdown.studio_brief import approach_view_review
     from touchdown.photo_only import asset_plan,verify_lineage
     assert Path(f.__file__).is_relative_to(code)

@@ -699,6 +699,9 @@ def worker(root):
     import fakeout_earth_zoom as f
     assert Path(flight.__file__).is_relative_to(code)
     studio.REPO = REPO
+    import importlib.util                       # TOUCHDOWN_REMOTE_COMFY=1: generate on a remote ComfyUI
+    spec = importlib.util.spec_from_file_location('remote_comfy', REPO / 'scripts/touchdown/remote_comfy.py')
+    remote = importlib.util.module_from_spec(spec); spec.loader.exec_module(remote); remote.install(studio)
     command = os.environ['TOUCHDOWN_COMFY_SERVER_CMD']
     if '--deterministic' not in shlex.split(command):
         command += ' --deterministic'
