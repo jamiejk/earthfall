@@ -58,13 +58,21 @@ The worker checks that model's digest against the one the checks were evaluated 
 ## Install
 
 ```bash
-git clone https://github.com/jamiejk/touchdown earthfall && cd earthfall
+git clone https://github.com/jamiejk/earthfall && cd earthfall
 uv sync --locked --extra touchdown --extra app --extra comfy
 ```
 
 ## Run
 
-One command starts the web app and the GPU worker together. Point it at your ComfyUI first:
+The video stages talk to ComfyUI through [comfy-api-proxy](https://pypi.org/project/comfy-api-proxy/) on port 8193; the worker starts and stops ComfyUI itself on 8192. Install the proxy in ComfyUI's own Python and leave it running (the flight's guide clips need the larger upload limit):
+
+```bash
+/path/to/comfy-venv/bin/pip install comfy-api-proxy==0.1.6
+/path/to/comfy-venv/bin/python -m comfy_api_proxy.cli run --comfyui http://127.0.0.1:8192 \
+    --host 127.0.0.1 --port 8193 --max-upload-mb 100 --comfyui-base-dir /path/to/ComfyUI
+```
+
+One command then starts the web app and the GPU worker together:
 
 ```bash
 export TOUCHDOWN_CANONICAL=1
