@@ -32,10 +32,21 @@ def env(tmp_path, monkeypatch):
     def no_photos(*args, **kwargs):
         raise ValueError("No test photos")
     monkeypatch.setattr(location_photos, "fetch_place_photos", no_photos)
+    # Chichen Itza's curated Commons photos live under outputs/ on the development machine only. A fresh clone gets
+    # stand-ins for the test and has them removed afterwards, so the default place still has its two photos.
+    landmark = next(p for p in json.loads((ROOT / "app/server/studio_landmarks.json").read_text()) if p["id"] == "chichen-itza")
+    stand_ins = [ROOT / r["path"] for r in landmark["references"] if not (ROOT / r["path"]).is_file()]
+    for path in stand_ins:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(photo())
     settings = Settings(data_dir=tmp_path / "data", repo=ROOT, worker_token="worker", gallery_seed=[tmp_path / "none"])
     app = create_app(settings)
-    with TestClient(app) as client:
-        yield client, settings, app
+    try:
+        with TestClient(app) as client:
+            yield client, settings, app
+    finally:
+        for path in stand_ins:
+            path.unlink(missing_ok=True)
 
 
 def save(client, *, destination=None, data=None, subject=True, references=0):
