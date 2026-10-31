@@ -33,6 +33,7 @@ The app's **Workflow** page shows every stage as a graph, with the models, scrip
 ## Requirements
 
 - Linux with an NVIDIA GPU with 24 GB VRAM. Developed on an RTX 4090 with 95 GB system RAM.
+  Remote ComfyUI supported: the image and video generation can run on a ComfyUI you host elsewhere, such as a rented GPU pod (see [Remote ComfyUI](app/README.md#remote-comfyui-optional)). The Qwen checks still run locally.
 - Python 3.12 and [uv](https://docs.astral.sh/uv/).
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI) (developed on 0.41.3) and [Ollama](https://ollama.com) for the checker.
 

@@ -589,6 +589,45 @@ The server alone is `touchdown-app --server-only`; the Docker image runs that.
 | `TOUCHDOWN_SHARE_TERRAIN` | `1` | worker | reuse a finished terrain stage for the same place (see above) |
 | `TOUCHDOWN_NAIP_WORDS` | `1` | worker | generated places: describe the ground underfoot from NAIP (network) |
 | `TOUCHDOWN_GEOCODER_URL` | `https://nominatim.openstreetmap.org` | server | place-name search for custom points |
+| `TOUCHDOWN_REMOTE_COMFY` | unset | worker | `1`: Create's stills and video run on a remote ComfyUI (see below) |
+| `TOUCHDOWN_REMOTE_COMFY_TOKEN` | unset | worker | sent as `Authorization: Bearer …` to the two remote ComfyUI URLs only |
+
+## Remote ComfyUI (optional)
+
+Create runs everything on the local GPU by default. With `TOUCHDOWN_REMOTE_COMFY=1` the generation stages (the
+FLUX 3 stills and the LTX 2.5 video) go to a ComfyUI you run elsewhere, such as a rented GPU pod. The Qwen checks,
+OpenCV, the opening's assembly and the app stay on this machine, so it still needs a small GPU (or patience on
+CPU) for the 4B Qwen model.
+
+```bash
+export TOUCHDOWN_REMOTE_COMFY=1
+export TOUCHDOWN_FLUX3_FREE_URL=https://comfy.example.net        # the remote ComfyUI's plain HTTP API
+export TOUCHDOWN_COMFY_URL=https://comfy-proxy.example.net       # comfy-api-proxy in front of that ComfyUI
+export TOUCHDOWN_REMOTE_COMFY_TOKEN=<secret>                     # if those URLs need a bearer token
+```
+
+In this mode the worker never starts or stops a ComfyUI: it waits up to `TOUCHDOWN_REMOTE_COMFY_WAIT` seconds
+(default 180) for the remote to answer `/system_stats`, then sends work. The token goes only to those two URLs.
+
+The remote has to match what a local launch loads, or the stages fail:
+
+- ComfyUI 0.41.3 with the pinned `TouchdownPromptRelay` node in its `custom_nodes`: copy
+  `workflows/touchdown/canonical/photographic-grounded-v1/relay-runtime/TouchdownPromptRelay`, then copy
+  `workflows/touchdown/canonical/photographic-grounded-v1/frozen-code/scripts/touchdown/relay_node.py` into it as
+  `__init__.py` (what a local launch does). The node imports `touchdown.relay_timing`, so start ComfyUI with this
+  repository's `scripts` and `src` folders on `PYTHONPATH`, and with `--deterministic`;
+- the same model files under the same names as on the local machine (FLUX 3 Image Klein, LTX 2.5 with its
+  upscalers and the Layout To Render IC-LoRA), in its own model folders;
+- `comfy-api-proxy` on a second port for the Comfy SDK (`--token <secret>` guards its `/api/v2/*`), and a
+  bearer-token check in front of the plain ComfyUI port if it is reachable from the internet.
+
+Tested 30 Oct 2026 on one machine, with the local ComfyUI behind a token gate and comfy-api-proxy `--token`: a FLUX 3
+still and an SDK upload went through with the token, requests without it got 401, and no local ComfyUI was started.
+A full build on a separate GPU box has not been run.
+
+This is not Comfy Cloud: Cloud has no `TouchdownPromptRelay` node and no IC-LoRA, so the graphs would not load.
+Only the generic-orbit Create recipe (the default) is wired for this; the older overhead-texture recipe still
+launches its own ComfyUI.
 
 ## Security notes
 
