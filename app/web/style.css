@@ -223,3 +223,9 @@ dialog { color:var(--ink); background:var(--surface); border:1px solid var(--lin
 #canonical-check-assets { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
 #canonical-check-assets img, #canonical-check-assets video { width: 100%; border-radius: 10px; }
 @media(max-width:520px) { .intro .lede { font-size:18px; }.examples-strip .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } }
+.ltx-used { margin-top:22px; }
+.ltx-intro { color:#5f6658; font-size:13px; line-height:1.65; margin:-6px 0 18px; max-width:760px; }
+.ltx-features { gap:14px; }
+.ltx-features>li+li::before { content:none !important; }
+.ltx-features code { font-size:11px; }
+@media(max-width:1000px) and (min-width:651px) { .ltx-features { grid-template-columns:repeat(2,minmax(0,1fr)); } }
