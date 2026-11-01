@@ -23,7 +23,7 @@ eight seconds, then use installed legacy examples or an explicit empty state.
 
 ## Reviewed example selector
 
-The player and the example cards under it use the catalog in `app/web/reviewed-examples.json`: Bamburgh,
+The player and the example cards under it use the catalog in `app/web/reviewed-examples.json`: Longleat, Tanah Lot, Bamburgh,
 Eilean Donan, Chambord and Pena. Selection is independent of the new-film landmark controls. Only installed
 gallery URLs appear; the previous studio examples are a fallback when the films are not installed.
 

@@ -24,6 +24,37 @@
     ]
   },
   {
+    "id": "tanah-lot-generic-orbit-v1",
+    "title": "Tanah Lot",
+    "region": "Bali",
+    "country": "Indonesia",
+    "source": "app/examples/tanah-lot-generic-orbit-v1.mp4",
+    "method": "Made with Create as it ships: generic orbit opening, Qwen checks, no manual steps.",
+    "credits": [
+      {
+        "title": "Bali - Pura Tanah Lot, 20220827 0957 1108.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bali_-_Pura_Tanah_Lot,_20220827_0957_1108.jpg",
+        "artist": "Jakub Hałun",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      {
+        "title": "Tanah-Lot Bali Indonesia Pura-Tanah-Lot-01.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Tanah-Lot_Bali_Indonesia_Pura-Tanah-Lot-01.jpg",
+        "artist": "CEphoto, Uwe Aranas",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+      },
+      {
+        "title": "A sunset at Pura Tanah Lot (2025) - img 03.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:A_sunset_at_Pura_Tanah_Lot_(2025)_-_img_03.jpg",
+        "artist": "Chainwit.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ]
+  },
+  {
     "id": "bamburgh-grounded-v1",
     "title": "Bamburgh Castle",
     "region": "Northumberland",

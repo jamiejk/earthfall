@@ -8,7 +8,7 @@ Longleat House → Eilean Donan Castle → Palácio da Pena. The preview loops a
 
 It runs on your own machine with open-weight models only: FLUX 3 Klein for stills, LTX 2.5 for video and Qwen3.5 4B as the automatic checker. Generation goes through ComfyUI, driven by the Comfy SDK. No paid APIs are called.
 
-Example films (8–10 s each): Longleat House, Bamburgh Castle, Eilean Donan Castle, Château de Chambord and Palácio da Pena. They are in the repository and appear on the page when the app starts; see [Example films](#example-films).
+Example films (8–10 s each): Longleat House, Tanah Lot, Bamburgh Castle, Eilean Donan Castle, Château de Chambord and Palácio da Pena. They are in the repository and appear on the page when the app starts; see [Example films](#example-films).
 
 **Live app:** [earthfall.jamiek.ing](https://earthfall.jamiek.ing)
 
@@ -95,12 +95,13 @@ The app listens on 127.0.0.1 only. Set `TOUCHDOWN_PASSCODE` before making it rea
 | Location | Full-quality film |
 | --- | --- |
 | Longleat House | [Watch MP4](app/examples/longleat-generic-orbit-v1.mp4) |
+| Tanah Lot, Bali | [Watch MP4](app/examples/tanah-lot-generic-orbit-v1.mp4) |
 | Bamburgh Castle | [Watch MP4](app/examples/bamburgh-grounded-v1.mp4) |
 | Eilean Donan Castle | [Watch MP4](app/examples/eilean-donan-grounded-v2.mp4) |
 | Château de Chambord | [Watch MP4](app/examples/chambord-recipe-v1.mp4) |
 | Palácio da Pena | [Watch MP4](app/examples/pena-photographic-v1.mp4) |
 
-The five example films are in `app/examples/`. The app copies them into its gallery and makes their posters the first time it starts, so they are on the page with nothing to run. To install them into another data directory by hand:
+The six example films are in `app/examples/`. The app copies them into its gallery and makes their posters the first time it starts, so they are on the page with nothing to run. To install them into another data directory by hand:
 
 ```bash
 uv run python scripts/install_earthfall_examples.py --gallery /path/to/data/gallery
